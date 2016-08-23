@@ -1,0 +1,48 @@
+PODS:
+  - Alamofire (3.4.1)
+  - ASValueTrackingSlider (0.11.2)
+  - CocoaAsyncSocket (7.4.3):
+    - CocoaAsyncSocket/All (= 7.4.3)
+  - CocoaAsyncSocket/All (7.4.3):
+    - CocoaAsyncSocket/GCD
+    - CocoaAsyncSocket/RunLoop
+  - CocoaAsyncSocket/GCD (7.4.3)
+  - CocoaAsyncSocket/RunLoop (7.4.3)
+  - Kingfisher (2.4.1)
+  - PureLayout (3.0.2)
+  - SwiftyJSON (2.3.2)
+  - TingSpectrum (0.1.1)
+  - Whisper (3.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.3)
+  - ASValueTrackingSlider
+  - CocoaAsyncSocket
+  - Kingfisher (~> 2.4.1)
+  - PureLayout
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+  - TingSpectrum (~> 0.1.1)
+  - Whisper
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: 73670b94292b8d8496c398a973f56ac67789ba9f
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+SPEC CHECKSUMS:
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  ASValueTrackingSlider: 45c9f78252da60de01d8f2afe869aaf90dd978d9
+  CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
+  Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  TingSpectrum: e0efcd3c8f45c259d30dff1b4b6dc4ef024c0ecc
+  Whisper: 42a3ee7c2936f861b23d41bd6cd7dfd22f102405
+
+PODFILE CHECKSUM: 10ee731b7537b16187c262f4eda84221da3cf574
+
+COCOAPODS: 1.0.1
