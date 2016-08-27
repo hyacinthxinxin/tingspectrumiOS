@@ -13,18 +13,22 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
     var window: UIWindow?
-
+    var dataModel = LecDataModel()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+
+        print(LecConstants.Path.Documents)
+        
+        customizeAppearance()
+
         let splitViewController = self.window!.rootViewController as! UISplitViewController
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
 
         let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
-        let controller = masterNavigationController.topViewController as! MasterViewController
-        controller.managedObjectContext = self.managedObjectContext
+        let controller = masterNavigationController.topViewController as! LecMasterViewController
+        controller.dataModel = dataModel
         return true
     }
 
@@ -56,13 +60,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController, ontoPrimaryViewController primaryViewController:UIViewController) -> Bool {
         guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
-        guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
-        if topAsDetailController.detailItem == nil {
+        guard let topAsDetailController = secondaryAsNavController.topViewController as? LecAreaDetailViewController else { return false }
+        if topAsDetailController.area == nil {
             // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
             return true
         }
         return false
     }
+    
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {
@@ -124,6 +129,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 abort()
             }
         }
+    }
+    
+    // MARK: - Custom Appearance
+    
+    func customizeAppearance() {
+//        let barTintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
+//        UISearchBar.appearance().barTintColor = barTintColor
+//        window!.tintColor = UIColor(red: 10/255, green: 80/255, blue: 80/255, alpha: 1)
+        window!.tintColor = UIColor.whiteColor()
+        
+        
     }
 
 }

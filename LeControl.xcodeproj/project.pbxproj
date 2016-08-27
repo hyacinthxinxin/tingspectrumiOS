@@ -15,6 +15,24 @@
 		BA2B4F9D1D6C752B007D96B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4F9B1D6C752B007D96B6 /* Main.storyboard */; };
 		BA2B4F9F1D6C752B007D96B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4F9E1D6C752B007D96B6 /* Assets.xcassets */; };
 		BA2B4FA21D6C752C007D96B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4FA01D6C752C007D96B6 /* LaunchScreen.storyboard */; };
+		BA2B4FAE1D6C787B007D96B6 /* LecMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FAD1D6C787B007D96B6 /* LecMasterViewController.swift */; };
+		BA2B4FB11D6C78C2007D96B6 /* LecModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FB01D6C78C2007D96B6 /* LecModel.swift */; };
+		BA2B4FB31D6C79CC007D96B6 /* LecDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FB21D6C79CC007D96B6 /* LecDataModel.swift */; };
+		BA2B4FB51D6C7B2F007D96B6 /* LecAreaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FB41D6C7B2F007D96B6 /* LecAreaDetailViewController.swift */; };
+		BA2B4FB71D6C7B50007D96B6 /* LecDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FB61D6C7B50007D96B6 /* LecDeviceViewController.swift */; };
+		BA2B4FB91D6C7D67007D96B6 /* LecConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FB81D6C7D67007D96B6 /* LecConstants.swift */; };
+		BA2B4FBD1D6C7E07007D96B6 /* LecSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FBC1D6C7E07007D96B6 /* LecSocketManager.swift */; };
+		BA2B4FC11D6C7EBC007D96B6 /* LecFileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FC01D6C7EBC007D96B6 /* LecFileHelper.swift */; };
+		BA2B4FC31D6C7F59007D96B6 /* DefaultProject.json in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4FC21D6C7F59007D96B6 /* DefaultProject.json */; };
+		BA2B4FC51D6C7FE4007D96B6 /* LecAreaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FC41D6C7FE4007D96B6 /* LecAreaCell.swift */; };
+		BA2B4FC71D6C872E007D96B6 /* LecAreaDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FC61D6C872E007D96B6 /* LecAreaDetailCell.swift */; };
+		BA2B4FCA1D6EE2D7007D96B6 /* LecLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FC91D6EE2D7007D96B6 /* LecLoginViewController.swift */; };
+		BA2B4FCC1D6EE2EA007D96B6 /* LecConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FCB1D6EE2EA007D96B6 /* LecConfigViewController.swift */; };
+		BA2B4FCE1D6EE8C0007D96B6 /* LecNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FCD1D6EE8C0007D96B6 /* LecNetwork.swift */; };
+		BA2B4FD01D6EE90B007D96B6 /* LecGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FCF1D6EE90B007D96B6 /* LecGlobal.swift */; };
+		BA2B4FD21D6F170B007D96B6 /* LecBuildingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FD11D6F170B007D96B6 /* LecBuildingCell.swift */; };
+		BA2B4FD41D6F19E6007D96B6 /* LecExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FD31D6F19E6007D96B6 /* LecExtensions.swift */; };
+		BA2B4FD61D6F482E007D96B6 /* LecJsonParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FD51D6F482E007D96B6 /* LecJsonParseHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +47,24 @@
 		BA2B4F9E1D6C752B007D96B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA2B4FA11D6C752C007D96B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA2B4FA31D6C752C007D96B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA2B4FAD1D6C787B007D96B6 /* LecMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecMasterViewController.swift; path = FloorAndArea/LecMasterViewController.swift; sourceTree = "<group>"; };
+		BA2B4FB01D6C78C2007D96B6 /* LecModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecModel.swift; path = Model/LecModel.swift; sourceTree = "<group>"; };
+		BA2B4FB21D6C79CC007D96B6 /* LecDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecDataModel.swift; path = Model/LecDataModel.swift; sourceTree = "<group>"; };
+		BA2B4FB41D6C7B2F007D96B6 /* LecAreaDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecAreaDetailViewController.swift; path = Device/LecAreaDetailViewController.swift; sourceTree = "<group>"; };
+		BA2B4FB61D6C7B50007D96B6 /* LecDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecDeviceViewController.swift; path = Device/LecDeviceViewController.swift; sourceTree = "<group>"; };
+		BA2B4FB81D6C7D67007D96B6 /* LecConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecConstants.swift; path = Units/LecConstants.swift; sourceTree = "<group>"; };
+		BA2B4FBC1D6C7E07007D96B6 /* LecSocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecSocketManager.swift; path = Units/LecSocketManager.swift; sourceTree = "<group>"; };
+		BA2B4FC01D6C7EBC007D96B6 /* LecFileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecFileHelper.swift; path = Units/LecFileHelper.swift; sourceTree = "<group>"; };
+		BA2B4FC21D6C7F59007D96B6 /* DefaultProject.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DefaultProject.json; sourceTree = "<group>"; };
+		BA2B4FC41D6C7FE4007D96B6 /* LecAreaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecAreaCell.swift; path = FloorAndArea/LecAreaCell.swift; sourceTree = "<group>"; };
+		BA2B4FC61D6C872E007D96B6 /* LecAreaDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecAreaDetailCell.swift; path = Device/LecAreaDetailCell.swift; sourceTree = "<group>"; };
+		BA2B4FC91D6EE2D7007D96B6 /* LecLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecLoginViewController.swift; path = Config/LecLoginViewController.swift; sourceTree = "<group>"; };
+		BA2B4FCB1D6EE2EA007D96B6 /* LecConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecConfigViewController.swift; path = Config/LecConfigViewController.swift; sourceTree = "<group>"; };
+		BA2B4FCD1D6EE8C0007D96B6 /* LecNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecNetwork.swift; path = Units/LecNetwork.swift; sourceTree = "<group>"; };
+		BA2B4FCF1D6EE90B007D96B6 /* LecGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecGlobal.swift; path = Units/LecGlobal.swift; sourceTree = "<group>"; };
+		BA2B4FD11D6F170B007D96B6 /* LecBuildingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecBuildingCell.swift; path = Config/LecBuildingCell.swift; sourceTree = "<group>"; };
+		BA2B4FD31D6F19E6007D96B6 /* LecExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecExtensions.swift; path = Units/LecExtensions.swift; sourceTree = "<group>"; };
+		BA2B4FD51D6F482E007D96B6 /* LecJsonParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecJsonParseHelper.swift; path = Units/LecJsonParseHelper.swift; sourceTree = "<group>"; };
 		CEC71C0DE0B2144F48235161 /* Pods-LeControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeControl.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeControl/Pods-LeControl.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +110,12 @@
 		BA2B4F911D6C752B007D96B6 /* LeControl */ = {
 			isa = PBXGroup;
 			children = (
+				BA2B4FC21D6C7F59007D96B6 /* DefaultProject.json */,
+				BA2B4FC81D6EE2B7007D96B6 /* Config */,
+				BA2B4FAF1D6C78A2007D96B6 /* Model */,
+				BA2B4FAC1D6C780C007D96B6 /* Device */,
+				BA2B4FAB1D6C77FF007D96B6 /* FloorAndArea */,
+				BA2B4FA91D6C7778007D96B6 /* Units */,
 				BA2B4F921D6C752B007D96B6 /* AppDelegate.swift */,
 				BA2B4F971D6C752B007D96B6 /* MasterViewController.swift */,
 				BA2B4F991D6C752B007D96B6 /* DetailViewController.swift */,
@@ -84,6 +126,58 @@
 				BA2B4F941D6C752B007D96B6 /* LeControl.xcdatamodeld */,
 			);
 			path = LeControl;
+			sourceTree = "<group>";
+		};
+		BA2B4FA91D6C7778007D96B6 /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				BA2B4FB81D6C7D67007D96B6 /* LecConstants.swift */,
+				BA2B4FBC1D6C7E07007D96B6 /* LecSocketManager.swift */,
+				BA2B4FC01D6C7EBC007D96B6 /* LecFileHelper.swift */,
+				BA2B4FCD1D6EE8C0007D96B6 /* LecNetwork.swift */,
+				BA2B4FCF1D6EE90B007D96B6 /* LecGlobal.swift */,
+				BA2B4FD31D6F19E6007D96B6 /* LecExtensions.swift */,
+				BA2B4FD51D6F482E007D96B6 /* LecJsonParseHelper.swift */,
+			);
+			name = Units;
+			sourceTree = "<group>";
+		};
+		BA2B4FAB1D6C77FF007D96B6 /* FloorAndArea */ = {
+			isa = PBXGroup;
+			children = (
+				BA2B4FAD1D6C787B007D96B6 /* LecMasterViewController.swift */,
+				BA2B4FC41D6C7FE4007D96B6 /* LecAreaCell.swift */,
+			);
+			name = FloorAndArea;
+			sourceTree = "<group>";
+		};
+		BA2B4FAC1D6C780C007D96B6 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				BA2B4FB41D6C7B2F007D96B6 /* LecAreaDetailViewController.swift */,
+				BA2B4FC61D6C872E007D96B6 /* LecAreaDetailCell.swift */,
+				BA2B4FB61D6C7B50007D96B6 /* LecDeviceViewController.swift */,
+			);
+			name = Device;
+			sourceTree = "<group>";
+		};
+		BA2B4FAF1D6C78A2007D96B6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BA2B4FB01D6C78C2007D96B6 /* LecModel.swift */,
+				BA2B4FB21D6C79CC007D96B6 /* LecDataModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		BA2B4FC81D6EE2B7007D96B6 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				BA2B4FC91D6EE2D7007D96B6 /* LecLoginViewController.swift */,
+				BA2B4FCB1D6EE2EA007D96B6 /* LecConfigViewController.swift */,
+				BA2B4FD11D6F170B007D96B6 /* LecBuildingCell.swift */,
+			);
+			name = Config;
 			sourceTree = "<group>";
 		};
 		DDA0FFB10DF8CC3904772E82 /* Frameworks */ = {
@@ -129,6 +223,7 @@
 				TargetAttributes = {
 					BA2B4F8E1D6C752B007D96B6 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 9YE7FFAQ8S;
 					};
 				};
 			};
@@ -158,6 +253,7 @@
 				BA2B4FA21D6C752C007D96B6 /* LaunchScreen.storyboard in Resources */,
 				BA2B4F9F1D6C752B007D96B6 /* Assets.xcassets in Resources */,
 				BA2B4F9D1D6C752B007D96B6 /* Main.storyboard in Resources */,
+				BA2B4FC31D6C7F59007D96B6 /* DefaultProject.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,9 +312,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA2B4FC71D6C872E007D96B6 /* LecAreaDetailCell.swift in Sources */,
+				BA2B4FB11D6C78C2007D96B6 /* LecModel.swift in Sources */,
+				BA2B4FB71D6C7B50007D96B6 /* LecDeviceViewController.swift in Sources */,
+				BA2B4FCA1D6EE2D7007D96B6 /* LecLoginViewController.swift in Sources */,
+				BA2B4FBD1D6C7E07007D96B6 /* LecSocketManager.swift in Sources */,
+				BA2B4FB31D6C79CC007D96B6 /* LecDataModel.swift in Sources */,
+				BA2B4FAE1D6C787B007D96B6 /* LecMasterViewController.swift in Sources */,
+				BA2B4FC51D6C7FE4007D96B6 /* LecAreaCell.swift in Sources */,
+				BA2B4FD21D6F170B007D96B6 /* LecBuildingCell.swift in Sources */,
+				BA2B4FB91D6C7D67007D96B6 /* LecConstants.swift in Sources */,
+				BA2B4FC11D6C7EBC007D96B6 /* LecFileHelper.swift in Sources */,
+				BA2B4FCC1D6EE2EA007D96B6 /* LecConfigViewController.swift in Sources */,
+				BA2B4FD01D6EE90B007D96B6 /* LecGlobal.swift in Sources */,
+				BA2B4FD61D6F482E007D96B6 /* LecJsonParseHelper.swift in Sources */,
+				BA2B4FCE1D6EE8C0007D96B6 /* LecNetwork.swift in Sources */,
+				BA2B4FD41D6F19E6007D96B6 /* LecExtensions.swift in Sources */,
 				BA2B4F961D6C752B007D96B6 /* LeControl.xcdatamodeld in Sources */,
 				BA2B4F931D6C752B007D96B6 /* AppDelegate.swift in Sources */,
 				BA2B4F981D6C752B007D96B6 /* MasterViewController.swift in Sources */,
+				BA2B4FB51D6C7B2F007D96B6 /* LecAreaDetailViewController.swift in Sources */,
 				BA2B4F9A1D6C752B007D96B6 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,7 +395,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -322,7 +435,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -335,7 +448,9 @@
 			baseConfigurationReference = 5846A9020629982D025C7257 /* Pods-LeControl.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = LeControl/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fanxin.tingspectrum.LeControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -347,7 +462,9 @@
 			baseConfigurationReference = CEC71C0DE0B2144F48235161 /* Pods-LeControl.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = LeControl/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fanxin.tingspectrum.LeControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
