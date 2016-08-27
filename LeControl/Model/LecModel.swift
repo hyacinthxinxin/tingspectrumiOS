@@ -106,6 +106,7 @@ class LecCam: NSObject {
     var camId: String = ""
     var camName: String = ""
     var camImageName: String = ""
+    var camType: Int = 0
     var subCamType: LecSubCamType = .Speed
     var commandType: LecCommand = .Type1bit
     var controlAddress: String = ""
@@ -123,25 +124,11 @@ class LecCam: NSObject {
         self.statusValue = statusValue
     }
     
-    static let CamId = "CamId"
-    static let CamType = "CamType"
-    static let SubCamType = "SubCamType"
-    static let CamName = "CamName"
-    static let ControlType = "ControlType"
-    static let ControlAddress = "ControlAddress"
-    static let StatusAddress = "StatusAddress"
-    static let ControlValue = "ControlValue"
-    static let MinControlValue = "MinControlValue"
-    static let MaxControlValue = "MaxControlValue"
-    static let StatusValue = "StatusValue"
-    static let MaxStatusValue = "MaxStatusValue"
-    static let MinStatusValue = "MinStatusValue"
-    static let Usn = "Usn"
-    
     func convertToDictionary() -> [String: AnyObject] {
         return [LecConstants.JSONKey.DeviceId: deviceId,
                 LecConstants.JSONKey.CamId: camId,
                 LecConstants.JSONKey.CamName: camName,
+                LecConstants.JSONKey.CamType: camType,
                 LecConstants.JSONKey.SubCamType: subCamType.rawValue,
                 LecConstants.JSONKey.ControlType: commandType.rawValue,
                 LecConstants.JSONKey.ControlAddress: controlAddress,

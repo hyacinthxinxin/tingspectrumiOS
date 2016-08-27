@@ -36,21 +36,21 @@ class LecConfigViewController: UITableViewController {
         Network.GETUserProjectsJSON(userId: userId).go() { [weak weakSelf = self] response in
             switch response {
             case .Success(let json):
-                if let buildingsArray = json["Buildings"].array {
+                if let buildingsArray = json[LecConstants.JSONKey.Buildings].array {
                     weakSelf?.buildings = parseBuilding(buildingsArray)
                     weakSelf?.tableView.reloadData()
                 }
-                if let floorsArray = json["Floors"].array {
+                if let floorsArray = json[LecConstants.JSONKey.Floors].array {
                     weakSelf?.floors = parseFloor(floorsArray)
                 }
                 
-                if let areasArray = json["Areas"].array {
+                if let areasArray = json[LecConstants.JSONKey.Areas].array {
                     weakSelf?.areas = parseArea(areasArray)
                 }
-                if let devicesArray = json["Devices"].array {
+                if let devicesArray = json[LecConstants.JSONKey.Devices].array {
                     weakSelf?.devices = parseDevice(devicesArray)
                 }
-                if let camsArray = json["Cams"].array {
+                if let camsArray = json[LecConstants.JSONKey.Cams].array {
                     weakSelf?.cams = parseCam(camsArray)
                 }
             case .Failure(let error):
@@ -83,54 +83,29 @@ class LecConfigViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        
         let building = buildings[indexPath.row]
         let buildingId = building.buildingId
-        
-//        let jsonBuilding = JSON(building)
-//        let jsonFloors = JSON(getCurrentFloors(buildingId))
-//        let jsonAreas = JSON(getCurrentAreas(buildingId))
-//        let jsonDevices = JSON(getCurrentDevices(buildingId))
-//        let jsonCams = JSON(getCurrentCams(buildingId))
-
-        
-        
         let currentFloors = (getCurrentFloors(buildingId)).map { $0.convertToDictionary() }
         let currentAreas = (getCurrentAreas(buildingId)).map { $0.convertToDictionary() }
         let currentDevices = (getCurrentDevices(buildingId)).map { $0.convertToDictionary() }
         let currentCams = (getCurrentCams(buildingId)).map { $0.convertToDictionary() }
-        let json: JSON = ["buildingId": building.buildingId, "buildingName": building.buildingName, "socketAddress": building.socketAddress, "socketPort": Int(building.socketPort), "Floors": currentFloors, "Areas": currentAreas, "Devices": currentDevices, "Cams": currentCams]
+        let json: JSON = [LecConstants.JSONKey.BuildingId: building.buildingId,
+                          LecConstants.JSONKey.BuildingName: building.buildingName,
+                          LecConstants.JSONKey.IpAddress: building.socketAddress,
+                          LecConstants.JSONKey.IpPort: Int(building.socketPort),
+                          LecConstants.JSONKey.Floors: currentFloors,
+                          LecConstants.JSONKey.Areas: currentAreas,
+                          LecConstants.JSONKey.Devices: currentDevices,
+                          LecConstants.JSONKey.Cams: currentCams]
         
         do {
             let dataBuilding = try json.rawData()
-//            let dataFloors = try jsonFloors.rawData()
-//            let dataAreas = try jsonAreas.rawData()
-//            let dataDevices = try jsonDevices.rawData()
-//            let dataCams = try jsonCams.rawData()
-            
             try LecFileHelper(fileName: "CurrentProject", fileExtension: .JSON, subDirectory: "UserProject").saveFile(dataBuilding)
-//            try LecFileHelper(fileName: "floors", fileExtension: .JSON, subDirectory: "UserProject").saveFile(dataFloors)
-//            try LecFileHelper(fileName: "areas", fileExtension: .JSON, subDirectory: "UserProject").saveFile(dataAreas)
-//            try LecFileHelper(fileName: "devices", fileExtension: .JSON, subDirectory: "UserProject").saveFile(dataDevices)
-//            try LecFileHelper(fileName: "cams", fileExtension: .JSON, subDirectory: "UserProject").saveFile(dataCams)
-            
             dataModel.loadData()
             delegate?.configViewController(self, didChooseBuilding: building)
         } catch {
             
         }
- 
-        /*
-        dataModel.resetData()
-        let building = buildings[indexPath.row]
-        dataModel.building = building
-        let buildingId = building.buildingId
-        dataModel.floors = getCurrentFloors(buildingId)
-        dataModel.areas = getCurrentAreas(buildingId)
-        dataModel.devices = getCurrentDevices(buildingId)
-        dataModel.cams = getCurrentCams(buildingId)
-        */
-        
     }
     
     func getCurrentFloors(buildingId: String) -> [LecFloor] {

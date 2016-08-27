@@ -43,7 +43,10 @@ class LecSocketManager: NSObject {
     internal func connectHost() {
         //        socket.setUserData(SocketOffline.ByUser.rawValue)
         cutOffSocket()
-        print(socketInfo.address)
+        
+        //测试用的
+        socketInfo.address = "192.168.100.11"
+        
         do {
             try socket.connectToHost(socketInfo.address, onPort: socketInfo.port)
         } catch let error {

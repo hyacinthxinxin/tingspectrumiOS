@@ -469,7 +469,7 @@
                 "DeviceName": "壁灯"
                 }
                 ],
-    "buildingName": "乐控",
+    "BuildingName": "乐控",
     "Cams": [
              {
              "MaxControlValue": 0,
@@ -2120,7 +2120,7 @@
              "MinControlValue": 0
              }
              ],
-    "buildingId": "57bea472a55c7e2a82462ef4",
+    "BuildingId": "57bea472a55c7e2a82462ef4",
     "Floors": [
                {
                "FloorId": "57bea47ea55c7e2a82462ef5",
@@ -2193,6 +2193,6 @@
               "FloorId": "57bea491a55c7e2a82462ef8"
               }
               ],
-    "socketPort": 4196,
-    "socketAddress": "192.168.1.111"
+    "IpPort": 4196,
+    "IpAddress": "192.168.1.111"
 }

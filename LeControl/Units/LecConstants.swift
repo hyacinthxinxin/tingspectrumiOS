@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct LecConstants {
     struct JSONKey {
@@ -36,6 +37,12 @@ struct LecConstants {
         static let MaxStatusValue = "MaxStatusValue"
         static let MinStatusValue = "MinStatusValue"
         static let Usn = "Usn"
+        
+        static let Buildings = "Buildings"
+        static let Floors = "Floors"
+        static let Areas = "Areas"
+        static let Devices = "Devices"
+        static let Cams = "Cams"
     }
     
     struct Command {
@@ -47,6 +54,15 @@ struct LecConstants {
         static let ThirdAddressIndex = 3
         static let ValueIndex = 5
         static let TypeIndex = 4
+    }
+    
+    struct DeviceCellHeight {
+        static let Switch: CGFloat = 55
+        static let Dimming: CGFloat = 94
+        static let Curtain: CGFloat = 184
+        static let Temperature: CGFloat = 89
+        static let Speed: CGFloat = 130
+        static let Model: CGFloat = 152
     }
     
     struct NotificationKey {
@@ -67,11 +83,17 @@ struct LecConstants {
         static let AreaCell = "LecAreaCell"
         static let AreaDetailCell = "LecAreaDetailCell"
         static let BuildingCell = "LecBuildingCell"
+        static let SceneCell = "LecSceneCell"
+        static let DeviceCell = "LecDeviceCell"
 
+        static let LightCell = "LecLightCell"
+        static let LightDimmingCell = "LecLightDimmingCell"
+        static let CurtainCell = "LecCurtainCell"
+        static let AirConditioningCell = "LecAirConditioningCell"
+        static let FloorHeatingCell = "LecFloorHeatingCell"
+        
         /*
-        static let DeviceCell = "DeviceCell"
         static let DeviceTypeCell = "DeviceTypeCell"
-        static let SceneCell = "SceneCell"
  */
     }
     
@@ -80,10 +102,10 @@ struct LecConstants {
         static let ShowLogin = "ShowLogin"
         static let ShowConfig = "ShowConfig"
         static let ShowDevice = "ShowDevice"
+        static let ShowScene = "ShowScene"
 
         /*
         static let ShowDeviceList = "ShowDeviceList"
-        static let ShowScene = "ShowScene"
  */
     }
     

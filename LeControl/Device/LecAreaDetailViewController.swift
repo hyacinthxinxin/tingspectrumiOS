@@ -12,22 +12,22 @@ import UIKit
 private let detailNames = ["场景选择", "灯光控制", "温度控制", "窗帘控制"]
 private let detailImageNames = ["scenes_choice", "lights_control", "curtains_control", "temperature_control"]
 
-private let deviceGroupTypeImageNameDictionary = [LecDeviceGroupType.Scene: detailImageNames[0],
-                                                  LecDeviceGroupType.Light: detailImageNames[1],
-                                                  LecDeviceGroupType.Temperature: detailImageNames[2],
-                                                  LecDeviceGroupType.Curtain: detailImageNames[3]]
+private let deviceGroupTypeImageNameDictionary = [LecDeviceGroupType.GroupScene: detailImageNames[0],
+                                                  LecDeviceGroupType.GroupLight: detailImageNames[1],
+                                                  LecDeviceGroupType.GroupTemperature: detailImageNames[2],
+                                                  LecDeviceGroupType.GroupCurtain: detailImageNames[3]]
 
-private let deviceGroupTypeDescriptionDictionary = [LecDeviceGroupType.Scene: detailNames[0],
-                                                    LecDeviceGroupType.Light: detailNames[1],
-                                                    LecDeviceGroupType.Temperature: detailNames[2],
-                                                    LecDeviceGroupType.Curtain: detailNames[3]]
+private let deviceGroupTypeDescriptionDictionary = [LecDeviceGroupType.GroupScene: detailNames[0],
+                                                    LecDeviceGroupType.GroupLight: detailNames[1],
+                                                    LecDeviceGroupType.GroupTemperature: detailNames[2],
+                                                    LecDeviceGroupType.GroupCurtain: detailNames[3]]
 
 
 enum LecDeviceGroupType {
-    case Scene
-    case Light
-    case Temperature
-    case Curtain
+    case GroupScene
+    case GroupLight
+    case GroupTemperature
+    case GroupCurtain
     
     var description: String{
         return deviceGroupTypeDescriptionDictionary[self] ?? "未知的"
@@ -53,16 +53,16 @@ class LecAreaDetailViewController: UICollectionViewController {
     var groupTypes: [LecDeviceGroupType] {
         var g = [LecDeviceGroupType]()
         if (devices.contains{ $0.deviceType == .Scene }) {
-            g.append(.Scene)
+            g.append(.GroupScene)
         }
         if (devices.contains{ $0.deviceType == .Light || $0.deviceType == .LightDimming}) {
-            g.append(.Light)
+            g.append(.GroupLight)
         }
         if (devices.contains{ $0.deviceType == .AirConditioning || $0.deviceType == .FloorHeating }) {
-            g.append(.Temperature)
+            g.append(.GroupTemperature)
         }
         if (devices.contains{ $0.deviceType == .Curtain }) {
-            g.append(.Curtain)
+            g.append(.GroupCurtain)
         }
         return g
     }
@@ -81,21 +81,27 @@ class LecAreaDetailViewController: UICollectionViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             switch identifier {
+            case LecConstants.SegueIdentifier.ShowScene:
+                let sceneViewController = segue.destinationViewController as! LecSceneViewController
+                sceneViewController.title = LecDeviceGroupType.GroupScene.description
+                sceneViewController.dataModel = dataModel
+                sceneViewController.devices = devices.filter { $0.deviceType == .Scene }
+
             case LecConstants.SegueIdentifier.ShowDevice:
                 let deviceViewController = segue.destinationViewController as! LecDeviceViewController
                 deviceViewController.dataModel = dataModel
                 
                 let cell = sender as! LecAreaDetailCell
                 if let deviceGroupType = cell.deviceGroupType {
-                    
+                    deviceViewController.title = deviceGroupType.description
                     switch deviceGroupType {
-                    case .Scene:
+                    case .GroupScene:
                         deviceViewController.devices = devices.filter { $0.deviceType == .Scene }
-                    case .Light:
+                    case .GroupLight:
                         deviceViewController.devices = devices.filter { $0.deviceType == .Light || $0.deviceType == .LightDimming}
-                    case .Temperature:
+                    case .GroupTemperature:
                         deviceViewController.devices = devices.filter { $0.deviceType == .AirConditioning || $0.deviceType == .FloorHeating}
-                    case .Curtain:
+                    case .GroupCurtain:
                         deviceViewController.devices = devices.filter { $0.deviceType == .Curtain}
                     }
                 }
@@ -126,6 +132,16 @@ class LecAreaDetailViewController: UICollectionViewController {
     
     // MARK: UICollectionViewDelegate
     
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? LecAreaDetailCell {
+            if cell.deviceGroupType == .GroupScene {
+                performSegueWithIdentifier(LecConstants.SegueIdentifier.ShowScene, sender: cell)
+            } else {
+                performSegueWithIdentifier(LecConstants.SegueIdentifier.ShowDevice, sender: cell)
+            }
+        }
+        
+    }
     /*
      // Uncomment this method to specify if the specified item should be highlighted during tracking
      override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {

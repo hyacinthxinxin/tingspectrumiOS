@@ -95,6 +95,11 @@ func parseCam(jsons: [JSON]) -> [LecCam] {
         if let camName = $0["CamName"].string {
             cam.camName = camName
         }
+        
+        if let camType = $0[LecConstants.JSONKey.CamType].int {
+            cam.camType = camType
+        }
+        
         if let rawCommandType = $0["CommandType"].int, commandType = LecCommand(rawValue: rawCommandType) {
             cam.commandType = commandType
         }
@@ -116,6 +121,7 @@ func parseCam(jsons: [JSON]) -> [LecCam] {
         if let isVisible = $0["IsVisible"].bool {
             cam.isVisible = isVisible
         }
+        
         return cam
     }
 }

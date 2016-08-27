@@ -26,6 +26,10 @@ class LecMasterViewController: UITableViewController {
         return dataModel.areas.count
     }
     
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        //
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(LecConstants.ReuseIdentifier.AreaCell, forIndexPath: indexPath) as? LecAreaCell {
             let area = dataModel.areas[indexPath.row]
@@ -98,5 +102,6 @@ extension LecMasterViewController: LecConfigViewControllerDelegate {
     func configViewController(controller: LecConfigViewController, didChooseBuilding building: LecBuilding) {
         tableView.reloadData()
         navigationController?.popViewControllerAnimated(true)
+        LecSocketManager.sharedSocket.connectHost()
     }
 }
