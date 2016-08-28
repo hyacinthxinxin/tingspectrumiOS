@@ -19,8 +19,6 @@ class LecDataModel: NSObject {
     override init() {
         super.init()
         loadData()
-        LecSocketManager.sharedSocket.socketInfo.address = building.socketAddress
-        LecSocketManager.sharedSocket.socketInfo.port = building.socketPort
     }
     
     func resetData() {

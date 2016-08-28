@@ -9,13 +9,10 @@
 /* Begin PBXBuildFile section */
 		5E020810B31A68695B78A41E /* Pods_LeControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34DFA78CB608C3E0EF4E93B5 /* Pods_LeControl.framework */; };
 		BA2B4F931D6C752B007D96B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4F921D6C752B007D96B6 /* AppDelegate.swift */; };
-		BA2B4F961D6C752B007D96B6 /* LeControl.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4F941D6C752B007D96B6 /* LeControl.xcdatamodeld */; };
-		BA2B4F981D6C752B007D96B6 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4F971D6C752B007D96B6 /* MasterViewController.swift */; };
-		BA2B4F9A1D6C752B007D96B6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4F991D6C752B007D96B6 /* DetailViewController.swift */; };
 		BA2B4F9D1D6C752B007D96B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4F9B1D6C752B007D96B6 /* Main.storyboard */; };
 		BA2B4F9F1D6C752B007D96B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4F9E1D6C752B007D96B6 /* Assets.xcassets */; };
 		BA2B4FA21D6C752C007D96B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4FA01D6C752C007D96B6 /* LaunchScreen.storyboard */; };
-		BA2B4FAE1D6C787B007D96B6 /* LecMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FAD1D6C787B007D96B6 /* LecMasterViewController.swift */; };
+		BA2B4FAE1D6C787B007D96B6 /* LecFloorAndAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FAD1D6C787B007D96B6 /* LecFloorAndAreaViewController.swift */; };
 		BA2B4FB11D6C78C2007D96B6 /* LecModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FB01D6C78C2007D96B6 /* LecModel.swift */; };
 		BA2B4FB31D6C79CC007D96B6 /* LecDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FB21D6C79CC007D96B6 /* LecDataModel.swift */; };
 		BA2B4FB51D6C7B2F007D96B6 /* LecAreaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FB41D6C7B2F007D96B6 /* LecAreaDetailViewController.swift */; };
@@ -37,21 +34,22 @@
 		BA2B4FDB1D7167CF007D96B6 /* LecSceneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FDA1D7167CF007D96B6 /* LecSceneCell.swift */; };
 		BA2B4FDD1D7167EA007D96B6 /* LecDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FDC1D7167EA007D96B6 /* LecDeviceCell.swift */; };
 		BA2B4FE21D7187B6007D96B6 /* LecLightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FE01D7187B6007D96B6 /* LecLightCell.swift */; };
-		BA2B4FE31D7187B6007D96B6 /* LecLightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4FE11D7187B6007D96B6 /* LecLightCell.xib */; };
 		BA2B4FE61D7187CC007D96B6 /* LecLightDimmingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FE41D7187CC007D96B6 /* LecLightDimmingCell.swift */; };
-		BA2B4FE71D7187CC007D96B6 /* LecLightDimmingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4FE51D7187CC007D96B6 /* LecLightDimmingCell.xib */; };
 		BA2B4FEA1D7187E2007D96B6 /* LecCurtainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FE81D7187E2007D96B6 /* LecCurtainCell.swift */; };
-		BA2B4FEB1D7187E2007D96B6 /* LecCurtainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4FE91D7187E2007D96B6 /* LecCurtainCell.xib */; };
 		BA2B4FEE1D718821007D96B6 /* LecAirConditioningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FEC1D718821007D96B6 /* LecAirConditioningCell.swift */; };
-		BA2B4FEF1D718821007D96B6 /* LecAirConditioningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4FED1D718821007D96B6 /* LecAirConditioningCell.xib */; };
 		BA2B4FF21D71883E007D96B6 /* LecFloorHeatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FF01D71883E007D96B6 /* LecFloorHeatingCell.swift */; };
-		BA2B4FF31D71883E007D96B6 /* LecFloorHeatingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4FF11D71883E007D96B6 /* LecFloorHeatingCell.xib */; };
 		BA2B4FF51D718D14007D96B6 /* LecSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FF41D718D14007D96B6 /* LecSwitchView.swift */; };
 		BA2B4FF81D718E38007D96B6 /* LecCamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FF71D718E38007D96B6 /* LecCamView.swift */; };
 		BA2B4FFA1D718F7B007D96B6 /* LecSwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4FF91D718F7B007D96B6 /* LecSwitchView.xib */; };
 		BA2B4FFC1D71926E007D96B6 /* LecDimmingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FFB1D71926E007D96B6 /* LecDimmingView.swift */; };
 		BA2B4FFE1D719293007D96B6 /* LecCurtainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FFD1D719293007D96B6 /* LecCurtainView.swift */; };
-		BA2B50001D71931E007D96B6 /* LecCamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FFF1D71931E007D96B6 /* LecCamButton.swift */; };
+		BA2B50041D71EF10007D96B6 /* LecCamViewWithNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B50031D71EF10007D96B6 /* LecCamViewWithNib.swift */; };
+		BA2B50061D71F87A007D96B6 /* LecDimmingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2B50051D71F87A007D96B6 /* LecDimmingView.xib */; };
+		BA2B50081D72C102007D96B6 /* LecTemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B50071D72C102007D96B6 /* LecTemperatureView.swift */; };
+		BA2B500A1D72C118007D96B6 /* LecTemperatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2B50091D72C118007D96B6 /* LecTemperatureView.xib */; };
+		BA2B500C1D72D449007D96B6 /* LecSpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B500B1D72D449007D96B6 /* LecSpeedView.swift */; };
+		BA2B500E1D72D464007D96B6 /* LecModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B500D1D72D464007D96B6 /* LecModelView.swift */; };
+		BA2B50131D72EB25007D96B6 /* LecStepSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B50121D72EB25007D96B6 /* LecStepSlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,14 +57,11 @@
 		5846A9020629982D025C7257 /* Pods-LeControl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeControl.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeControl/Pods-LeControl.debug.xcconfig"; sourceTree = "<group>"; };
 		BA2B4F8F1D6C752B007D96B6 /* LeControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA2B4F921D6C752B007D96B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BA2B4F951D6C752B007D96B6 /* LeControl.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LeControl.xcdatamodel; sourceTree = "<group>"; };
-		BA2B4F971D6C752B007D96B6 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		BA2B4F991D6C752B007D96B6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BA2B4F9C1D6C752B007D96B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BA2B4F9E1D6C752B007D96B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA2B4FA11D6C752C007D96B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA2B4FA31D6C752C007D96B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BA2B4FAD1D6C787B007D96B6 /* LecMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecMasterViewController.swift; path = FloorAndArea/LecMasterViewController.swift; sourceTree = "<group>"; };
+		BA2B4FAD1D6C787B007D96B6 /* LecFloorAndAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecFloorAndAreaViewController.swift; path = FloorAndArea/LecFloorAndAreaViewController.swift; sourceTree = "<group>"; };
 		BA2B4FB01D6C78C2007D96B6 /* LecModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecModel.swift; path = Model/LecModel.swift; sourceTree = "<group>"; };
 		BA2B4FB21D6C79CC007D96B6 /* LecDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecDataModel.swift; path = Model/LecDataModel.swift; sourceTree = "<group>"; };
 		BA2B4FB41D6C7B2F007D96B6 /* LecAreaDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecAreaDetailViewController.swift; path = Device/LecAreaDetailViewController.swift; sourceTree = "<group>"; };
@@ -88,21 +83,22 @@
 		BA2B4FDA1D7167CF007D96B6 /* LecSceneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecSceneCell.swift; path = Device/LecSceneCell.swift; sourceTree = "<group>"; };
 		BA2B4FDC1D7167EA007D96B6 /* LecDeviceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecDeviceCell.swift; path = Device/LecDeviceCell.swift; sourceTree = "<group>"; };
 		BA2B4FE01D7187B6007D96B6 /* LecLightCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecLightCell.swift; path = Device/Cam/LecLightCell.swift; sourceTree = "<group>"; };
-		BA2B4FE11D7187B6007D96B6 /* LecLightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LecLightCell.xib; path = Device/Cam/LecLightCell.xib; sourceTree = "<group>"; };
 		BA2B4FE41D7187CC007D96B6 /* LecLightDimmingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecLightDimmingCell.swift; path = Device/Cam/LecLightDimmingCell.swift; sourceTree = "<group>"; };
-		BA2B4FE51D7187CC007D96B6 /* LecLightDimmingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LecLightDimmingCell.xib; path = Device/Cam/LecLightDimmingCell.xib; sourceTree = "<group>"; };
 		BA2B4FE81D7187E2007D96B6 /* LecCurtainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecCurtainCell.swift; path = Device/Cam/LecCurtainCell.swift; sourceTree = "<group>"; };
-		BA2B4FE91D7187E2007D96B6 /* LecCurtainCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LecCurtainCell.xib; path = Device/Cam/LecCurtainCell.xib; sourceTree = "<group>"; };
 		BA2B4FEC1D718821007D96B6 /* LecAirConditioningCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecAirConditioningCell.swift; path = Device/Cam/LecAirConditioningCell.swift; sourceTree = "<group>"; };
-		BA2B4FED1D718821007D96B6 /* LecAirConditioningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LecAirConditioningCell.xib; path = Device/Cam/LecAirConditioningCell.xib; sourceTree = "<group>"; };
 		BA2B4FF01D71883E007D96B6 /* LecFloorHeatingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecFloorHeatingCell.swift; path = Device/Cam/LecFloorHeatingCell.swift; sourceTree = "<group>"; };
-		BA2B4FF11D71883E007D96B6 /* LecFloorHeatingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LecFloorHeatingCell.xib; path = Device/Cam/LecFloorHeatingCell.xib; sourceTree = "<group>"; };
 		BA2B4FF41D718D14007D96B6 /* LecSwitchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecSwitchView.swift; path = Device/Cam/View/LecSwitchView.swift; sourceTree = "<group>"; };
 		BA2B4FF71D718E38007D96B6 /* LecCamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecCamView.swift; path = Device/Cam/View/LecCamView.swift; sourceTree = "<group>"; };
 		BA2B4FF91D718F7B007D96B6 /* LecSwitchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LecSwitchView.xib; path = Device/Cam/View/LecSwitchView.xib; sourceTree = "<group>"; };
 		BA2B4FFB1D71926E007D96B6 /* LecDimmingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecDimmingView.swift; path = Device/Cam/View/LecDimmingView.swift; sourceTree = "<group>"; };
 		BA2B4FFD1D719293007D96B6 /* LecCurtainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecCurtainView.swift; path = Device/Cam/View/LecCurtainView.swift; sourceTree = "<group>"; };
-		BA2B4FFF1D71931E007D96B6 /* LecCamButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecCamButton.swift; path = Device/Cam/View/LecCamButton.swift; sourceTree = "<group>"; };
+		BA2B50031D71EF10007D96B6 /* LecCamViewWithNib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecCamViewWithNib.swift; path = Device/Cam/View/LecCamViewWithNib.swift; sourceTree = "<group>"; };
+		BA2B50051D71F87A007D96B6 /* LecDimmingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LecDimmingView.xib; path = Device/Cam/View/LecDimmingView.xib; sourceTree = "<group>"; };
+		BA2B50071D72C102007D96B6 /* LecTemperatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecTemperatureView.swift; path = Device/Cam/View/LecTemperatureView.swift; sourceTree = "<group>"; };
+		BA2B50091D72C118007D96B6 /* LecTemperatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LecTemperatureView.xib; path = Device/Cam/View/LecTemperatureView.xib; sourceTree = "<group>"; };
+		BA2B500B1D72D449007D96B6 /* LecSpeedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecSpeedView.swift; path = Device/Cam/View/LecSpeedView.swift; sourceTree = "<group>"; };
+		BA2B500D1D72D464007D96B6 /* LecModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecModelView.swift; path = Device/Cam/View/LecModelView.swift; sourceTree = "<group>"; };
+		BA2B50121D72EB25007D96B6 /* LecStepSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecStepSlider.swift; path = Device/Cam/View/StepSlider/LecStepSlider.swift; sourceTree = "<group>"; };
 		CEC71C0DE0B2144F48235161 /* Pods-LeControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeControl.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeControl/Pods-LeControl.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,13 +152,10 @@
 				BA2B4FDE1D7168FF007D96B6 /* AreaDetail */,
 				BA2B4FAC1D6C780C007D96B6 /* Device */,
 				BA2B4F921D6C752B007D96B6 /* AppDelegate.swift */,
-				BA2B4F971D6C752B007D96B6 /* MasterViewController.swift */,
-				BA2B4F991D6C752B007D96B6 /* DetailViewController.swift */,
 				BA2B4F9B1D6C752B007D96B6 /* Main.storyboard */,
 				BA2B4F9E1D6C752B007D96B6 /* Assets.xcassets */,
 				BA2B4FA01D6C752C007D96B6 /* LaunchScreen.storyboard */,
 				BA2B4FA31D6C752C007D96B6 /* Info.plist */,
-				BA2B4F941D6C752B007D96B6 /* LeControl.xcdatamodeld */,
 			);
 			path = LeControl;
 			sourceTree = "<group>";
@@ -184,7 +177,7 @@
 		BA2B4FAB1D6C77FF007D96B6 /* FloorAndArea */ = {
 			isa = PBXGroup;
 			children = (
-				BA2B4FAD1D6C787B007D96B6 /* LecMasterViewController.swift */,
+				BA2B4FAD1D6C787B007D96B6 /* LecFloorAndAreaViewController.swift */,
 				BA2B4FC41D6C7FE4007D96B6 /* LecAreaCell.swift */,
 			);
 			name = FloorAndArea;
@@ -195,7 +188,6 @@
 			children = (
 				BA2B4FDF1D718798007D96B6 /* Cam */,
 				BA2B4FB61D6C7B50007D96B6 /* LecDeviceViewController.swift */,
-				BA2B4FDC1D7167EA007D96B6 /* LecDeviceCell.swift */,
 				BA2B4FD81D716607007D96B6 /* LecSceneViewController.swift */,
 				BA2B4FDA1D7167CF007D96B6 /* LecSceneCell.swift */,
 			);
@@ -234,16 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				BA2B4FF61D718D19007D96B6 /* View */,
-				BA2B4FE01D7187B6007D96B6 /* LecLightCell.swift */,
-				BA2B4FE11D7187B6007D96B6 /* LecLightCell.xib */,
-				BA2B4FE41D7187CC007D96B6 /* LecLightDimmingCell.swift */,
-				BA2B4FE51D7187CC007D96B6 /* LecLightDimmingCell.xib */,
-				BA2B4FE81D7187E2007D96B6 /* LecCurtainCell.swift */,
-				BA2B4FE91D7187E2007D96B6 /* LecCurtainCell.xib */,
-				BA2B4FEC1D718821007D96B6 /* LecAirConditioningCell.swift */,
-				BA2B4FED1D718821007D96B6 /* LecAirConditioningCell.xib */,
-				BA2B4FF01D71883E007D96B6 /* LecFloorHeatingCell.swift */,
-				BA2B4FF11D71883E007D96B6 /* LecFloorHeatingCell.xib */,
+				BA2B50141D73170B007D96B6 /* CamCell */,
 			);
 			name = Cam;
 			sourceTree = "<group>";
@@ -251,14 +234,41 @@
 		BA2B4FF61D718D19007D96B6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BA2B500F1D72EAA6007D96B6 /* StepSlider */,
 				BA2B4FF71D718E38007D96B6 /* LecCamView.swift */,
+				BA2B50031D71EF10007D96B6 /* LecCamViewWithNib.swift */,
 				BA2B4FF41D718D14007D96B6 /* LecSwitchView.swift */,
 				BA2B4FF91D718F7B007D96B6 /* LecSwitchView.xib */,
 				BA2B4FFB1D71926E007D96B6 /* LecDimmingView.swift */,
+				BA2B50051D71F87A007D96B6 /* LecDimmingView.xib */,
+				BA2B50071D72C102007D96B6 /* LecTemperatureView.swift */,
+				BA2B50091D72C118007D96B6 /* LecTemperatureView.xib */,
 				BA2B4FFD1D719293007D96B6 /* LecCurtainView.swift */,
-				BA2B4FFF1D71931E007D96B6 /* LecCamButton.swift */,
+				BA2B500B1D72D449007D96B6 /* LecSpeedView.swift */,
+				BA2B500D1D72D464007D96B6 /* LecModelView.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		BA2B500F1D72EAA6007D96B6 /* StepSlider */ = {
+			isa = PBXGroup;
+			children = (
+				BA2B50121D72EB25007D96B6 /* LecStepSlider.swift */,
+			);
+			name = StepSlider;
+			sourceTree = "<group>";
+		};
+		BA2B50141D73170B007D96B6 /* CamCell */ = {
+			isa = PBXGroup;
+			children = (
+				BA2B4FDC1D7167EA007D96B6 /* LecDeviceCell.swift */,
+				BA2B4FE01D7187B6007D96B6 /* LecLightCell.swift */,
+				BA2B4FE41D7187CC007D96B6 /* LecLightDimmingCell.swift */,
+				BA2B4FE81D7187E2007D96B6 /* LecCurtainCell.swift */,
+				BA2B4FEC1D718821007D96B6 /* LecAirConditioningCell.swift */,
+				BA2B4FF01D71883E007D96B6 /* LecFloorHeatingCell.swift */,
+			);
+			name = CamCell;
 			sourceTree = "<group>";
 		};
 		DDA0FFB10DF8CC3904772E82 /* Frameworks */ = {
@@ -331,16 +341,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA2B4FEF1D718821007D96B6 /* LecAirConditioningCell.xib in Resources */,
-				BA2B4FEB1D7187E2007D96B6 /* LecCurtainCell.xib in Resources */,
+				BA2B500A1D72C118007D96B6 /* LecTemperatureView.xib in Resources */,
 				BA2B4FA21D6C752C007D96B6 /* LaunchScreen.storyboard in Resources */,
-				BA2B4FE71D7187CC007D96B6 /* LecLightDimmingCell.xib in Resources */,
 				BA2B4F9F1D6C752B007D96B6 /* Assets.xcassets in Resources */,
 				BA2B4F9D1D6C752B007D96B6 /* Main.storyboard in Resources */,
-				BA2B4FE31D7187B6007D96B6 /* LecLightCell.xib in Resources */,
 				BA2B4FFA1D718F7B007D96B6 /* LecSwitchView.xib in Resources */,
 				BA2B4FC31D6C7F59007D96B6 /* DefaultProject.json in Resources */,
-				BA2B4FF31D71883E007D96B6 /* LecFloorHeatingCell.xib in Resources */,
+				BA2B50061D71F87A007D96B6 /* LecDimmingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,11 +417,14 @@
 				BA2B4FE61D7187CC007D96B6 /* LecLightDimmingCell.swift in Sources */,
 				BA2B4FEA1D7187E2007D96B6 /* LecCurtainCell.swift in Sources */,
 				BA2B4FCA1D6EE2D7007D96B6 /* LecLoginViewController.swift in Sources */,
+				BA2B50041D71EF10007D96B6 /* LecCamViewWithNib.swift in Sources */,
 				BA2B4FBD1D6C7E07007D96B6 /* LecSocketManager.swift in Sources */,
 				BA2B4FE21D7187B6007D96B6 /* LecLightCell.swift in Sources */,
 				BA2B4FB31D6C79CC007D96B6 /* LecDataModel.swift in Sources */,
-				BA2B4FAE1D6C787B007D96B6 /* LecMasterViewController.swift in Sources */,
+				BA2B4FAE1D6C787B007D96B6 /* LecFloorAndAreaViewController.swift in Sources */,
+				BA2B50081D72C102007D96B6 /* LecTemperatureView.swift in Sources */,
 				BA2B4FF81D718E38007D96B6 /* LecCamView.swift in Sources */,
+				BA2B500C1D72D449007D96B6 /* LecSpeedView.swift in Sources */,
 				BA2B4FC51D6C7FE4007D96B6 /* LecAreaCell.swift in Sources */,
 				BA2B4FD21D6F170B007D96B6 /* LecBuildingCell.swift in Sources */,
 				BA2B4FB91D6C7D67007D96B6 /* LecConstants.swift in Sources */,
@@ -425,14 +435,12 @@
 				BA2B4FD61D6F482E007D96B6 /* LecJsonParseHelper.swift in Sources */,
 				BA2B4FF21D71883E007D96B6 /* LecFloorHeatingCell.swift in Sources */,
 				BA2B4FCE1D6EE8C0007D96B6 /* LecNetwork.swift in Sources */,
+				BA2B500E1D72D464007D96B6 /* LecModelView.swift in Sources */,
 				BA2B4FD41D6F19E6007D96B6 /* LecExtensions.swift in Sources */,
-				BA2B4F961D6C752B007D96B6 /* LeControl.xcdatamodeld in Sources */,
-				BA2B50001D71931E007D96B6 /* LecCamButton.swift in Sources */,
 				BA2B4F931D6C752B007D96B6 /* AppDelegate.swift in Sources */,
-				BA2B4F981D6C752B007D96B6 /* MasterViewController.swift in Sources */,
+				BA2B50131D72EB25007D96B6 /* LecStepSlider.swift in Sources */,
 				BA2B4FB51D6C7B2F007D96B6 /* LecAreaDetailViewController.swift in Sources */,
 				BA2B4FDB1D7167CF007D96B6 /* LecSceneCell.swift in Sources */,
-				BA2B4F9A1D6C752B007D96B6 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,19 +601,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		BA2B4F941D6C752B007D96B6 /* LeControl.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				BA2B4F951D6C752B007D96B6 /* LeControl.xcdatamodel */,
-			);
-			currentVersion = BA2B4F951D6C752B007D96B6 /* LeControl.xcdatamodel */;
-			path = LeControl.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = BA2B4F871D6C752B007D96B6 /* Project object */;
 }

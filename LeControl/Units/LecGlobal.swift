@@ -19,7 +19,7 @@ let screenRect = UIScreen.mainScreen().bounds
 let screenWidth = screenRect.size.width
 let themeColor = "#ffb535".hexColor
 let themeBGColor = "#3A3848".hexColor
-let lineColor = "1EFFFFFF".hexColor
+let lineColor = "#1EFFFFFF".hexColor
 
 let sceneViewHeight = screenRect.size.height * 184 / 667
 let sceneDividerWithDevices: CGFloat = 12.0

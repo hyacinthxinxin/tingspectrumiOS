@@ -122,6 +122,20 @@ func parseCam(jsons: [JSON]) -> [LecCam] {
             cam.isVisible = isVisible
         }
         
+        if let minControlValue = $0[LecConstants.JSONKey.MinControlValue].int {
+            cam.minControlValue = minControlValue
+
+        }
+        if let maxControlValue = $0[LecConstants.JSONKey.MaxControlValue].int {
+            cam.maxControlValue = maxControlValue
+            
+        }
+        if let maxStatusValue = $0[LecConstants.JSONKey.MaxStatusValue].int {
+            cam.maxStatusValue = maxStatusValue
+        }
+        if let minStatusValue = $0[LecConstants.JSONKey.MinStatusValue].int {
+            cam.minStatusValue = minStatusValue
+        }
         return cam
     }
 }

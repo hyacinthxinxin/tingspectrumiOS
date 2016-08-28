@@ -9,60 +9,33 @@
 import UIKit
 import PureLayout
 
-class LecSwitchView: LecCamView {
-    private var didSetupConstraints = false
-    private var containerView: UIView?
-
+class LecSwitchView: LecCamViewWithNib {
+    
     @IBOutlet weak var camNameLabel: UILabel!
     @IBOutlet weak var camSwitch: UISwitch!
-    
-    func loadViewFfromNib() -> UIView {
-        let bundle = NSBundle(forClass: self.dynamicType)
-        let nib = UINib(nibName: String(self.dynamicType), bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
-        return view
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-        setupSubviews()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
-        setupSubviews()
-    }
-    
-    func commonInit() {
-        
-    }
-    
-    func setupSubviews() {
-        containerView = loadViewFfromNib()
-        containerView?.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        if let cView = containerView {
-            addSubview(cView)
-        }
-        setNeedsUpdateConstraints() // bootstrap Auto Layout
-    }
-    
-    override func updateConstraints() {
-        if (!didSetupConstraints) {
-            if let cview = containerView {
-                cview.autoPinEdgeToSuperviewEdge(.Bottom)
-                cview.autoPinEdgeToSuperviewEdge(.Trailing)
-                cview.autoPinEdgeToSuperviewEdge(.Leading)
-                cview.autoPinEdgeToSuperviewEdge(.Top)
+
+    override var cams: [LecCam]? {
+        didSet {
+            if let _ = cams?.first {
+                updateView()
             }
-            didSetupConstraints = true
         }
-        super.updateConstraints()
     }
     
     @IBAction func switchCam(sender: UISwitch) {
-        print(cams?.first)
+        if let cam = cams?.first {
+            cam.controlValue = sender.on ? 1: 0
+            LecSocketManager.sharedSocket.sendMessageWithCam(cam)
+        }
     }
+    
+    
+}
 
+extension LecSwitchView: LecCamViewUpdateDelegate {
+    func updateView() {
+        if let cam = cams?.first {
+            camSwitch.on = cam.statusValue == 1
+        }
+    }
 }

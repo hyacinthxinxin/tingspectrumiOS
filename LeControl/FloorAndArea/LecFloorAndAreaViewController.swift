@@ -8,10 +8,10 @@
 
 import UIKit
 
-class LecMasterViewController: UITableViewController {
+class LecFloorAndAreaViewController: UITableViewController {
     
-    var dataModel: LecDataModel!
-    
+    weak var areaDetailViewController: LecAreaDetailViewController?
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -23,16 +23,16 @@ class LecMasterViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataModel.areas.count
+        return LecSocketManager.sharedSocket.dataModel.areas.count
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        //
+        cell.backgroundColor = UIColor.clearColor()
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(LecConstants.ReuseIdentifier.AreaCell, forIndexPath: indexPath) as? LecAreaCell {
-            let area = dataModel.areas[indexPath.row]
+            let area = LecSocketManager.sharedSocket.dataModel.areas[indexPath.row]
             cell.area = area
             return cell
         }
@@ -47,14 +47,23 @@ class LecMasterViewController: UITableViewController {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             performSegueWithIdentifier(LecConstants.SegueIdentifier.ShowAreaDetail , sender: indexPath)
         } else {
-            //            if case .Results(let list) = search.state {
             if splitViewController!.displayMode != .AllVisible {
-                //                    hideMasterPane()
+                hideMasterPane()
             }
-            //                splitViewDetail?.searchResult = list[indexPath.row]
-            //            }
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! LecAreaCell
+            if let area = cell.area {
+                areaDetailViewController?.area = area
+            }
         }
         
+    }
+    
+    func hideMasterPane() {
+        UIView.animateWithDuration(0.25, animations: {
+            self.splitViewController!.preferredDisplayMode = .PrimaryHidden
+            }, completion: { _ in
+                self.splitViewController!.preferredDisplayMode = .Automatic
+        })
     }
     
     // MARK: - Navigation
@@ -67,7 +76,6 @@ class LecMasterViewController: UITableViewController {
                 let indexPath = sender as! NSIndexPath
                 let cell = tableView.cellForRowAtIndexPath(indexPath) as! LecAreaCell
                 if let area = cell.area {
-                    areaDetailViewController.dataModel = dataModel
                     areaDetailViewController.area = area
                 }
                 
@@ -80,7 +88,6 @@ class LecMasterViewController: UITableViewController {
                 let configViewController = segue.destinationViewController as! LecConfigViewController
                 let userId = sender as! String
                 configViewController.delegate = self
-                configViewController.dataModel = dataModel
                 configViewController.userId = userId
                 
             default: break
@@ -90,7 +97,8 @@ class LecMasterViewController: UITableViewController {
     }
 }
 
-extension LecMasterViewController: LecLoginViewControllerDelegate {
+
+extension LecFloorAndAreaViewController: LecLoginViewControllerDelegate {
     func loginViewController(controller: LecLoginViewController, didLogInWithUserId userId: String) {
         dismissViewControllerAnimated(true, completion: {
             self.performSegueWithIdentifier(LecConstants.SegueIdentifier.ShowConfig, sender: userId)
@@ -98,7 +106,7 @@ extension LecMasterViewController: LecLoginViewControllerDelegate {
     }
 }
 
-extension LecMasterViewController: LecConfigViewControllerDelegate {
+extension LecFloorAndAreaViewController: LecConfigViewControllerDelegate {
     func configViewController(controller: LecConfigViewController, didChooseBuilding building: LecBuilding) {
         tableView.reloadData()
         navigationController?.popViewControllerAnimated(true)

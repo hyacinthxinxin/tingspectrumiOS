@@ -8,12 +8,10 @@
 
 import UIKit
 
+protocol LecCamViewUpdateDelegate {
+    func updateView()
+}
+
 class LecCamView: UIView {
-    
-    var cams: [LecCam]? {
-        didSet {
-            print(cams)
-        }
-    }
-    
+    var cams: [LecCam]?
 }

@@ -39,11 +39,9 @@ enum LecDeviceGroupType {
 }
 
 class LecAreaDetailViewController: UICollectionViewController {
-    var dataModel: LecDataModel!
-    
     var area: LecArea! {
         didSet {
-            devices = dataModel.devices.filter { $0.areaId == area.areaId }
+            devices = LecSocketManager.sharedSocket.dataModel.devices.filter { $0.areaId == area.areaId }
             self.configureView()
         }
     }
@@ -51,24 +49,28 @@ class LecAreaDetailViewController: UICollectionViewController {
     var devices: [LecDevice]!
     
     var groupTypes: [LecDeviceGroupType] {
-        var g = [LecDeviceGroupType]()
-        if (devices.contains{ $0.deviceType == .Scene }) {
-            g.append(.GroupScene)
+        if let _  = devices {
+            var g = [LecDeviceGroupType]()
+            if (devices.contains{ $0.deviceType == .Scene }) {
+                g.append(.GroupScene)
+            }
+            if (devices.contains{ $0.deviceType == .Light || $0.deviceType == .LightDimming}) {
+                g.append(.GroupLight)
+            }
+            if (devices.contains{ $0.deviceType == .AirConditioning || $0.deviceType == .FloorHeating }) {
+                g.append(.GroupTemperature)
+            }
+            if (devices.contains{ $0.deviceType == .Curtain }) {
+                g.append(.GroupCurtain)
+            }
+            return g
         }
-        if (devices.contains{ $0.deviceType == .Light || $0.deviceType == .LightDimming}) {
-            g.append(.GroupLight)
-        }
-        if (devices.contains{ $0.deviceType == .AirConditioning || $0.deviceType == .FloorHeating }) {
-            g.append(.GroupTemperature)
-        }
-        if (devices.contains{ $0.deviceType == .Curtain }) {
-            g.append(.GroupCurtain)
-        }
-        return g
+        return [LecDeviceGroupType]()
     }
     
     func configureView() {
         title = area.areaName
+        collectionView?.reloadData()
     }
     
     override func viewDidLoad() {
@@ -84,13 +86,10 @@ class LecAreaDetailViewController: UICollectionViewController {
             case LecConstants.SegueIdentifier.ShowScene:
                 let sceneViewController = segue.destinationViewController as! LecSceneViewController
                 sceneViewController.title = LecDeviceGroupType.GroupScene.description
-                sceneViewController.dataModel = dataModel
                 sceneViewController.devices = devices.filter { $0.deviceType == .Scene }
 
             case LecConstants.SegueIdentifier.ShowDevice:
                 let deviceViewController = segue.destinationViewController as! LecDeviceViewController
-                deviceViewController.dataModel = dataModel
-                
                 let cell = sender as! LecAreaDetailCell
                 if let deviceGroupType = cell.deviceGroupType {
                     deviceViewController.title = deviceGroupType.description
@@ -171,4 +170,30 @@ class LecAreaDetailViewController: UICollectionViewController {
      }
      */
     
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+let cellWidth: CGFloat = 80.0
+let cellHeight: CGFloat = 196.0
+let hMargin: CGFloat = 70.0
+
+extension LecAreaDetailViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let size = CGSizeMake(80, 196)
+        return size
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        let sectionInsets = UIEdgeInsets(top: 148 - 64, left: hMargin, bottom: 0, right: hMargin)
+        return sectionInsets
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return screenWidth - cellWidth * 2 - hMargin * 2
+    }
 }

@@ -9,12 +9,10 @@
 import UIKit
 
 class LecSceneViewController: UIViewController {
-    var dataModel: LecDataModel!
-    
     var devices: [LecDevice]! {
         didSet {
             let deviceIds = devices.map { $0.deviceId }
-            cams = dataModel.cams.filter{ deviceIds.contains( $0.deviceId ) }
+            cams = LecSocketManager.sharedSocket.dataModel.cams.filter{ deviceIds.contains( $0.deviceId ) }
         }
     }
     var cams: [LecCam]!
@@ -59,7 +57,28 @@ extension LecSceneViewController: UICollectionViewDelegate {
             }
         }
     }
-    
 }
 
 
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension LecSceneViewController : UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let size = CGSizeMake(80, 196)
+        return size
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        let sectionInsets = UIEdgeInsets(top: 148 - 64, left: hMargin, bottom: 0, right: hMargin)
+        return sectionInsets
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return screenWidth - cellWidth * 2 - hMargin * 2
+    }
+}

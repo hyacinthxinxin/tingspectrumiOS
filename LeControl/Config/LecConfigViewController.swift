@@ -16,7 +16,6 @@ protocol LecConfigViewControllerDelegate: class {
 class LecConfigViewController: UITableViewController {
     
     weak var delegate: LecConfigViewControllerDelegate?
-    var dataModel: LecDataModel!
 
     var userId = ""
     var buildings = [LecBuilding]()
@@ -101,7 +100,7 @@ class LecConfigViewController: UITableViewController {
         do {
             let dataBuilding = try json.rawData()
             try LecFileHelper(fileName: "CurrentProject", fileExtension: .JSON, subDirectory: "UserProject").saveFile(dataBuilding)
-            dataModel.loadData()
+            LecSocketManager.sharedSocket.dataModel.loadData()
             delegate?.configViewController(self, didChooseBuilding: building)
         } catch {
             

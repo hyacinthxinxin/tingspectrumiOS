@@ -24,12 +24,16 @@ class LecSocketManager: NSObject {
     static let sharedSocket = LecSocketManager()
     
     var socketInfo: (address: String, port: UInt16) = ("", 0)
-    
+    var dataModel: LecDataModel!
+
     private var socket = AsyncSocket()
     weak var camRefreshDelegate: LecCamRefreshDelegate?
     
     override init() {
         super.init()
+        dataModel = LecDataModel()
+        socketInfo.address = dataModel.building.socketAddress
+        socketInfo.port = dataModel.building.socketPort
         socket.setDelegate(self)
         socket.setRunLoopModes([NSRunLoopCommonModes])
     }
@@ -95,6 +99,7 @@ extension LecSocketManager: AsyncSocketDelegate {
     func onSocket(sock: AsyncSocket!, didReadData data: NSData!, withTag tag: Int) {
         print(#function)
         print(data.getByteArray())
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         var needAppend = false
         var code2D = [[UInt8]]()
         var tcodes = [UInt8]()
@@ -114,9 +119,12 @@ extension LecSocketManager: AsyncSocketDelegate {
         print(code2D)
         for camCode in code2D {
             let st = addrGet(camCode[LecConstants.Command.FirstAndSecondAddressIndex], t: camCode[LecConstants.Command.ThirdAddressIndex])
-            (UIApplication.sharedApplication().delegate as! AppDelegate).dataModel.getCamByStatusAddress(st)!.updateStatusValue(Int(camCode[LecConstants.Command.ValueIndex]))
-            camRefreshDelegate?.refreshCam(st, statusValue: Int(camCode[LecConstants.Command.ValueIndex]))
+            dataModel.getCamByStatusAddress(st)?.statusValue = Int(camCode[LecConstants.Command.ValueIndex])
         }
+        camRefreshDelegate?.refreshCam("", statusValue: 1)
+
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
         sock.readDataWithTimeout(-1, tag: 0)
     }
     

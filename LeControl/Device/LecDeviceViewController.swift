@@ -7,37 +7,27 @@
 //
 
 import UIKit
+import PureLayout
 
 class LecDeviceViewController: UIViewController {
-
-    var dataModel: LecDataModel!
 
     @IBOutlet weak var deviceTableView: UITableView!
     
     var devices: [LecDevice]! {
         didSet {
             let deviceIds = devices.map { $0.deviceId }
-            cams = dataModel.cams.filter{ deviceIds.contains( $0.deviceId ) }
+            cams = LecSocketManager.sharedSocket.dataModel.cams.filter{ deviceIds.contains( $0.deviceId ) }
         }
     }
     var cams: [LecCam]!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        registerCellNib()
+    deinit {
+        print(#function)
     }
     
-    private func registerCellNib() {
-        var cellNib = UINib(nibName: LecConstants.ReuseIdentifier.LightCell, bundle: nil)
-        deviceTableView.registerNib(cellNib, forCellReuseIdentifier: LecConstants.ReuseIdentifier.LightCell)
-        cellNib = UINib(nibName: LecConstants.ReuseIdentifier.LightDimmingCell, bundle: nil)
-        deviceTableView.registerNib(cellNib, forCellReuseIdentifier: LecConstants.ReuseIdentifier.LightDimmingCell)
-        cellNib = UINib(nibName: LecConstants.ReuseIdentifier.CurtainCell, bundle: nil)
-        deviceTableView.registerNib(cellNib, forCellReuseIdentifier: LecConstants.ReuseIdentifier.CurtainCell)
-        cellNib = UINib(nibName: LecConstants.ReuseIdentifier.AirConditioningCell, bundle: nil)
-        deviceTableView.registerNib(cellNib, forCellReuseIdentifier: LecConstants.ReuseIdentifier.AirConditioningCell)
-        cellNib = UINib(nibName: LecConstants.ReuseIdentifier.FloorHeatingCell, bundle: nil)
-        deviceTableView.registerNib(cellNib, forCellReuseIdentifier: LecConstants.ReuseIdentifier.FloorHeatingCell)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        LecSocketManager.sharedSocket.camRefreshDelegate = self
     }
 }
 
@@ -69,40 +59,31 @@ extension LecDeviceViewController: UITableViewDataSource {
         case .FloorHeating:
             return LecConstants.DeviceCellHeight.Switch + LecConstants.DeviceCellHeight.Temperature
         default:
-            return 44
+            return 0
         }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let device = devices[indexPath.row]
+        let cams = self.cams.filter { $0.deviceId == device.deviceId }
         
         switch device.deviceType {
         case .Scene:
             fatalError("Should never get here")
         case .Light:
-            let cell = tableView.dequeueReusableCellWithIdentifier(LecConstants.ReuseIdentifier.LightCell, forIndexPath: indexPath) as! LecLightCell
-            cell.device = device
-            cell.cams = cams.filter { $0.deviceId == device.deviceId }
+            let cell = LecLightCell(device: device, cams: cams)
             return cell
         case .LightDimming:
-            let cell = tableView.dequeueReusableCellWithIdentifier(LecConstants.ReuseIdentifier.LightDimmingCell, forIndexPath: indexPath) as! LecLightDimmingCell
-            cell.device = device
-            cell.cams = cams.filter { $0.deviceId == device.deviceId }
+            let cell = LecLightDimmingCell(device: device, cams: cams)
             return cell
         case .Curtain:
-            let cell = tableView.dequeueReusableCellWithIdentifier(LecConstants.ReuseIdentifier.CurtainCell, forIndexPath: indexPath) as! LecCurtainCell
-            cell.device = device
-            cell.cams = cams.filter { $0.deviceId == device.deviceId }
+            let cell = LecCurtainCell(device: device, cams: cams)
             return cell
         case .AirConditioning:
-            let cell = tableView.dequeueReusableCellWithIdentifier(LecConstants.ReuseIdentifier.AirConditioningCell, forIndexPath: indexPath) as! LecAirConditioningCell
-            cell.device = device
-            cell.cams = cams.filter { $0.deviceId == device.deviceId }
+            let cell = LecAirConditioningCell(device: device, cams:  cams)
             return cell
         case .FloorHeating:
-            let cell = tableView.dequeueReusableCellWithIdentifier(LecConstants.ReuseIdentifier.FloorHeatingCell, forIndexPath: indexPath) as! LecFloorHeatingCell
-            cell.device = device
-            cell.cams = cams.filter { $0.deviceId == device.deviceId }
+            let cell = LecFloorHeatingCell(device: device, cams:  cams)
             return cell
         default:
             return UITableViewCell()
@@ -110,8 +91,33 @@ extension LecDeviceViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - Table view data source
+// MARK: - Table view delegate
 
 extension LecDeviceViewController: UITableViewDelegate {
-    
+    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        return nil
+    }
+}
+
+// MARK: - Cam refresh delegate
+
+extension LecDeviceViewController: LecCamRefreshDelegate {
+    func refreshCam(feedbackAddress: String, statusValue: Int) {
+        print("LecCamRefreshDelegate")
+        for c in deviceTableView.visibleCells {
+            for v in c.contentView.subviews {
+                if let cv = v as? LecSwitchView {
+                    cv.updateView()
+                } else if let cv = v as? LecDimmingView {
+                    cv.updateView()
+                } else if let cv = v as? LecTemperatureView {
+                    cv.updateView()
+                } else if let cv = v as? LecSpeedView {
+                    cv.updateView()
+                } else if let cv = v as? LecModelView {
+                    cv.updateView()
+                }
+            }
+        }
+    }
 }

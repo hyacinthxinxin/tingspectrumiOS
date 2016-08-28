@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 
 struct LecConstants {
+    struct AppColor {
+        static let CamTintColor: UIColor = "#6FFFDB".hexColor
+        static let ThemeBGColor: UIColor = "#271E36".hexColor
+    }
+    
     struct JSONKey {
         static let BuildingId = "BuildingId"
         static let BuildingName = "BuildingName"
