@@ -13,10 +13,6 @@ let imgs = ["mode_back_home","mode_leave_home","mode_receive","mode_video"]
 class LecSceneCell: UICollectionViewCell {
     @IBOutlet weak var sceneImageView: UIImageView!
     @IBOutlet weak var sceneNameLabel: UILabel!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
     
     let img = imgs[Int(arc4random_uniform(3))]
 
@@ -29,16 +25,11 @@ class LecSceneCell: UICollectionViewCell {
                 if let sceneImageView = self.sceneImageView {
                     sceneImageView.image = UIImage(named: img + "_nor")
                 }
-                
             }
         }
     }
     
-    var cams: [LecCam]? {
-        didSet {
-            
-        }
-    }
+    var cams: [LecCam]?
     
     override var selected: Bool {
         get {
@@ -48,9 +39,11 @@ class LecSceneCell: UICollectionViewCell {
             if newValue {
                 super.selected = true
                 sceneImageView.image = UIImage(named: img + "_sel")
+                sceneNameLabel.textColor = LecConstants.AppColor.CamTintColor
             } else if newValue == false {
                 super.selected = false
                 sceneImageView.image = UIImage(named: img + "_nor")
+                sceneNameLabel.textColor = UIColor.whiteColor()
             }
         }
     }

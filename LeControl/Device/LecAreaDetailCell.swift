@@ -21,6 +21,18 @@ class LecAreaDetailCell: UICollectionViewCell {
                 }
                 if let deviceImageView = self.deviceImageView {
                     deviceImageView.image = UIImage(named: deviceGroupType.groupImageName)
+                    /*
+                    deviceImageView.image = deviceImageView.image?.imageWithRenderingMode(.AlwaysTemplate)
+                    deviceImageView.tintColor = UIColor.blackColor()
+ */
+                    /*
+                    let gradient = CAGradientLayer(layer: deviceImageView.layer)
+                    gradient.frame = deviceImageView.bounds
+                    let centerColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25)
+                    let endColor = UIColor.grayColor()
+                    gradient.colors = [endColor.CGColor, centerColor.CGColor, endColor.CGColor]
+                    deviceImageView.layer.insertSublayer(gradient, atIndex: 0)
+ */
                 }
             }
         }

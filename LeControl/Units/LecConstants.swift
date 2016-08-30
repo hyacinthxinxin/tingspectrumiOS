@@ -64,12 +64,18 @@ struct LecConstants {
     }
     
     struct DeviceCellHeight {
-        static let Switch: CGFloat = 55
-        static let Dimming: CGFloat = 94
-        static let Curtain: CGFloat = 184
-        static let Temperature: CGFloat = 89
-        static let Speed: CGFloat = 130
-        static let Model: CGFloat = 152
+        static let Light_Switch: CGFloat = 55
+        static let LightDimming_Switch: CGFloat = 55
+        static let AirConditioning_Switch: CGFloat = 55
+        static let FloorHeating_Switch: CGFloat = 55
+        static let FreshAir_Switch: CGFloat = 55
+        static let LightDimming_Dimming: CGFloat = 94
+        static let Curtain_Curtain: CGFloat = 184
+        static let AirConditioning_Temperature: CGFloat = 89
+        static let FloorHeating_Temperature: CGFloat = 89
+        static let AirConditioning_Speed: CGFloat = 130
+        static let AirConditioning_Model: CGFloat = 152
+        static let FreshAir_Speed: CGFloat = 130
     }
     
     struct NotificationKey {

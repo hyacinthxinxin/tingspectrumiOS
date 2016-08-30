@@ -23,6 +23,7 @@ private let pasueClickImage = UIImage(named: "pause_click")
 class LecCurtainView: LecCamView {
     
     var didSetupConstraints = false
+    var curtainNameLabel: UILabel?
     var curtainButtons = [UIButton]()
     
     convenience init(cams: [LecCam]) {
@@ -33,6 +34,13 @@ class LecCurtainView: LecCamView {
     }
     
     private func setupSubviews() {
+        curtainNameLabel = UILabel()
+        if let dView = self.curtainNameLabel {
+            dView.font = UIFont.systemFontOfSize(13)
+            dView.textColor = UIColor.whiteColor()
+            addSubview(dView)
+        }
+        
         if let cams = self.cams {
             for cam in cams {
                 let cView = UIButton()
@@ -82,15 +90,17 @@ class LecCurtainView: LecCamView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        if let dView = self.curtainNameLabel {
+            dView.autoPinEdgeToSuperviewEdge(.Left, withInset: 14)
+            dView.autoPinEdgeToSuperviewEdge(.Top, withInset: 10)
+        }
         
         let views: NSArray = curtainButtons
         views.autoAlignViewsToEdge(.Bottom)
         views.autoAlignViewsToEdge(.Top)
         views.autoDistributeViewsAlongAxis(.Horizontal, alignedTo: .Horizontal, withFixedSpacing: 20.0, insetSpacing: true, matchedSizes: true)
         curtainButtons.first!.autoAlignAxisToSuperviewAxis(.Horizontal)
-        curtainButtons.first!.autoSetDimension(.Height, toSize: LecConstants.DeviceCellHeight.Curtain - 40)
-        //            curtainButtons.first!.autoPinEdgeToSuperviewEdge(.Top, withInset: 15)
-        //            curtainButtons.first!.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 15)
+        curtainButtons.first!.autoSetDimension(.Height, toSize: LecConstants.DeviceCellHeight.Curtain_Curtain - 40)
     }
     
     func camButtonTapped(sender: UIButton) {

@@ -37,7 +37,7 @@ struct ControlMessage: Hashable {
     }
 }
 
-class SocketData {
+class LecSocketData {
     static func generatorStatusReadingByte(msg: StatusMessage) -> [UInt8] {
         let address = msg.address.componentsSeparatedByString(".")
         let type = msg.type
@@ -91,6 +91,45 @@ class SocketData {
         let bytes = generatorControlByte(msg)
         return NSData(bytes: bytes, length: bytes.count)
     }
+    
+    static func addrGet(fs: UInt8, t: UInt8) -> String {
+        let s = fs & 0x0F
+        let f = (fs & 0xF0) >> 4
+        return String(f)+"."+String(s)+"."+String(t)
+    }
+    
+    static func handle(data: NSData) {
+        print(data.getBytes())
+        var needAppend = false
+        var code2D = [[UInt8]]()
+        var tcodes = [UInt8]()
+        
+        for code in data.getBytes() {
+            if code == LecConstants.Command.StartCode {
+                needAppend = true
+            }
+            if needAppend {
+                tcodes.append(code)
+            }
+            if code == LecConstants.Command.EndCode {
+                code2D.append(tcodes)
+                tcodes.removeAll()
+            }
+        }
+        print(code2D)
+        for camCode in code2D {
+            let feedbackAddress = LecSocketData.addrGet(camCode[LecConstants.Command.FirstAndSecondAddressIndex], t: camCode[LecConstants.Command.ThirdAddressIndex])
+            let statusValue = Int(camCode[LecConstants.Command.ValueIndex])
+            
+            if let cam = LecSocketManager.sharedSocket.dataModel.getCamByStatusAddress(feedbackAddress) {
+                if cam.camType < 40 {
+                    cam.statusValue = statusValue
+                }
+                LecSocketManager.sharedSocket.camRefreshDelegate?.refreshCam(feedbackAddress, statusValue: statusValue)
+            }
+        }
+        
+    }
 }
 
 extension NSData {
@@ -102,4 +141,6 @@ extension NSData {
         return array
     }
 }
+
+
 

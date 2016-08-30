@@ -13,13 +13,36 @@ class LecDeviceCell: UITableViewCell {
     var device: LecDevice?
     var cams: [LecCam]?
     
-    var switchView: LecSwitchView?
-    var dimmingView: LecDimmingView?
-    var curtainNameLabel: UILabel?
-    var curtainView: LecCurtainView?
-    var temperatureView: LecTemperatureView?
-    var speedView: LecSpeedView?
-    var modelView: LecModelView?
+    //灯光开关
+    var light_SwitchView: LecSwitchView?
+    var light_SwitchTopMargin: CGFloat = 0.0
+    //灯光开关和调光
+    var lightDimming_SwitchView: LecSwitchView?
+    var lightDimming_SwitchTopMargin: CGFloat = 0.0
+    var lightDimming_DimmingView: LecDimmingView?
+    var lightDimming_DimmingTopMargin: CGFloat = 0.0
+    //窗帘
+    var curtain_CurtainView: LecCurtainView?
+    var curtain_CurtainTopMargin: CGFloat = 0.0
+    //空调
+    var airConditioning_SwitchView: LecSwitchView?
+    var airConditioning_SwitchTopMargin: CGFloat = 0.0
+    var airConditioning_TemperatureView: LecTemperatureView?
+    var airConditioning_TemperatureTopMargin: CGFloat = 0.0
+    var airConditioning_SpeedView: LecSpeedView?
+    var airConditioning_SpeedTopMargin: CGFloat = 0.0
+    var airConditioning_ModelView: LecModelView?
+    var airConditioning_ModelTopMargin: CGFloat = 0.0
+    //地热
+    var floorHeating_SwitchView: LecSwitchView?
+    var floorHeating_SwitchTopMargin: CGFloat = 0.0
+    var floorHeating_TemperatureView: LecTemperatureView?
+    var floorHeating_TemperatureTopMargin: CGFloat = 0.0
+    //新风
+    var freshAir_SwitchView: LecSwitchView?
+    var freshAir_SwitchTopMargin: CGFloat = 0.0
+    var freshAir_SpeedView: LecSpeedView?
+    var freshAir_SpeedTopMargin: CGFloat = 0.0
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -28,7 +51,7 @@ class LecDeviceCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = LecConstants.AppColor.ThemeBGColor
-        selectionStyle = .None
+        selectionStyle = .Default
     }
     
     convenience init(device: LecDevice, cams: [LecCam]) {
@@ -42,123 +65,125 @@ class LecDeviceCell: UITableViewCell {
         if let cams = self.cams, let device = self.device {
             switch device.deviceType {
             case .Light:
-                let switchCams =  cams.filter { $0.camType == 10 }
-                if !switchCams.isEmpty {
-                    switchView = LecSwitchView()
-                    if let switchView = self.switchView {
-                        switchView.cams = switchCams
+                let light_SwitchCams =  cams.filter { $0.camType == 10 }
+                if !light_SwitchCams.isEmpty {
+                    light_SwitchView = LecSwitchView()
+                    if let camView = self.light_SwitchView {
+                        camView.cams = light_SwitchCams
                         if let device = self.device {
-                            switchView.camNameLabel.text = device.deviceName
+                            camView.camNameLabel.text = device.deviceName
                         }
-                        contentView.addSubview(switchView)
+                        contentView.addSubview(camView)
                     }
                 }
             case .LightDimming:
-                let switchCams =  cams.filter { $0.camType == 11 }
-                if !switchCams.isEmpty {
-                    switchView = LecSwitchView()
-                    if let switchView = self.switchView {
-                        switchView.cams = switchCams
-                        if let device = self.device {
-                            switchView.camNameLabel.text = device.deviceName
-                        }
-                        contentView.addSubview(switchView)
+                let lightDimming_SwitchCams =  cams.filter { $0.camType == 11 }
+                if !lightDimming_SwitchCams.isEmpty {
+                    lightDimming_SwitchView = LecSwitchView()
+                    lightDimming_SwitchTopMargin += 0.0
+                    lightDimming_DimmingTopMargin += LecConstants.DeviceCellHeight.LightDimming_Switch
+                    if let cView = self.lightDimming_SwitchView {
+                        cView.cams = lightDimming_SwitchCams
+                        cView.camNameLabel.text = device.deviceName
+                        contentView.addSubview(cView)
                     }
                 }
-                let dimmingCams = cams.filter { $0.camType == 21 }
-                if !dimmingCams.isEmpty {
-                    dimmingView = LecDimmingView()
-                    if let dimmingView = self.dimmingView {
-                        dimmingView.cams = dimmingCams
-                        contentView.addSubview(dimmingView)
+                let lightDimming_DimmingCams = cams.filter { $0.camType == 21 }
+                if !lightDimming_DimmingCams.isEmpty {
+                    lightDimming_DimmingView = LecDimmingView()
+                    if let cView = self.lightDimming_DimmingView {
+                        cView.cams = lightDimming_DimmingCams
+                        contentView.addSubview(cView)
                     }
                 }
             case .Curtain:
-                curtainNameLabel = UILabel()
-                if let curtainNameLabel = self.curtainNameLabel {
-                    curtainNameLabel.text = device.deviceName
-                    curtainNameLabel.font = UIFont.systemFontOfSize(13)
-                    curtainNameLabel.textColor = UIColor.whiteColor()
-                    contentView.addSubview(curtainNameLabel)
-                }
-                let curtainCams = cams.filter { 30 <= $0.camType && $0.camType < 40 }
-                if !curtainCams.isEmpty {
-                    curtainView = LecCurtainView(cams: curtainCams)
-                    if let curtainView = self.curtainView {
-                        contentView.addSubview(curtainView)
+                let curtain_Cams = cams.filter { 30 <= $0.camType && $0.camType < 40 }
+                if !curtain_Cams.isEmpty {
+                    curtain_CurtainView = LecCurtainView(cams: curtain_Cams)
+                    curtain_CurtainTopMargin += 0.0
+                    if let cView = self.curtain_CurtainView {
+                        cView.curtainNameLabel?.text = device.deviceName
+                        contentView.addSubview(cView)
                     }
                 }
             case .AirConditioning:
-                let switchCams =  cams.filter { $0.camType == 12 }
-                if !switchCams.isEmpty {
-                    switchView = LecSwitchView()
-                    if let switchView = self.switchView {
-                        switchView.cams = switchCams
-                        switchView.camNameLabel.text = device.deviceName
-                        contentView.addSubview(switchView)
+                let airConditioning_SwitchCams =  cams.filter { $0.camType == 12 }
+                if !airConditioning_SwitchCams.isEmpty {
+                    airConditioning_SwitchView = LecSwitchView()
+                    airConditioning_SwitchTopMargin += 0.0
+                    airConditioning_TemperatureTopMargin += LecConstants.DeviceCellHeight.AirConditioning_Switch
+                    airConditioning_SpeedTopMargin += LecConstants.DeviceCellHeight.AirConditioning_Switch
+                    airConditioning_ModelTopMargin += LecConstants.DeviceCellHeight.AirConditioning_Switch
+                    if let cView = self.airConditioning_SwitchView {
+                        cView.cams = airConditioning_SwitchCams
+                        cView.camNameLabel.text = device.deviceName
+                        contentView.addSubview(cView)
                     }
                 }
-                let temperatureCams = cams.filter { $0.camType == 22 }
-                if !temperatureCams.isEmpty {
-                    temperatureView = LecTemperatureView()
-                    if let temperatureView = self.temperatureView {
-                        temperatureView.cams = temperatureCams
-                        contentView.addSubview(temperatureView)
+                let airConditioning_TemperatureCams = cams.filter { $0.camType == 22 }
+                if !airConditioning_TemperatureCams.isEmpty {
+                    airConditioning_TemperatureView = LecTemperatureView()
+                    airConditioning_SpeedTopMargin += LecConstants.DeviceCellHeight.AirConditioning_Temperature
+                    airConditioning_ModelTopMargin += LecConstants.DeviceCellHeight.AirConditioning_Temperature
+                    if let cView = self.airConditioning_TemperatureView {
+                        cView.cams = airConditioning_TemperatureCams
+                        contentView.addSubview(cView)
                     }
                 }
-                let speedCams = cams.filter { (40...44).contains($0.camType) }
-                if !speedCams.isEmpty {
-                    speedView = LecSpeedView(cams: speedCams)
-                    if let speedView = self.speedView {
-                        speedView.cams = speedCams
-                        contentView.addSubview(speedView)
+                let airConditioning_SpeedCams = cams.filter { (40...44).contains($0.camType) }
+                if !airConditioning_SpeedCams.isEmpty {
+                    airConditioning_SpeedView = LecSpeedView(cams: airConditioning_SpeedCams)
+                    airConditioning_ModelTopMargin += LecConstants.DeviceCellHeight.AirConditioning_Speed
+                    if let cView = self.airConditioning_SpeedView {
+                        cView.cams = airConditioning_SpeedCams
+                        contentView.addSubview(cView)
                     }
                 }
-                let modelCams = cams.filter { (50...53).contains($0.camType) }
-                if !modelCams.isEmpty {
-                    modelView = LecModelView(cams: modelCams)
-                    if let modelView = self.modelView {
-                        contentView.addSubview(modelView)
+                let airConditioning_ModelCams = cams.filter { (50...53).contains($0.camType) }
+                if !airConditioning_ModelCams.isEmpty {
+                    airConditioning_ModelView = LecModelView(cams: airConditioning_ModelCams)
+                    if let cView = self.airConditioning_ModelView {
+                        contentView.addSubview(cView)
                     }
                 }
             case .FloorHeating:
-                let switchCams =  cams.filter { $0.camType == 13 }
-                if !switchCams.isEmpty {
-                    switchView = LecSwitchView()
-                    if let switchView = self.switchView {
-                        switchView.cams = switchCams
-                        if let device = self.device {
-                            switchView.camNameLabel.text = device.deviceName
-                        }
-                        contentView.addSubview(switchView)
+                let floorHeating_SwitchCams =  cams.filter { $0.camType == 13 }
+                if !floorHeating_SwitchCams.isEmpty {
+                    floorHeating_SwitchView = LecSwitchView()
+                    floorHeating_SwitchTopMargin += 0.0
+                    floorHeating_TemperatureTopMargin += LecConstants.DeviceCellHeight.FloorHeating_Switch
+                    if let cView = self.floorHeating_SwitchView {
+                        cView.cams = floorHeating_SwitchCams
+                        cView.camNameLabel.text = device.deviceName
+                        contentView.addSubview(cView)
                     }
                 }
-                let temperatureCams = cams.filter { $0.camType == 23 }
-                if !temperatureCams.isEmpty {
-                    temperatureView = LecTemperatureView()
-                    if let temperatureView = self.temperatureView {
-                        temperatureView.cams = temperatureCams
-                        contentView.addSubview(temperatureView)
+                let floorHeating_TemperatureCams = cams.filter { $0.camType == 23 }
+                if !floorHeating_TemperatureCams.isEmpty {
+                    floorHeating_TemperatureView = LecTemperatureView()
+                    if let cView = self.floorHeating_TemperatureView {
+                        cView.cams = floorHeating_TemperatureCams
+                        contentView.addSubview(cView)
                     }
                 }
             case .FreshAir:
-                let switchCams =  cams.filter { $0.camType == 14 }
-                if !switchCams.isEmpty {
-                    switchView = LecSwitchView()
-                    if let switchView = self.switchView {
-                        switchView.cams = switchCams
-                        if let device = self.device {
-                            switchView.camNameLabel.text = device.deviceName
-                        }
-                        contentView.addSubview(switchView)
+                let freshAir_SwitchCams =  cams.filter { $0.camType == 14 }
+                if !freshAir_SwitchCams.isEmpty {
+                    freshAir_SwitchView = LecSwitchView()
+                    freshAir_SwitchTopMargin += 0.0
+                    freshAir_SpeedTopMargin += LecConstants.DeviceCellHeight.FreshAir_Switch
+                    if let cView = self.freshAir_SwitchView {
+                        cView.cams = freshAir_SwitchCams
+                        cView.camNameLabel.text = device.deviceName
+                        contentView.addSubview(cView)
                     }
                 }
-                let speedCams = cams.filter { (45...49).contains($0.camType) }
-                if !speedCams.isEmpty {
-                    speedView = LecSpeedView(cams: speedCams)
-                    if let speedView = self.speedView {
-                        speedView.cams = speedCams
-                        contentView.addSubview(speedView)
+                let freshAir_SpeedCams = cams.filter { (45...49).contains($0.camType) }
+                if !freshAir_SpeedCams.isEmpty {
+                    freshAir_SpeedView = LecSpeedView(cams: freshAir_SpeedCams)
+                    if let cView = self.freshAir_SpeedView {
+                        cView.cams = freshAir_SpeedCams
+                        contentView.addSubview(cView)
                     }
                 }
             default: break
@@ -166,52 +191,133 @@ class LecDeviceCell: UITableViewCell {
         }
     }
     
+    //计算cell高度
+    static func calculatorCellHeight(device: LecDevice, cams: [LecCam]) -> CGFloat {
+        var height: CGFloat = 0.0
+        
+            switch device.deviceType {
+            case .Light:
+                let light_SwitchCams =  cams.filter { $0.camType == 10 }
+                if !light_SwitchCams.isEmpty {
+                    height += LecConstants.DeviceCellHeight.Light_Switch
+                }
+            case .LightDimming:
+                let lightDimming_SwitchCams =  cams.filter { $0.camType == 11 }
+                if !lightDimming_SwitchCams.isEmpty {
+                    height += LecConstants.DeviceCellHeight.LightDimming_Switch
+                }
+                let lightDimming_DimmingCams = cams.filter { $0.camType == 21 }
+                if !lightDimming_DimmingCams.isEmpty {
+                    height += LecConstants.DeviceCellHeight.LightDimming_Dimming
+                }
+            case .Curtain:
+                let curtain_Cams = cams.filter { 30 <= $0.camType && $0.camType < 40 }
+                if !curtain_Cams.isEmpty {
+                    height += LecConstants.DeviceCellHeight.Curtain_Curtain
+                }
+            case .AirConditioning:
+                let airConditioning_SwitchCams =  cams.filter { $0.camType == 12 }
+                if !airConditioning_SwitchCams.isEmpty {
+                    height += LecConstants.DeviceCellHeight.AirConditioning_Switch
+                }
+                let airConditioning_TemperatureCams = cams.filter { $0.camType == 22 }
+                if !airConditioning_TemperatureCams.isEmpty {
+                    height += LecConstants.DeviceCellHeight.AirConditioning_Temperature
+                }
+                let airConditioning_SpeedCams = cams.filter { (40...44).contains($0.camType) }
+                if !airConditioning_SpeedCams.isEmpty {
+                    height += LecConstants.DeviceCellHeight.AirConditioning_Speed
+                }
+                let airConditioning_ModelCams = cams.filter { (50...53).contains($0.camType) }
+                if !airConditioning_ModelCams.isEmpty {
+                    height += LecConstants.DeviceCellHeight.AirConditioning_Model
+                }
+            case .FloorHeating:
+                let floorHeating_SwitchCams =  cams.filter { $0.camType == 13 }
+                if !floorHeating_SwitchCams.isEmpty {
+                    height += LecConstants.DeviceCellHeight.FloorHeating_Switch
+                }
+                let floorHeating_TemperatureCams = cams.filter { $0.camType == 23 }
+                if !floorHeating_TemperatureCams.isEmpty {
+                    height += LecConstants.DeviceCellHeight.FloorHeating_Temperature
+                }
+            case .FreshAir:
+                let freshAir_SwitchCams =  cams.filter { $0.camType == 14 }
+                if !freshAir_SwitchCams.isEmpty {
+                    height += LecConstants.DeviceCellHeight.FreshAir_Switch
+                }
+                let freshAir_SpeedCams = cams.filter { (45...49).contains($0.camType) }
+                if !freshAir_SpeedCams.isEmpty {
+                    height += LecConstants.DeviceCellHeight.FreshAir_Speed
+                }
+            default: break
+            
+        }
+        return height
+    }
+    
+    private func positionCamView(cView: LecCamView, topMargin: CGFloat, height: CGFloat) {
+        cView.autoPinEdgeToSuperviewEdge(.Left)
+        cView.autoPinEdgeToSuperviewEdge(.Right)
+        cView.autoPinEdgeToSuperviewEdge(.Top, withInset: topMargin)
+        cView.autoSetDimension(.Height, toSize: height)
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-        if let switchView = self.switchView {
-            switchView.autoPinEdgeToSuperviewEdge(.Left)
-            switchView.autoPinEdgeToSuperviewEdge(.Right)
-            switchView.autoPinEdgeToSuperviewEdge(.Top)
-            switchView.autoSetDimension(.Height, toSize: LecConstants.DeviceCellHeight.Switch)
+        
+        //灯光开关
+        if let cView = self.light_SwitchView {
+            self.positionCamView(cView, topMargin: light_SwitchTopMargin, height: LecConstants.DeviceCellHeight.Light_Switch)
         }
         
-        if let dimmingView = self.dimmingView {
-            dimmingView.autoPinEdgeToSuperviewEdge(.Left)
-            dimmingView.autoPinEdgeToSuperviewEdge(.Right)
-            dimmingView.autoPinEdgeToSuperviewEdge(.Top, withInset: LecConstants.DeviceCellHeight.Switch)
-            dimmingView.autoSetDimension(.Height, toSize: LecConstants.DeviceCellHeight.Dimming)
+        //灯光开关和调光
+        if let cView = self.lightDimming_SwitchView {
+            self.positionCamView(cView, topMargin: lightDimming_SwitchTopMargin, height: LecConstants.DeviceCellHeight.LightDimming_Switch)
         }
         
-        if let curtainNameLabel = self.curtainNameLabel {
-            curtainNameLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: 14)
-            curtainNameLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: 10)
-            if let curtainView = self.curtainView {
-                curtainView.autoPinEdgeToSuperviewEdge(.Left)
-                curtainView.autoPinEdgeToSuperviewEdge(.Right)
-                curtainView.autoPinEdgeToSuperviewEdge(.Bottom)
-                curtainView.autoPinEdge(.Top, toEdge: .Bottom, ofView: curtainNameLabel)
-            }
+        if let cView = self.lightDimming_DimmingView {
+            self.positionCamView(cView, topMargin: lightDimming_DimmingTopMargin, height: LecConstants.DeviceCellHeight.LightDimming_Dimming)
         }
         
-        if let temperatureView = self.temperatureView {
-            temperatureView.autoPinEdgeToSuperviewEdge(.Left)
-            temperatureView.autoPinEdgeToSuperviewEdge(.Right)
-            temperatureView.autoPinEdgeToSuperviewEdge(.Top, withInset: LecConstants.DeviceCellHeight.Switch)
-            temperatureView.autoSetDimension(.Height, toSize: LecConstants.DeviceCellHeight.Temperature)
+        //窗帘
+        if let cView = self.curtain_CurtainView {
+            self.positionCamView(cView, topMargin: curtain_CurtainTopMargin, height: LecConstants.DeviceCellHeight.Curtain_Curtain)
         }
         
-        if let speedView = self.speedView {
-            speedView.autoPinEdgeToSuperviewEdge(.Left)
-            speedView.autoPinEdgeToSuperviewEdge(.Right)
-            speedView.autoPinEdgeToSuperviewEdge(.Top, withInset: LecConstants.DeviceCellHeight.Switch + LecConstants.DeviceCellHeight.Temperature)
-            speedView.autoSetDimension(.Height, toSize: LecConstants.DeviceCellHeight.Speed)
+        //空调
+        if let cView = self.airConditioning_SwitchView {
+            self.positionCamView(cView, topMargin: airConditioning_SwitchTopMargin, height: LecConstants.DeviceCellHeight.AirConditioning_Switch)
+        }
+
+        if let cView = self.airConditioning_TemperatureView {
+            self.positionCamView(cView, topMargin: airConditioning_TemperatureTopMargin, height: LecConstants.DeviceCellHeight.AirConditioning_Temperature)
         }
         
-        if let modelView = self.modelView {
-            modelView.autoPinEdgeToSuperviewEdge(.Left)
-            modelView.autoPinEdgeToSuperviewEdge(.Right)
-            modelView.autoPinEdgeToSuperviewEdge(.Top, withInset: LecConstants.DeviceCellHeight.Switch + LecConstants.DeviceCellHeight.Temperature + LecConstants.DeviceCellHeight.Speed)
-            modelView.autoSetDimension(.Height, toSize: LecConstants.DeviceCellHeight.Model)
+        if let cView = self.airConditioning_SpeedView {
+            self.positionCamView(cView, topMargin: airConditioning_SpeedTopMargin, height: LecConstants.DeviceCellHeight.AirConditioning_Speed)
+        }
+
+        if let cView = self.airConditioning_ModelView {
+            self.positionCamView(cView, topMargin: airConditioning_ModelTopMargin, height: LecConstants.DeviceCellHeight.AirConditioning_Model)
+        }
+
+        //地热
+        if let cView = self.floorHeating_SwitchView {
+            self.positionCamView(cView, topMargin: floorHeating_SwitchTopMargin, height: LecConstants.DeviceCellHeight.FloorHeating_Switch)
+        }
+        
+        if let cView = self.floorHeating_TemperatureView {
+            self.positionCamView(cView, topMargin: floorHeating_TemperatureTopMargin, height: LecConstants.DeviceCellHeight.FloorHeating_Temperature)
+        }
+        
+        //新风
+        if let cView = self.freshAir_SwitchView {
+            self.positionCamView(cView, topMargin: freshAir_SwitchTopMargin, height: LecConstants.DeviceCellHeight.FreshAir_Switch)
+        }
+        
+        if let cView = self.freshAir_SpeedView {
+            self.positionCamView(cView, topMargin: freshAir_SpeedTopMargin, height: LecConstants.DeviceCellHeight.FreshAir_Speed)
         }
     }
 }

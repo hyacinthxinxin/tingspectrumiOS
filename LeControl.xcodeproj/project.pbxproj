@@ -45,7 +45,7 @@
 		BA2B500C1D72D449007D96B6 /* LecSpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B500B1D72D449007D96B6 /* LecSpeedView.swift */; };
 		BA2B500E1D72D464007D96B6 /* LecModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B500D1D72D464007D96B6 /* LecModelView.swift */; };
 		BA2B50131D72EB25007D96B6 /* LecStepSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B50121D72EB25007D96B6 /* LecStepSlider.swift */; };
-		BA95F8DF1D754DE1009F6F8C /* SocketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95F8DE1D754DE1009F6F8C /* SocketData.swift */; };
+		BA95F8DF1D754DE1009F6F8C /* LecSocketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95F8DE1D754DE1009F6F8C /* LecSocketData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,7 +90,7 @@
 		BA2B500B1D72D449007D96B6 /* LecSpeedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecSpeedView.swift; path = Device/Cam/View/LecSpeedView.swift; sourceTree = "<group>"; };
 		BA2B500D1D72D464007D96B6 /* LecModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecModelView.swift; path = Device/Cam/View/LecModelView.swift; sourceTree = "<group>"; };
 		BA2B50121D72EB25007D96B6 /* LecStepSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecStepSlider.swift; path = Device/Cam/View/StepSlider/LecStepSlider.swift; sourceTree = "<group>"; };
-		BA95F8DE1D754DE1009F6F8C /* SocketData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SocketData.swift; path = Socket/SocketData.swift; sourceTree = "<group>"; };
+		BA95F8DE1D754DE1009F6F8C /* LecSocketData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecSocketData.swift; path = Socket/LecSocketData.swift; sourceTree = "<group>"; };
 		CEC71C0DE0B2144F48235161 /* Pods-LeControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeControl.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeControl/Pods-LeControl.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,7 +161,6 @@
 				BA2B4FCD1D6EE8C0007D96B6 /* LecNetwork.swift */,
 				BA2B4FCF1D6EE90B007D96B6 /* LecGlobal.swift */,
 				BA2B4FD31D6F19E6007D96B6 /* LecExtensions.swift */,
-				BA2B4FD51D6F482E007D96B6 /* LecJsonParseHelper.swift */,
 			);
 			name = Units;
 			sourceTree = "<group>";
@@ -192,6 +191,7 @@
 			children = (
 				BA2B4FB01D6C78C2007D96B6 /* LecModel.swift */,
 				BA2B4FB21D6C79CC007D96B6 /* LecDataModel.swift */,
+				BA2B4FD51D6F482E007D96B6 /* LecJsonParseHelper.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -253,7 +253,7 @@
 		BA95F8DD1D754DC6009F6F8C /* Socket */ = {
 			isa = PBXGroup;
 			children = (
-				BA95F8DE1D754DE1009F6F8C /* SocketData.swift */,
+				BA95F8DE1D754DE1009F6F8C /* LecSocketData.swift */,
 				BA2B4FBC1D6C7E07007D96B6 /* LecSocketManager.swift */,
 			);
 			name = Socket;
@@ -402,7 +402,7 @@
 				BA2B4FB11D6C78C2007D96B6 /* LecModel.swift in Sources */,
 				BA2B4FB71D6C7B50007D96B6 /* LecDeviceViewController.swift in Sources */,
 				BA2B4FCA1D6EE2D7007D96B6 /* LecLoginViewController.swift in Sources */,
-				BA95F8DF1D754DE1009F6F8C /* SocketData.swift in Sources */,
+				BA95F8DF1D754DE1009F6F8C /* LecSocketData.swift in Sources */,
 				BA2B50041D71EF10007D96B6 /* LecCamViewWithNib.swift in Sources */,
 				BA2B4FBD1D6C7E07007D96B6 /* LecSocketManager.swift in Sources */,
 				BA2B4FB31D6C79CC007D96B6 /* LecDataModel.swift in Sources */,

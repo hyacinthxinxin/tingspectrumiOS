@@ -84,7 +84,7 @@ class LecModelView: LecCamView {
         views.autoAlignViewsToEdge(.Top)
         views.autoDistributeViewsAlongAxis(.Horizontal, alignedTo: .Horizontal, withFixedSpacing: 20.0, insetSpacing: true, matchedSizes: true)
         modelButtons.first!.autoAlignAxisToSuperviewAxis(.Horizontal)
-        modelButtons.first!.autoSetDimension(.Height, toSize: LecConstants.DeviceCellHeight.Model)
+        modelButtons.first!.autoSetDimension(.Height, toSize: LecConstants.DeviceCellHeight.AirConditioning_Model)
     }
     
     override func refreshState(feedbackAddress: String, statusValue: Int) {

@@ -32,6 +32,10 @@ class LecAreaCell: UITableViewCell {
         selectedBackgroundView = v
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         if selected {

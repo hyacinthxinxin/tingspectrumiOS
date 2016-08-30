@@ -49,8 +49,8 @@ extension LecSceneViewController: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegate
 
 extension LecSceneViewController: UICollectionViewDelegate {
-    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
         if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? LecSceneCell {
             if let cams = cell.cams, let cam = cams.first {
                 LecSocketManager.sharedSocket.sendMessageWithCam(cam)
