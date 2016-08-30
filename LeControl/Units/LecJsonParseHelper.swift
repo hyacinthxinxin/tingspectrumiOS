@@ -57,6 +57,9 @@ func parseArea(jsons: [JSON]) -> [LecArea] {
         if let areaName = $0[LecConstants.LecJSONKey.AreaName].string {
             area.areaName = areaName
         }
+        if let areaImageName = $0[LecConstants.LecJSONKey.AreaImageName].string {
+            area.areaImageName = areaImageName
+        }
         return area
     }
     
@@ -116,29 +119,33 @@ func parseCam(jsons: [JSON]) -> [LecCam] {
             cam.controlValue = controlValue
             cam.statusValue = controlValue
         }
+        
         /*
         if let statusValue =  $0["StatusValue"].int {
             cam.statusValue = statusValue
-        }*/
-        
-        if let isVisible = $0[LecConstants.LecJSONKey.IsVisible].bool {
-            cam.isVisible = isVisible
         }
+*/
         
         if let minControlValue = $0[LecConstants.LecJSONKey.MinControlValue].int {
             cam.minControlValue = minControlValue
-
+            cam.minStatusValue = minControlValue
         }
+        
         if let maxControlValue = $0[LecConstants.LecJSONKey.MaxControlValue].int {
             cam.maxControlValue = maxControlValue
-            
+            cam.maxStatusValue = maxControlValue
         }
-        if let maxStatusValue = $0[LecConstants.LecJSONKey.MaxStatusValue].int {
-            cam.maxStatusValue = maxStatusValue
-        }
+        
+        /*
         if let minStatusValue = $0[LecConstants.LecJSONKey.MinStatusValue].int {
             cam.minStatusValue = minStatusValue
         }
+        
+        if let maxStatusValue = $0[LecConstants.LecJSONKey.MaxStatusValue].int {
+            cam.maxStatusValue = maxStatusValue
+        }
+*/
+        
         return cam
     }
 }

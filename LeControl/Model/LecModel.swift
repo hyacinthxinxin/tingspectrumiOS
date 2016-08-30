@@ -39,39 +39,41 @@ enum LecDeviceType: Int {
 }
 
 class LecBuilding: NSObject {
-    var socketAddress: String = ""
-    var socketPort: UInt16 = 0
     var buildingId :String = ""
     var buildingName = ""
+    var buildingImageName = ""
+    var socketAddress: String = ""
+    var socketPort: UInt16 = 0
 }
 
 class LecFloor: NSObject {
-    var buildingId :String = ""
     var floorId: String = ""
+    var buildingId :String = ""
     var floorName: String = ""
-    
+    var floorImageName: String = ""
     func convertToDictionary() -> [String: AnyObject] {
-        return [LecConstants.LecJSONKey.BuildingId: buildingId,
-                LecConstants.LecJSONKey.FloorId: floorId,
-                LecConstants.LecJSONKey.FloorName: floorName]
+        return [LecConstants.LecJSONKey.FloorId: floorId,
+                LecConstants.LecJSONKey.BuildingId: buildingId,
+                LecConstants.LecJSONKey.FloorName: floorName,
+                LecConstants.LecJSONKey.FloorImageName: floorImageName]
     }
 }
 
 class LecArea: NSObject {
-    private let areaImageNames = ["living_room", "dining_room", "main_bedroom", "study_room", "childrem_room", "video_room"];
+//    private let areaImageNames = ["living_room", "dining_room", "main_bedroom", "study_room", "childrem_room", "video_room"];
     
-    var floorId: String = ""
     var areaId: String = ""
+    var floorId: String = ""
     var areaName: String = ""
     var areaImageName: String = ""
     
-    override init() {
-        areaImageName = areaImageNames[Int(arc4random_uniform(5))]
-    }
+//    override init() {
+//        areaImageName = areaImageNames[Int(arc4random_uniform(5))]
+//    }
     
     func convertToDictionary() -> [String: AnyObject] {
-        return [LecConstants.LecJSONKey.FloorId: floorId,
-                LecConstants.LecJSONKey.AreaId: areaId,
+        return [LecConstants.LecJSONKey.AreaId: areaId,
+                LecConstants.LecJSONKey.FloorId: floorId,
                 LecConstants.LecJSONKey.AreaName: areaName,
                 LecConstants.LecJSONKey.AreaImageName: areaImageName
         ]
@@ -79,41 +81,32 @@ class LecArea: NSObject {
 }
 
 class LecDevice: NSObject {
-    var areaId: String = ""
     var deviceId: String = ""
+    var areaId: String = ""
     var deviceType: LecDeviceType = .Scene
     var deviceName: String = ""
-    
+    var deviceImageName: String = ""
     func convertToDictionary() -> [String: AnyObject] {
-        return [LecConstants.LecJSONKey.AreaId: areaId,
-                LecConstants.LecJSONKey.DeviceId: deviceId,
+        return [LecConstants.LecJSONKey.DeviceId: deviceId,
+                LecConstants.LecJSONKey.AreaId: areaId,
                 LecConstants.LecJSONKey.DeviceType: deviceType.rawValue,
-                LecConstants.LecJSONKey.DeviceName:deviceName
+                LecConstants.LecJSONKey.DeviceName: deviceName,
+                LecConstants.LecJSONKey.DeviceImageName: deviceImageName
         ]
     }
 }
 
-enum LecSubCamType: Int {
-    case Swicth = 0
-    case Dimming
-    case Temperature
-    case Speed
-    case Model
-}
-
 class LecCam: NSObject {
-    var deviceId: String = ""
     var camId: String = ""
+    var deviceId: String = ""
     var camName: String = ""
     var camImageName: String = ""
     var camType: Int = 0
-    var subCamType: LecSubCamType = .Speed
     var commandType: LecCommand = .Type1bit
     var controlAddress: String = ""
     var statusAddress: String = ""
     var controlValue: Int = 0
     var statusValue: Int = 0
-    var isVisible: Bool = false
     var minControlValue = 0
     var maxControlValue = 0
     var maxStatusValue = 0
@@ -125,11 +118,11 @@ class LecCam: NSObject {
     }
     
     func convertToDictionary() -> [String: AnyObject] {
-        return [LecConstants.LecJSONKey.DeviceId: deviceId,
-                LecConstants.LecJSONKey.CamId: camId,
+        return [LecConstants.LecJSONKey.CamId: camId,
+                LecConstants.LecJSONKey.DeviceId: deviceId,
                 LecConstants.LecJSONKey.CamName: camName,
+                LecConstants.LecJSONKey.CamImageName: camImageName,
                 LecConstants.LecJSONKey.CamType: camType,
-                LecConstants.LecJSONKey.SubCamType: subCamType.rawValue,
                 LecConstants.LecJSONKey.CommandType: commandType.rawValue,
                 LecConstants.LecJSONKey.ControlAddress: controlAddress,
                 LecConstants.LecJSONKey.StatusAddress: statusAddress,
