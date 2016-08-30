@@ -107,7 +107,6 @@ struct LecConstants {
         static let ShowConfig = "ShowConfig"
         static let ShowDevice = "ShowDevice"
         static let ShowScene = "ShowScene"
-
     }
     
     struct NetworkSubAddress {

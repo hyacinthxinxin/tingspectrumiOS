@@ -11,7 +11,6 @@ PODS:
   - Kingfisher (2.4.1)
   - PureLayout (3.0.2)
   - SwiftyJSON (2.3.2)
-  - TingSpectrum (0.1.1)
   - Whisper (3.0.0)
 
 DEPENDENCIES:
@@ -21,7 +20,6 @@ DEPENDENCIES:
   - Kingfisher (~> 2.4.1)
   - PureLayout
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
-  - TingSpectrum (~> 0.1.1)
   - Whisper
 
 EXTERNAL SOURCES:
@@ -40,9 +38,8 @@ SPEC CHECKSUMS:
   Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  TingSpectrum: e0efcd3c8f45c259d30dff1b4b6dc4ef024c0ecc
   Whisper: 42a3ee7c2936f861b23d41bd6cd7dfd22f102405
 
-PODFILE CHECKSUM: 10ee731b7537b16187c262f4eda84221da3cf574
+PODFILE CHECKSUM: 4a2502dd453b5a04551513330ec1f2a02ca553f9
 
 COCOAPODS: 1.0.1

@@ -55,6 +55,7 @@ class LecSocketManager: NSObject {
     
     //发送控制命令
     func sendMessageWithCam(cam: LecCam) {
+        guard cam.controlAddress != LecConstants.AddressInfo.EmptyAddress else { return }
         writeData(LecSocketData.getControlData(cam))
     }
     
