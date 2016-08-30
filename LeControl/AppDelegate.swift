@@ -9,6 +9,13 @@
 import UIKit
 import CoreData
 
+enum LecEnvironment {
+    case Develop
+    case Product
+}
+
+let environment: LecEnvironment = LecEnvironment.Develop
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

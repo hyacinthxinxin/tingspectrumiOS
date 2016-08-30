@@ -9,12 +9,6 @@
 import Foundation
 import UIKit
 
-enum LecEnvironment {
-    case Develop
-    case Product
-}
-
-let environment: LecEnvironment = LecEnvironment.Develop
 let screenRect = UIScreen.mainScreen().bounds
 let screenWidth = screenRect.size.width
 let themeColor = "#ffb535".hexColor

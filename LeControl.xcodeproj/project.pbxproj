@@ -138,15 +138,16 @@
 		BA2B4F911D6C752B007D96B6 /* LeControl */ = {
 			isa = PBXGroup;
 			children = (
-				BA95F8DD1D754DC6009F6F8C /* Socket */,
+				BA2B4FCF1D6EE90B007D96B6 /* LecGlobal.swift */,
+				BA2B4F921D6C752B007D96B6 /* AppDelegate.swift */,
 				BA2B4FC21D6C7F59007D96B6 /* DefaultProject.json */,
 				BA2B4FA91D6C7778007D96B6 /* Units */,
+				BA95F8DD1D754DC6009F6F8C /* Socket */,
 				BA2B4FAF1D6C78A2007D96B6 /* Model */,
 				BA2B4FC81D6EE2B7007D96B6 /* Config */,
 				BA2B4FAB1D6C77FF007D96B6 /* FloorAndArea */,
 				BA2B4FDE1D7168FF007D96B6 /* AreaDetail */,
 				BA2B4FAC1D6C780C007D96B6 /* Device */,
-				BA2B4F921D6C752B007D96B6 /* AppDelegate.swift */,
 				BA2B4F9B1D6C752B007D96B6 /* Main.storyboard */,
 				BA2B4F9E1D6C752B007D96B6 /* Assets.xcassets */,
 				BA2B4FA01D6C752C007D96B6 /* LaunchScreen.storyboard */,
@@ -161,7 +162,6 @@
 				BA2B4FB81D6C7D67007D96B6 /* LecConstants.swift */,
 				BA2B4FC01D6C7EBC007D96B6 /* LecFileHelper.swift */,
 				BA2B4FCD1D6EE8C0007D96B6 /* LecNetwork.swift */,
-				BA2B4FCF1D6EE90B007D96B6 /* LecGlobal.swift */,
 				BA2B4FD31D6F19E6007D96B6 /* LecExtensions.swift */,
 				BAF596861D75AA0B00E3ACEC /* LecEternal.swift */,
 			);
