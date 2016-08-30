@@ -28,6 +28,7 @@ class LecDeviceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         LecSocketManager.sharedSocket.camRefreshDelegate = self
+        LecSocketManager.sharedSocket.sendStatusReadingMessageWithCams(cams.filter { $0.statusAddress != LecConstants.AddressInfo.EmptyAddress } )
     }
 }
 
@@ -66,28 +67,8 @@ extension LecDeviceViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let device = devices[indexPath.row]
         let cams = self.cams.filter { $0.deviceId == device.deviceId }
-        
-        switch device.deviceType {
-        case .Scene:
-            fatalError("Should never get here")
-        case .Light:
-            let cell = LecLightCell(device: device, cams: cams)
-            return cell
-        case .LightDimming:
-            let cell = LecLightDimmingCell(device: device, cams: cams)
-            return cell
-        case .Curtain:
-            let cell = LecCurtainCell(device: device, cams: cams)
-            return cell
-        case .AirConditioning:
-            let cell = LecAirConditioningCell(device: device, cams:  cams)
-            return cell
-        case .FloorHeating:
-            let cell = LecFloorHeatingCell(device: device, cams:  cams)
-            return cell
-        default:
-            return UITableViewCell()
-        }
+        let cell = LecDeviceCell(device: device, cams: cams)
+        return cell
     }
 }
 
@@ -106,16 +87,8 @@ extension LecDeviceViewController: LecCamRefreshDelegate {
         print("LecCamRefreshDelegate")
         for c in deviceTableView.visibleCells {
             for v in c.contentView.subviews {
-                if let cv = v as? LecSwitchView {
-                    cv.updateView()
-                } else if let cv = v as? LecDimmingView {
-                    cv.updateView()
-                } else if let cv = v as? LecTemperatureView {
-                    cv.updateView()
-                } else if let cv = v as? LecSpeedView {
-                    cv.updateView()
-                } else if let cv = v as? LecModelView {
-                    cv.updateView()
+                if let cv = v as? LecCamView {
+                    cv.refreshState(feedbackAddress, statusValue: statusValue)
                 }
             }
         }

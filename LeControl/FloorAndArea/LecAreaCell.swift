@@ -11,7 +11,7 @@ import UIKit
 class LecAreaCell: UITableViewCell {
     @IBOutlet weak var areaImageView: UIImageView!
     @IBOutlet weak var areaNameLabel: UILabel!
-    var areaId: String?
+    
     var area: LecArea? {
         didSet {
             if let area = self.area {
@@ -27,13 +27,18 @@ class LecAreaCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        let v = UIView()
+        v.backgroundColor = LecConstants.AppColor.CamTintColor
+        selectedBackgroundView = v
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        if selected {
+            areaNameLabel.textColor = LecConstants.AppColor.ThemeBGColor
+        } else {
+            areaNameLabel.textColor = UIColor.whiteColor()
+        }
     }
 
 }

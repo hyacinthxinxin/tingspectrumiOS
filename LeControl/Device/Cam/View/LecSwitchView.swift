@@ -16,8 +16,8 @@ class LecSwitchView: LecCamViewWithNib {
 
     override var cams: [LecCam]? {
         didSet {
-            if let _ = cams?.first {
-                updateView()
+            if let cam = cams?.first {
+                refreshState(cam.statusAddress, statusValue: cam.statusValue)
             }
         }
     }
@@ -29,11 +29,7 @@ class LecSwitchView: LecCamViewWithNib {
         }
     }
     
-    
-}
-
-extension LecSwitchView: LecCamViewUpdateDelegate {
-    func updateView() {
+    override func refreshState(feedbackAddress: String, statusValue: Int) {
         if let cam = cams?.first {
             camSwitch.on = cam.statusValue == 1
         }

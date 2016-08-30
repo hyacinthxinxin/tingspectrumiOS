@@ -57,7 +57,7 @@ class LecAreaDetailViewController: UICollectionViewController {
             if (devices.contains{ $0.deviceType == .Light || $0.deviceType == .LightDimming}) {
                 g.append(.GroupLight)
             }
-            if (devices.contains{ $0.deviceType == .AirConditioning || $0.deviceType == .FloorHeating }) {
+            if (devices.contains{ $0.deviceType == .AirConditioning } || devices.contains{ $0.deviceType == .FloorHeating } || devices.contains{ $0.deviceType == .FreshAir }) {
                 g.append(.GroupTemperature)
             }
             if (devices.contains{ $0.deviceType == .Curtain }) {
@@ -97,9 +97,14 @@ class LecAreaDetailViewController: UICollectionViewController {
                     case .GroupScene:
                         deviceViewController.devices = devices.filter { $0.deviceType == .Scene }
                     case .GroupLight:
-                        deviceViewController.devices = devices.filter { $0.deviceType == .Light || $0.deviceType == .LightDimming}
+                        var ds = devices.filter { $0.deviceType == .Light }
+                        ds += devices.filter { $0.deviceType == .LightDimming }
+                        deviceViewController.devices = ds
                     case .GroupTemperature:
-                        deviceViewController.devices = devices.filter { $0.deviceType == .AirConditioning || $0.deviceType == .FloorHeating}
+                        var ds = devices.filter { $0.deviceType == .AirConditioning }
+                        ds += devices.filter { $0.deviceType == .FloorHeating }
+                        ds += devices.filter { $0.deviceType == .FreshAir }
+                        deviceViewController.devices = ds
                     case .GroupCurtain:
                         deviceViewController.devices = devices.filter { $0.deviceType == .Curtain}
                     }
@@ -177,16 +182,16 @@ class LecAreaDetailViewController: UICollectionViewController {
 let cellWidth: CGFloat = 80.0
 let cellHeight: CGFloat = 196.0
 let hMargin: CGFloat = 70.0
+let hSpacing: CGFloat = 76.0
 
-extension LecAreaDetailViewController : UICollectionViewDelegateFlowLayout {
+extension LecAreaDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let size = CGSizeMake(80, 196)
         return size
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        let sectionInsets = UIEdgeInsets(top: 148 - 64, left: hMargin, bottom: 0, right: hMargin)
-        return sectionInsets
+        return view.window!.rootViewController!.traitCollection.horizontalSizeClass == .Compact ? UIEdgeInsets(top:148 - 64, left:(screenWidth - 2 * cellWidth) / 3 - 2, bottom:0, right:(screenWidth - 2 * cellWidth) / 3 - 2) : UIEdgeInsets(top:148 - 64, left:hMargin, bottom: 0, right:hMargin)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
@@ -194,6 +199,6 @@ extension LecAreaDetailViewController : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return screenWidth - cellWidth * 2 - hMargin * 2
+        return  view.window!.rootViewController!.traitCollection.horizontalSizeClass == .Compact ? (screenWidth - 2 * cellWidth) / 3 : hSpacing
     }
 }

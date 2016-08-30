@@ -51,9 +51,9 @@ class LecFloor: NSObject {
     var floorName: String = ""
     
     func convertToDictionary() -> [String: AnyObject] {
-        return [LecConstants.JSONKey.BuildingId: buildingId,
-                LecConstants.JSONKey.FloorId: floorId,
-                LecConstants.JSONKey.FloorName: floorName]
+        return [LecConstants.LecJSONKey.BuildingId: buildingId,
+                LecConstants.LecJSONKey.FloorId: floorId,
+                LecConstants.LecJSONKey.FloorName: floorName]
     }
 }
 
@@ -70,10 +70,10 @@ class LecArea: NSObject {
     }
     
     func convertToDictionary() -> [String: AnyObject] {
-        return [LecConstants.JSONKey.FloorId: floorId,
-                LecConstants.JSONKey.AreaId: areaId,
-                LecConstants.JSONKey.AreaName: areaName,
-                LecConstants.JSONKey.AreaImageName: areaImageName
+        return [LecConstants.LecJSONKey.FloorId: floorId,
+                LecConstants.LecJSONKey.AreaId: areaId,
+                LecConstants.LecJSONKey.AreaName: areaName,
+                LecConstants.LecJSONKey.AreaImageName: areaImageName
         ]
     }
 }
@@ -85,10 +85,10 @@ class LecDevice: NSObject {
     var deviceName: String = ""
     
     func convertToDictionary() -> [String: AnyObject] {
-        return [LecConstants.JSONKey.AreaId: areaId,
-                LecConstants.JSONKey.DeviceId: deviceId,
-                LecConstants.JSONKey.DeviceType: deviceType.rawValue,
-                LecConstants.JSONKey.DeviceName:deviceName
+        return [LecConstants.LecJSONKey.AreaId: areaId,
+                LecConstants.LecJSONKey.DeviceId: deviceId,
+                LecConstants.LecJSONKey.DeviceType: deviceType.rawValue,
+                LecConstants.LecJSONKey.DeviceName:deviceName
         ]
     }
 }
@@ -125,21 +125,21 @@ class LecCam: NSObject {
     }
     
     func convertToDictionary() -> [String: AnyObject] {
-        return [LecConstants.JSONKey.DeviceId: deviceId,
-                LecConstants.JSONKey.CamId: camId,
-                LecConstants.JSONKey.CamName: camName,
-                LecConstants.JSONKey.CamType: camType,
-                LecConstants.JSONKey.SubCamType: subCamType.rawValue,
-                LecConstants.JSONKey.ControlType: commandType.rawValue,
-                LecConstants.JSONKey.ControlAddress: controlAddress,
-                LecConstants.JSONKey.StatusAddress: statusAddress,
-                LecConstants.JSONKey.ControlValue: controlValue,
-                LecConstants.JSONKey.StatusValue: statusValue,
-                LecConstants.JSONKey.MinControlValue: minControlValue,
-                LecConstants.JSONKey.MaxControlValue: maxControlValue,
-                LecConstants.JSONKey.MinStatusValue: minStatusValue,
-                LecConstants.JSONKey.MaxStatusValue: maxStatusValue,
-                LecConstants.JSONKey.Usn: usn,
+        return [LecConstants.LecJSONKey.DeviceId: deviceId,
+                LecConstants.LecJSONKey.CamId: camId,
+                LecConstants.LecJSONKey.CamName: camName,
+                LecConstants.LecJSONKey.CamType: camType,
+                LecConstants.LecJSONKey.SubCamType: subCamType.rawValue,
+                LecConstants.LecJSONKey.CommandType: commandType.rawValue,
+                LecConstants.LecJSONKey.ControlAddress: controlAddress,
+                LecConstants.LecJSONKey.StatusAddress: statusAddress,
+                LecConstants.LecJSONKey.ControlValue: controlValue,
+                LecConstants.LecJSONKey.StatusValue: statusValue,
+                LecConstants.LecJSONKey.MinControlValue: minControlValue,
+                LecConstants.LecJSONKey.MaxControlValue: maxControlValue,
+                LecConstants.LecJSONKey.MinStatusValue: minStatusValue,
+                LecConstants.LecJSONKey.MaxStatusValue: maxStatusValue,
+                LecConstants.LecJSONKey.Usn: usn
         ]
     }
 }

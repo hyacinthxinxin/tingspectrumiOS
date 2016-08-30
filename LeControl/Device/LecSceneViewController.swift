@@ -16,7 +16,7 @@ class LecSceneViewController: UIViewController {
         }
     }
     var cams: [LecCam]!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -62,16 +62,14 @@ extension LecSceneViewController: UICollectionViewDelegate {
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension LecSceneViewController : UICollectionViewDelegateFlowLayout {
-    
+extension LecSceneViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let size = CGSizeMake(80, 196)
         return size
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        let sectionInsets = UIEdgeInsets(top: 148 - 64, left: hMargin, bottom: 0, right: hMargin)
-        return sectionInsets
+        return view.window!.rootViewController!.traitCollection.horizontalSizeClass == .Compact ? UIEdgeInsets(top:148 - 64, left:(screenWidth - 2 * cellWidth) / 3 - 2, bottom:0, right:(screenWidth - 2 * cellWidth) / 3 - 2) : UIEdgeInsets(top:148 - 64, left:hMargin, bottom: 0, right:hMargin)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
@@ -79,6 +77,7 @@ extension LecSceneViewController : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return screenWidth - cellWidth * 2 - hMargin * 2
+        return view.window!.rootViewController!.traitCollection.horizontalSizeClass == .Compact ? (screenWidth - 2 * cellWidth) / 3 : hSpacing
     }
 }
+

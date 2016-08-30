@@ -11,9 +11,11 @@ import UIKit
 class LecFloorAndAreaViewController: UITableViewController {
     
     weak var areaDetailViewController: LecAreaDetailViewController?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.separatorColor = UIColor(white: 1, alpha: 0.07)
+        tableView.cellLayoutMarginsFollowReadableWidth = false
     }
     
     // MARK: - Table view data source
@@ -28,6 +30,15 @@ class LecFloorAndAreaViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.clearColor()
+        if cell.respondsToSelector(Selector("setSeparatorInset:")){
+            cell.separatorInset = UIEdgeInsetsZero
+        }
+        if cell.respondsToSelector(Selector("setPreservesSuperviewLayoutMargins:")) {
+            cell.preservesSuperviewLayoutMargins = false
+        }
+        if cell.respondsToSelector(Selector("setLayoutMargins:")){
+            cell.layoutMargins = UIEdgeInsetsZero
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -53,6 +64,10 @@ class LecFloorAndAreaViewController: UITableViewController {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as! LecAreaCell
             if let area = cell.area {
                 areaDetailViewController?.area = area
+                if areaDetailViewController?.navigationController?.viewControllers.count > 1 {
+                    
+                    areaDetailViewController?.navigationController?.popToRootViewControllerAnimated(false)
+                }
             }
         }
         
@@ -69,6 +84,11 @@ class LecFloorAndAreaViewController: UITableViewController {
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let backItem = UIBarButtonItem()
+        backItem.title = "返回"
+        navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
+        
         if let identifier = segue.identifier {
             switch identifier {
             case LecConstants.SegueIdentifier.ShowAreaDetail:

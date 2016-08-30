@@ -34,12 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return areaDetailNavigationController.topViewController as! LecAreaDetailViewController
     }
     
-    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         LecSocketManager.sharedSocket.connectHost()
         customizeAppearance()
         setupSplitViewController()
-        
         return true
     }
 
@@ -69,6 +67,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Custom Appearance
     
     func customizeAppearance() {
+        /*
+        let barAppearance = UIBarButtonItem.appearance()
+        barAppearance.setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), forBarMetrics: .Default)
+        */
         window!.tintColor = UIColor.whiteColor()
     }
 

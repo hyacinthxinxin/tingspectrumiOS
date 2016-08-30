@@ -26,7 +26,12 @@ class LecConfigViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(userId)
+        //        tableView.backgroundColor = UIColor(white: 0.5, alpha: 0.2)
+        tableView.separatorColor = UIColor(white: 1, alpha: 0.07)
+        //        if #available(iOS 9, *) {
+        tableView.cellLayoutMarginsFollowReadableWidth = false
+        //        }
+
         loadConfigWithUserId(userId)
     }
     
@@ -35,21 +40,21 @@ class LecConfigViewController: UITableViewController {
         Network.GETUserProjectsJSON(userId: userId).go() { [weak weakSelf = self] response in
             switch response {
             case .Success(let json):
-                if let buildingsArray = json[LecConstants.JSONKey.Buildings].array {
+                if let buildingsArray = json[LecConstants.LecJSONKey.Buildings].array {
                     weakSelf?.buildings = parseBuilding(buildingsArray)
                     weakSelf?.tableView.reloadData()
                 }
-                if let floorsArray = json[LecConstants.JSONKey.Floors].array {
+                if let floorsArray = json[LecConstants.LecJSONKey.Floors].array {
                     weakSelf?.floors = parseFloor(floorsArray)
                 }
                 
-                if let areasArray = json[LecConstants.JSONKey.Areas].array {
+                if let areasArray = json[LecConstants.LecJSONKey.Areas].array {
                     weakSelf?.areas = parseArea(areasArray)
                 }
-                if let devicesArray = json[LecConstants.JSONKey.Devices].array {
+                if let devicesArray = json[LecConstants.LecJSONKey.Devices].array {
                     weakSelf?.devices = parseDevice(devicesArray)
                 }
-                if let camsArray = json[LecConstants.JSONKey.Cams].array {
+                if let camsArray = json[LecConstants.LecJSONKey.Cams].array {
                     weakSelf?.cams = parseCam(camsArray)
                 }
             case .Failure(let error):
@@ -67,7 +72,19 @@ class LecConfigViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor.clearColor()
+        cell.contentView.backgroundColor = UIColor.clearColor()
         cell.textLabel?.textColor = UIColor.whiteColor()
+
+        if cell.respondsToSelector(Selector("setSeparatorInset:")){
+            cell.separatorInset = UIEdgeInsetsZero
+        }
+        if cell.respondsToSelector(Selector("setPreservesSuperviewLayoutMargins:")) {
+            cell.preservesSuperviewLayoutMargins = false
+        }
+        if cell.respondsToSelector(Selector("setLayoutMargins:")){
+            cell.layoutMargins = UIEdgeInsetsZero
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -88,14 +105,14 @@ class LecConfigViewController: UITableViewController {
         let currentAreas = (getCurrentAreas(buildingId)).map { $0.convertToDictionary() }
         let currentDevices = (getCurrentDevices(buildingId)).map { $0.convertToDictionary() }
         let currentCams = (getCurrentCams(buildingId)).map { $0.convertToDictionary() }
-        let json: JSON = [LecConstants.JSONKey.BuildingId: building.buildingId,
-                          LecConstants.JSONKey.BuildingName: building.buildingName,
-                          LecConstants.JSONKey.IpAddress: building.socketAddress,
-                          LecConstants.JSONKey.IpPort: Int(building.socketPort),
-                          LecConstants.JSONKey.Floors: currentFloors,
-                          LecConstants.JSONKey.Areas: currentAreas,
-                          LecConstants.JSONKey.Devices: currentDevices,
-                          LecConstants.JSONKey.Cams: currentCams]
+        let json: JSON = [LecConstants.LecJSONKey.BuildingId: building.buildingId,
+                          LecConstants.LecJSONKey.BuildingName: building.buildingName,
+                          LecConstants.LecJSONKey.IpAddress: building.socketAddress,
+                          LecConstants.LecJSONKey.IpPort: Int(building.socketPort),
+                          LecConstants.LecJSONKey.Floors: currentFloors,
+                          LecConstants.LecJSONKey.Areas: currentAreas,
+                          LecConstants.LecJSONKey.Devices: currentDevices,
+                          LecConstants.LecJSONKey.Cams: currentCams]
         
         do {
             let dataBuilding = try json.rawData()

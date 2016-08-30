@@ -39,18 +39,15 @@ class LecSocketManager: NSObject {
     }
     
     // 声明断开连接方法,断开socket连接
-    internal func cutOffSocket() {
+    func cutOffSocket() {
         socket.disconnect()
     }
     
     // socket连接
-    internal func connectHost() {
-        //        socket.setUserData(SocketOffline.ByUser.rawValue)
+    func connectHost() {
         cutOffSocket()
-        
         //测试用的
-        socketInfo.address = "192.168.100.11"
-        
+        socketInfo.address = "192.168.100.7"
         do {
             try socket.connectToHost(socketInfo.address, onPort: socketInfo.port)
         } catch let error {
@@ -58,25 +55,14 @@ class LecSocketManager: NSObject {
         }
     }
     
-    internal func sendTestMessage() {
-        sendMessage("1.0.5", commandType: .Type1bit, controlValue: 0)
+    //刚进入控制界面，读取具有反馈的设备的状态
+    func sendStatusReadingMessageWithCams(cams: [LecCam]) {
+        writeData(SocketData.getStatusReadingData(cams))
     }
     
-    internal func sendMessageWithCam(cam: LecCam) {
-        sendMessage(cam.controlAddress, commandType: cam.commandType, controlValue: cam.controlValue)
-    }
-    
-    internal func sendMessage(controlAddress: String, commandType: LecCommand, controlValue: Int) {
-        var sendData = NSData()
-        let addresses = controlAddress.componentsSeparatedByString(".")
-        
-        if let firstAddress = UInt8(addresses[0]), let secondAddress = UInt8(addresses[1]), let thirdAddress = UInt8(addresses[2]) {
-            let firstAndSecondAddress = firstAddress &* 0x10 &+ secondAddress
-            let lrc: UInt8 = ~(0x7A &+  0x40 &+ firstAndSecondAddress &+ thirdAddress &+ UInt8(controlValue)) &+ UInt8(commandType.rawValue)  &+ 1
-            let byteArr: [UInt8] = [0x7A, 0x40, firstAndSecondAddress, thirdAddress, UInt8(commandType.rawValue), UInt8(controlValue), lrc, 0x5A]
-            sendData = NSData(bytes: byteArr, length: byteArr.count)
-        }
-        writeData(sendData)
+    //发送控制命令
+    func sendMessageWithCam(cam: LecCam) {
+        writeData(SocketData.getControlData(cam))
     }
     
     private func writeData(data: NSData) {
@@ -98,13 +84,13 @@ extension LecSocketManager: AsyncSocketDelegate {
     
     func onSocket(sock: AsyncSocket!, didReadData data: NSData!, withTag tag: Int) {
         print(#function)
-        print(data.getByteArray())
+        print(data.getBytes())
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         var needAppend = false
         var code2D = [[UInt8]]()
         var tcodes = [UInt8]()
         
-        for code in data.getByteArray() {
+        for code in data.getBytes() {
             if code == LecConstants.Command.StartCode {
                 needAppend = true
             }
@@ -118,33 +104,27 @@ extension LecSocketManager: AsyncSocketDelegate {
         }
         print(code2D)
         for camCode in code2D {
-            let st = addrGet(camCode[LecConstants.Command.FirstAndSecondAddressIndex], t: camCode[LecConstants.Command.ThirdAddressIndex])
-            dataModel.getCamByStatusAddress(st)?.statusValue = Int(camCode[LecConstants.Command.ValueIndex])
+            let feedbackAddress = addrGet(camCode[LecConstants.Command.FirstAndSecondAddressIndex], t: camCode[LecConstants.Command.ThirdAddressIndex])
+            let statusValue = Int(camCode[LecConstants.Command.ValueIndex])
+            
+            if let cam = dataModel.getCamByStatusAddress(feedbackAddress) {
+                if cam.camType < 40 {
+                    cam.statusValue = statusValue
+                }
+                camRefreshDelegate?.refreshCam(feedbackAddress, statusValue: statusValue)
+            }
         }
-        camRefreshDelegate?.refreshCam("", statusValue: 1)
 
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-
         sock.readDataWithTimeout(-1, tag: 0)
     }
     
     func onSocket(sock: AsyncSocket!, willDisconnectWithError err: NSError!) {
         print(#function)
-        performSelector(#selector(connectHost), withObject: nil, afterDelay: 3.0, inModes: [NSRunLoopCommonModes])
+        performSelector(#selector(connectHost), withObject: nil, afterDelay: 1.0, inModes: [NSRunLoopCommonModes])
     }
     
     func onSocketDidDisconnect(sock: AsyncSocket!) {
-        
-    }
-    
-}
-
-extension NSData {
-    func getByteArray() -> [UInt8] {
-        // create buffer, this is an array of UInt8
-        var array = [UInt8](count: length / sizeof(UInt8), repeatedValue: 0)
-        // copy bytes into array
-        getBytes(&array, length:length)
-        return array
+        print(#function)
     }
 }

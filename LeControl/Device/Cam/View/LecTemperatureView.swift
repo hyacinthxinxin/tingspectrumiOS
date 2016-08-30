@@ -52,8 +52,15 @@ class LecTemperatureView: LecCamViewWithNib {
                 }
                 temperatureSlider.minimumValue = Float(cam.minControlValue)
                 temperatureSlider.maximumValue = Float(cam.maxControlValue)
-                updateView()
+                refreshState(cam.statusAddress, statusValue: cam.statusValue)
             }
+        }
+    }
+    
+    override func refreshState(feedbackAddress: String, statusValue: Int) {
+        if let cam = cams?.first {
+            temperatureSlider.value = Float(cam.statusValue)
+            //        temperatureSlider.value = Float(cam.statusValue) / Float(cam.maxStatusValue - cam.minStatusValue)
         }
     }
     
@@ -62,15 +69,6 @@ class LecTemperatureView: LecCamViewWithNib {
 //            cam.controlValue = cam.minControlValue + Int(sender.value * Float(cam.maxControlValue - cam.minControlValue))
             cam.controlValue = Int(sender.value)
             LecSocketManager.sharedSocket.sendMessageWithCam(cam)
-        }
-    }
-}
-
-extension LecTemperatureView: LecCamViewUpdateDelegate {
-    func updateView() {
-        if let cam = cams?.first {
-            temperatureSlider.value = Float(cam.statusValue)
-            //        temperatureSlider.value = Float(cam.statusValue) / Float(cam.maxStatusValue - cam.minStatusValue)
         }
     }
 }

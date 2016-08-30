@@ -46,13 +46,6 @@ class LecSpeedView: LecCamView {
         }
     }
     
-    func speedChange(sender: LecStepSlider) {
-        if let cams = self.cams {
-            let cam  = cams[sender.selectedIndex]
-            LecSocketManager.sharedSocket.sendMessageWithCam(cam)
-        }
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         if let speedSlider = self.speedSlider {
@@ -60,15 +53,28 @@ class LecSpeedView: LecCamView {
             speedSlider.autoPinEdgeToSuperviewEdge(.Right, withInset: 0)
             speedSlider.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 0)
             speedSlider.autoPinEdgeToSuperviewEdge(.Top, withInset: 0)
-
+            
         }
     }
-}
 
-extension LecSpeedView: LecCamViewUpdateDelegate {
-    func updateView() {
+    override func refreshState(feedbackAddress: String, statusValue: Int) {
         if let cams = self.cams {
-            //
+            for cam in cams {
+                if cam.statusAddress == feedbackAddress && cam.statusValue == statusValue {
+                    if let index = cams.indexOf(cam) {
+                        speedSlider?.selectedIndex = index
+                    }
+                    return
+                }
+            }
         }
     }
+
+    func speedChange(sender: LecStepSlider) {
+        if let cams = self.cams {
+            let cam  = cams[sender.selectedIndex]
+            LecSocketManager.sharedSocket.sendMessageWithCam(cam)
+        }
+    }
+    
 }

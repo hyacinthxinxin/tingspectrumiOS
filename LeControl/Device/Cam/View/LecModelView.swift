@@ -87,6 +87,24 @@ class LecModelView: LecCamView {
         modelButtons.first!.autoSetDimension(.Height, toSize: LecConstants.DeviceCellHeight.Model)
     }
     
+    override func refreshState(feedbackAddress: String, statusValue: Int) {
+        if let cams = self.cams {
+            for cam in cams {
+                if cam.statusAddress == feedbackAddress && cam.statusValue == statusValue {
+                    for b in modelButtons {
+                        print(b.tag)
+                        print(cam.camType)
+                        b.selected = b.tag == cam.camType
+                    }
+                    return
+                }
+            }
+//            if let cam = (cams.filter { $0.statusAddress == feedbackAddress && $0.statusValue == statusValue}).first {
+//                
+//            }
+        }
+    }
+
     func camButtonTapped(sender: UIButton) {
         for b in modelButtons {
             b.selected = sender === b
@@ -96,14 +114,6 @@ class LecModelView: LecCamView {
             if let cam = cs.first {
                 LecSocketManager.sharedSocket.sendMessageWithCam(cam)
             }
-        }
-    }
-}
-
-extension LecModelView: LecCamViewUpdateDelegate {
-    func updateView() {
-        if let cams = self.cams {
-            //
         }
     }
 }

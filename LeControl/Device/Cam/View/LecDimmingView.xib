@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="switch_dimmer" maximumValueImage="switch_brighter" translatesAutoresizingMaskIntoConstraints="NO" id="Ixm-ej-zZg">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" minimumValueImage="switch_dimmer" maximumValueImage="switch_brighter" translatesAutoresizingMaskIntoConstraints="NO" id="Ixm-ej-zZg">
                     <rect key="frame" x="12" y="285" width="576" height="31"/>
                     <color key="minimumTrackTintColor" red="0.43529411759999997" green="1" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="maximumTrackTintColor" red="0.70980392160000005" green="0.70980392160000005" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>

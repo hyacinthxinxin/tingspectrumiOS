@@ -15,7 +15,7 @@ struct LecConstants {
         static let ThemeBGColor: UIColor = "#271E36".hexColor
     }
     
-    struct JSONKey {
+    struct LecJSONKey {
         static let BuildingId = "BuildingId"
         static let BuildingName = "BuildingName"
         static let IpAddress = "IpAddress"
@@ -32,7 +32,7 @@ struct LecConstants {
         static let CamType = "CamType"
         static let SubCamType = "SubCamType"
         static let CamName = "CamName"
-        static let ControlType = "ControlType"
+        static let CommandType = "ControlType"
         static let ControlAddress = "ControlAddress"
         static let StatusAddress = "StatusAddress"
         static let ControlValue = "ControlValue"
@@ -41,6 +41,7 @@ struct LecConstants {
         static let StatusValue = "StatusValue"
         static let MaxStatusValue = "MaxStatusValue"
         static let MinStatusValue = "MinStatusValue"
+        static let IsVisible = "IsVisible"
         static let Usn = "Usn"
         
         static let Buildings = "Buildings"
@@ -59,6 +60,7 @@ struct LecConstants {
         static let ThirdAddressIndex = 3
         static let ValueIndex = 5
         static let TypeIndex = 4
+        static let EmptyValue: UInt8 = 0x00
     }
     
     struct DeviceCellHeight {

@@ -78,15 +78,11 @@ class LecDataModel: NSObject {
     }
     
     func getCamByStatusAddress(statusAddress: String) -> LecCam? {
-        return cams.filter {
-            $0.statusAddress == statusAddress
-            }.first
+        return cams.filter { $0.statusAddress == statusAddress }.first
     }
     
     func getCamByCamId(camId: String) -> LecCam? {
-        return cams.filter {
-            $0.camId == camId
-            }.first
+        return cams.filter { $0.camId == camId }.first
     }
 }
 
