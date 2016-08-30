@@ -90,6 +90,7 @@ struct LecConstants {
         static let Documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
         static let Library = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true).first!
         static let Tmp = NSTemporaryDirectory()
+        static let SubDirectoryName = "UserProject"
     }
     
     struct ReuseIdentifier {
@@ -98,16 +99,6 @@ struct LecConstants {
         static let BuildingCell = "LecBuildingCell"
         static let SceneCell = "LecSceneCell"
         static let DeviceCell = "LecDeviceCell"
-
-        static let LightCell = "LecLightCell"
-        static let LightDimmingCell = "LecLightDimmingCell"
-        static let CurtainCell = "LecCurtainCell"
-        static let AirConditioningCell = "LecAirConditioningCell"
-        static let FloorHeatingCell = "LecFloorHeatingCell"
-        
-        /*
-        static let DeviceTypeCell = "DeviceTypeCell"
- */
     }
     
     struct SegueIdentifier {
@@ -117,9 +108,6 @@ struct LecConstants {
         static let ShowDevice = "ShowDevice"
         static let ShowScene = "ShowScene"
 
-        /*
-        static let ShowDeviceList = "ShowDeviceList"
- */
     }
     
     struct NetworkSubAddress {

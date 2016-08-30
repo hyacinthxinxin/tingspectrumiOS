@@ -45,33 +45,33 @@ class LecDataModel: NSObject {
     }
     
     private func parseProject(json: JSON) {
-        if let buildingId =  json["BuildingId"].string{
+        if let buildingId =  json[LecConstants.LecJSONKey.BuildingId].string{
             building.buildingId = buildingId
         }
-        if let buildingName = json["BuildingName"].string {
+        if let buildingName = json[LecConstants.LecJSONKey.BuildingName].string {
             building.buildingName = buildingName
         }
-        if let socketAddress = json["IpAddress"].string {
+        if let socketAddress = json[LecConstants.LecJSONKey.IpAddress].string {
             building.socketAddress = socketAddress
         }
         
-        if let socketPort = json["IpPort"].int {
+        if let socketPort = json[LecConstants.LecJSONKey.IpPort].int {
             building.socketPort = UInt16(socketPort)
         }
         
-        if let floorsArray = json["Floors"].array {
+        if let floorsArray = json[LecConstants.LecJSONKey.Floors].array {
             floors = parseFloor(floorsArray)
         }
         
-        if let areasArray = json["Areas"].array {
+        if let areasArray = json[LecConstants.LecJSONKey.Areas].array {
             areas = parseArea(areasArray)
         }
         
-        if let devicesArray = json["Devices"].array {
+        if let devicesArray = json[LecConstants.LecJSONKey.Devices].array {
             devices = parseDevice(devicesArray)
         }
         
-        if let camsArray = json["Cams"].array {
+        if let camsArray = json[LecConstants.LecJSONKey.Cams].array {
             cams = parseCam(camsArray)
         }
         

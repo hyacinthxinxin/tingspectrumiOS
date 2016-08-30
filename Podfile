@@ -1,6 +1,6 @@
 # Uncomment this line to define a global platform for your project
 source 'https://github.com/CocoaPods/Specs.git'
-source 'https://github.com/hyacinthxinxin/TingSpectrumPodSpecs.git'
+#source 'https://github.com/hyacinthxinxin/TingSpectrumPodSpecs.git'
 
 platform :ios, '9.0'
 
@@ -17,6 +17,6 @@ target 'LeControl' do
   pod 'ASValueTrackingSlider'
 
   # Private Pods
-  pod 'TingSpectrum', '~>0.1.1'
+#  pod 'TingSpectrum', '~>0.1.1'
 
 end

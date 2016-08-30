@@ -46,6 +46,7 @@
 		BA2B500E1D72D464007D96B6 /* LecModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B500D1D72D464007D96B6 /* LecModelView.swift */; };
 		BA2B50131D72EB25007D96B6 /* LecStepSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B50121D72EB25007D96B6 /* LecStepSlider.swift */; };
 		BA95F8DF1D754DE1009F6F8C /* LecSocketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95F8DE1D754DE1009F6F8C /* LecSocketData.swift */; };
+		BAF596871D75AA0B00E3ACEC /* LecEternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF596861D75AA0B00E3ACEC /* LecEternal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		BA2B500D1D72D464007D96B6 /* LecModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecModelView.swift; path = Device/Cam/View/LecModelView.swift; sourceTree = "<group>"; };
 		BA2B50121D72EB25007D96B6 /* LecStepSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecStepSlider.swift; path = Device/Cam/View/StepSlider/LecStepSlider.swift; sourceTree = "<group>"; };
 		BA95F8DE1D754DE1009F6F8C /* LecSocketData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecSocketData.swift; path = Socket/LecSocketData.swift; sourceTree = "<group>"; };
+		BAF596861D75AA0B00E3ACEC /* LecEternal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecEternal.swift; path = Units/LecEternal.swift; sourceTree = "<group>"; };
 		CEC71C0DE0B2144F48235161 /* Pods-LeControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeControl.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeControl/Pods-LeControl.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +163,7 @@
 				BA2B4FCD1D6EE8C0007D96B6 /* LecNetwork.swift */,
 				BA2B4FCF1D6EE90B007D96B6 /* LecGlobal.swift */,
 				BA2B4FD31D6F19E6007D96B6 /* LecExtensions.swift */,
+				BAF596861D75AA0B00E3ACEC /* LecEternal.swift */,
 			);
 			name = Units;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				BA2B4FD01D6EE90B007D96B6 /* LecGlobal.swift in Sources */,
 				BA2B4FD61D6F482E007D96B6 /* LecJsonParseHelper.swift in Sources */,
 				BA2B4FCE1D6EE8C0007D96B6 /* LecNetwork.swift in Sources */,
+				BAF596871D75AA0B00E3ACEC /* LecEternal.swift in Sources */,
 				BA2B500E1D72D464007D96B6 /* LecModelView.swift in Sources */,
 				BA2B4FD41D6F19E6007D96B6 /* LecExtensions.swift in Sources */,
 				BA2B4F931D6C752B007D96B6 /* AppDelegate.swift in Sources */,

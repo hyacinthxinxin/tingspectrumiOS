@@ -116,7 +116,7 @@ class LecConfigViewController: UITableViewController {
         
         do {
             let dataBuilding = try json.rawData()
-            try LecFileHelper(fileName: "CurrentProject", fileExtension: .JSON, subDirectory: "UserProject").saveFile(dataBuilding)
+            try LecFileHelper(fileName: "CurrentProject", fileExtension: .JSON, subDirectory: LecConstants.Path.SubDirectoryName).saveFile(dataBuilding)
             LecSocketManager.sharedSocket.dataModel.loadData()
             delegate?.configViewController(self, didChooseBuilding: building)
         } catch {

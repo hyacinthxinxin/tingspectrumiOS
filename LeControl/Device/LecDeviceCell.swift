@@ -55,7 +55,7 @@ class LecDeviceCell: UITableViewCell {
     }
     
     convenience init(device: LecDevice, cams: [LecCam]) {
-        self.init(style: .Default, reuseIdentifier: LecConstants.ReuseIdentifier.AirConditioningCell)
+        self.init(style: .Default, reuseIdentifier: LecConstants.ReuseIdentifier.DeviceCell)
         self.device = device
         self.cams = cams
         setupSubviews()

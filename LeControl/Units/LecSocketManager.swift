@@ -27,8 +27,6 @@ class LecSocketManager: NSObject {
     override init() {
         super.init()
         dataModel = LecDataModel()
-        socketInfo.address = dataModel.building.socketAddress
-        socketInfo.port = dataModel.building.socketPort
         socket.setDelegate(self)
         socket.setRunLoopModes([NSRunLoopCommonModes])
     }
@@ -41,8 +39,8 @@ class LecSocketManager: NSObject {
     // socket连接
     func connectHost() {
         cutOffSocket()
-        //测试用的
-        socketInfo.address = "192.168.100.7"
+        socketInfo.address = dataModel.building.socketAddress
+        socketInfo.port = dataModel.building.socketPort
         do {
             try socket.connectToHost(socketInfo.address, onPort: socketInfo.port)
         } catch let error {
