@@ -77,6 +77,9 @@ func parseDevice(jsons: [JSON]) -> [LecDevice] {
         if let deviceName = $0[LecConstants.LecJSONKey.DeviceName].string {
             device.deviceName = deviceName
         }
+        if let deviceImageName = $0[LecConstants.LecJSONKey.DeviceImageName].string {
+            device.deviceImageName = deviceImageName
+        }
         if let deviceType = $0[LecConstants.LecJSONKey.DeviceType].int {
             if let type = LecDeviceType(rawValue: deviceType) {
                 device.deviceType = type

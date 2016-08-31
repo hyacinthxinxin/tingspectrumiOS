@@ -28,7 +28,7 @@ class LecDeviceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        deviceTableView.separatorColor = UIColor(white: 1, alpha: 0.07)
+        deviceTableView.separatorColor = LecConstants.AppColor.SeparatorColor
         deviceTableView.cellLayoutMarginsFollowReadableWidth = false
         LecSocketManager.sharedSocket.camRefreshDelegate = self
         LecSocketManager.sharedSocket.sendStatusReadingMessageWithCams(cams.filter { $0.statusAddress != LecConstants.AddressInfo.EmptyAddress } )

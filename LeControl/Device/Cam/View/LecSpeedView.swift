@@ -25,7 +25,9 @@ class LecSpeedView: LecCamView {
     var didSetupConstraints = false
     var speedButtons = [UIButton]()
     var speedSlider: LecStepSlider?
-    
+    var speedNameLabel: UILabel?
+    var separatorView: UIView?
+
     convenience init(cams: [LecCam]) {
         self.init(frame: CGRect.zero)
         backgroundColor = LecConstants.AppColor.ThemeBGColor
@@ -34,6 +36,7 @@ class LecSpeedView: LecCamView {
     }
     
     private func setupSubviews() {
+
         if let cams = self.cams {
             let titles = cams.map { $0.camName }
             speedSlider = LecStepSlider(titles: titles)
@@ -44,17 +47,44 @@ class LecSpeedView: LecCamView {
                 addSubview(speedSlider)
             }
         }
+        
+        speedNameLabel = UILabel()
+        if let dView = self.speedNameLabel {
+            dView.font = UIFont.systemFontOfSize(15)
+            dView.textColor = UIColor.whiteColor()
+            dView.text = "风速控制"
+            addSubview(dView)
+        }
+        
+        separatorView = UIView()
+        if let sView = self.separatorView {
+            sView.backgroundColor = LecConstants.AppColor.SeparatorColor
+            addSubview(sView)
+        }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        if let dView = self.speedNameLabel {
+            dView.autoPinEdgeToSuperviewEdge(.Left, withInset: 14)
+            dView.autoPinEdgeToSuperviewEdge(.Top, withInset: 5)
+        }
+
         if let speedSlider = self.speedSlider {
             speedSlider.autoPinEdgeToSuperviewEdge(.Left, withInset: 0)
             speedSlider.autoPinEdgeToSuperviewEdge(.Right, withInset: 0)
             speedSlider.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 0)
             speedSlider.autoPinEdgeToSuperviewEdge(.Top, withInset: 0)
-            
         }
+        
+        if let sView = self.separatorView {
+            sView.autoPinEdgeToSuperviewEdge(.Left, withInset: 0)
+            sView.autoPinEdgeToSuperviewEdge(.Right, withInset: 0)
+            sView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 0)
+            sView.autoSetDimension(.Height, toSize: 0.5)
+        }
+
     }
 
     override func refreshState(feedbackAddress: String, statusValue: Int) {

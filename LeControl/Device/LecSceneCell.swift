@@ -15,15 +15,20 @@ class LecSceneCell: UICollectionViewCell {
     @IBOutlet weak var sceneNameLabel: UILabel!
     
     let img = imgs[Int(arc4random_uniform(3))]
+    
+    var norImageName = ""
+    var selImageName = ""
 
     var scene: LecDevice? {
         didSet {
             if let scene = self.scene {
+                norImageName = scene.deviceImageName + "_nor"
+                selImageName = scene.deviceImageName + "_sel"
                 if let sceneNameLabel = self.sceneNameLabel {
                     sceneNameLabel.text = scene.deviceName
                 }
                 if let sceneImageView = self.sceneImageView {
-                    sceneImageView.image = UIImage(named: img + "_nor")
+                    sceneImageView.image = UIImage(named: norImageName)
                 }
             }
         }
@@ -38,11 +43,11 @@ class LecSceneCell: UICollectionViewCell {
         set {
             if newValue {
                 super.selected = true
-                sceneImageView.image = UIImage(named: img + "_sel")
+                sceneImageView.image = UIImage(named: selImageName)
                 sceneNameLabel.textColor = LecConstants.AppColor.CamTintColor
             } else if newValue == false {
                 super.selected = false
-                sceneImageView.image = UIImage(named: img + "_nor")
+                sceneImageView.image = UIImage(named: norImageName)
                 sceneNameLabel.textColor = UIColor.whiteColor()
             }
         }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E020810B31A68695B78A41E /* Pods_LeControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34DFA78CB608C3E0EF4E93B5 /* Pods_LeControl.framework */; };
+		BA0C51E51D770A6300671B74 /* LecUnitFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0C51E41D770A6300671B74 /* LecUnitFunction.swift */; };
 		BA2B4F931D6C752B007D96B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4F921D6C752B007D96B6 /* AppDelegate.swift */; };
 		BA2B4F9D1D6C752B007D96B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4F9B1D6C752B007D96B6 /* Main.storyboard */; };
 		BA2B4F9F1D6C752B007D96B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4F9E1D6C752B007D96B6 /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		34DFA78CB608C3E0EF4E93B5 /* Pods_LeControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LeControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5846A9020629982D025C7257 /* Pods-LeControl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeControl.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeControl/Pods-LeControl.debug.xcconfig"; sourceTree = "<group>"; };
+		BA0C51E41D770A6300671B74 /* LecUnitFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecUnitFunction.swift; path = Units/LecUnitFunction.swift; sourceTree = "<group>"; };
 		BA2B4F8F1D6C752B007D96B6 /* LeControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA2B4F921D6C752B007D96B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA2B4F9C1D6C752B007D96B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				BA2B4FCD1D6EE8C0007D96B6 /* LecNetwork.swift */,
 				BA2B4FD31D6F19E6007D96B6 /* LecExtensions.swift */,
 				BAF596861D75AA0B00E3ACEC /* LecEternal.swift */,
+				BA0C51E41D770A6300671B74 /* LecUnitFunction.swift */,
 			);
 			name = Units;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				BA2B4FB71D6C7B50007D96B6 /* LecDeviceViewController.swift in Sources */,
 				BA2B4FCA1D6EE2D7007D96B6 /* LecLoginViewController.swift in Sources */,
 				BA95F8DF1D754DE1009F6F8C /* LecSocketData.swift in Sources */,
+				BA0C51E51D770A6300671B74 /* LecUnitFunction.swift in Sources */,
 				BA2B50041D71EF10007D96B6 /* LecCamViewWithNib.swift in Sources */,
 				BA2B4FBD1D6C7E07007D96B6 /* LecSocketManager.swift in Sources */,
 				BA2B4FB31D6C79CC007D96B6 /* LecDataModel.swift in Sources */,

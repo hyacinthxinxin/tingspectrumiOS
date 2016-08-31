@@ -13,6 +13,7 @@ struct LecConstants {
     struct AppColor {
         static let CamTintColor: UIColor = "#6FFFDB".hexColor
         static let ThemeBGColor: UIColor = "#271E36".hexColor
+        static let SeparatorColor = UIColor(white: 1, alpha: 0.07)
     }
     
     struct LecJSONKey {

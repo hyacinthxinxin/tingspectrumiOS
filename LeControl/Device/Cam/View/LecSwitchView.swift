@@ -31,6 +31,7 @@ class LecSwitchView: LecCamViewWithNib {
     
     override func refreshState(feedbackAddress: String, statusValue: Int) {
         if let cam = cams?.first {
+            camNameLabel.textColor = cam.statusValue == 1 ? UIColor.whiteColor(): UIColor(white: 1.0, alpha: 0.5)
             camSwitch.on = cam.statusValue == 1
         }
     }
