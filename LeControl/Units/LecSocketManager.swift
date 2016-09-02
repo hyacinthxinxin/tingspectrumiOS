@@ -29,6 +29,9 @@ class LecSocketManager: NSObject {
         dataModel = LecDataModel()
         socket.setDelegate(self)
         socket.setRunLoopModes([NSRunLoopCommonModes])
+        
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(LecSocketManager.connectHost), userInfo: nil, repeats: true)
+
     }
     
     // 声明断开连接方法,断开socket连接
@@ -38,6 +41,7 @@ class LecSocketManager: NSObject {
     
     // socket连接
     func connectHost() {
+        guard !socket.isConnected() else { return }
         cutOffSocket()
         socketInfo.address = dataModel.building.socketAddress
         socketInfo.port = dataModel.building.socketPort
@@ -100,11 +104,14 @@ extension LecSocketManager: AsyncSocketDelegate {
             Whistle(Murmur(title: msg, backgroundColor: UIColor.redColor()), action: .Show(3.0))
             errorShowed = true
         }
-
-        performSelector(#selector(connectHost), withObject: nil, afterDelay: 1.0, inModes: [NSRunLoopCommonModes])
     }
     
     func onSocketDidDisconnect(sock: AsyncSocket!) {
         print(#function)
+        let msg = "连接服务端（地址: " + socketInfo.address + "）失败，请检查设置"
+        if !errorShowed {
+            Whistle(Murmur(title: msg, backgroundColor: UIColor.redColor()), action: .Show(3.0))
+            errorShowed = true
+        }
     }
 }
