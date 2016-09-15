@@ -36,19 +36,19 @@ class LecSceneCell: UICollectionViewCell {
     
     var cams: [LecCam]?
     
-    override var selected: Bool {
+    override var isSelected: Bool {
         get {
-            return super.selected
+            return super.isSelected
         }
         set {
             if newValue {
-                super.selected = true
+                super.isSelected = true
                 sceneImageView.image = UIImage(named: selImageName)
                 sceneNameLabel.textColor = LecConstants.AppColor.CamTintColor
             } else if newValue == false {
-                super.selected = false
+                super.isSelected = false
                 sceneImageView.image = UIImage(named: norImageName)
-                sceneNameLabel.textColor = UIColor.whiteColor()
+                sceneNameLabel.textColor = UIColor.white
             }
         }
     }

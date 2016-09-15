@@ -31,12 +31,12 @@ class LecDataModel: NSObject {
     func loadData() {
         resetData()
         do {
-            if let data: NSData = try LecFileHelper(fileName: "CurrentProject", fileExtension: .JSON, subDirectory: "UserProject").getContentsOfFile() {
+            if let data: Data = try LecFileHelper(fileName: "CurrentProject", fileExtension: .JSON, subDirectory: "UserProject").getContentsOfFile() {
                 let json = JSON(data: data)
                 parseProject(json)
             }
         } catch {
-            if let filePath = NSBundle.mainBundle().pathForResource("DefaultProject", ofType: ".json"), let data = NSData(contentsOfFile: filePath) {
+            if let filePath = Bundle.main.path(forResource: "DefaultProject", ofType: ".json"), let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)) {
                 let json = JSON(data: data)
                 parseProject(json)
             }
@@ -44,7 +44,7 @@ class LecDataModel: NSObject {
 
     }
     
-    private func parseProject(json: JSON) {
+    fileprivate func parseProject(_ json: JSON) {
         if let buildingId =  json[LecConstants.LecJSONKey.BuildingId].string{
             building.buildingId = buildingId
         }
@@ -77,11 +77,11 @@ class LecDataModel: NSObject {
         
     }
     
-    func getCamByStatusAddress(statusAddress: String) -> LecCam? {
+    func getCamByStatusAddress(_ statusAddress: String) -> LecCam? {
         return cams.filter { $0.statusAddress == statusAddress }.first
     }
     
-    func getCamByCamId(camId: String) -> LecCam? {
+    func getCamByCamId(_ camId: String) -> LecCam? {
         return cams.filter { $0.camId == camId }.first
     }
 }

@@ -16,11 +16,11 @@ class LecBuildingCell: UITableViewCell {
         }
     }
     
-    private func configureView() {
+    fileprivate func configureView() {
         // Update the user interface for the detail item.
         if let building = self.building {
             if let label = self.textLabel {
-                label.text = building.buildingName
+                label.text = building.name
             }
         }
     }
@@ -30,7 +30,7 @@ class LecBuildingCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

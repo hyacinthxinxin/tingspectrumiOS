@@ -2,21 +2,31 @@
 source 'https://github.com/CocoaPods/Specs.git'
 #source 'https://github.com/hyacinthxinxin/TingSpectrumPodSpecs.git'
 
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['SWIFT_VERSION'] = '3.0'
+        end
+    end
+end
+
 platform :ios, '9.0'
 
 target 'LeControl' do
-  # Comment this line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'CocoaAsyncSocket'
-  pod 'Alamofire', '~> 3.3'
-  pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
-  pod 'Whisper'
-  pod 'Kingfisher', '~> 2.4.1'
-  pod 'PureLayout'
-  pod 'ASValueTrackingSlider'
+pod 'Alamofire',
+:git => 'https://github.com/Alamofire/Alamofire.git',
+:branch => 'master'
 
-  # Private Pods
-#  pod 'TingSpectrum', '~>0.1.1'
+pod 'SwiftyJSON',
+:git => 'https://github.com/BaiduHiDeviOS/SwiftyJSON.git',
+:branch => 'swift3'
+
+pod 'CocoaAsyncSocket'
+pod 'PureLayout'
+pod 'ASValueTrackingSlider'
+pod 'JDStatusBarNotification'
+
 
 end

@@ -1,3 +1,4 @@
+
 //
 //  LecModelView.swift
 //  LeControl
@@ -30,31 +31,31 @@ class LecModelView: LecCamView {
         setupSubviews()
     }
     
-    private func setupSubviews() {
+    fileprivate func setupSubviews() {
         if let cams = self.cams {
             for cam in cams {
                 let cView = UIButton()
                 //                cView.layer.borderWidth = 1
                 switch cam.camType {
                 case 50:
-                    cView.setImage(mode_heatingImage, forState: .Normal)
-                    cView.setImage(mode_heating_selImage, forState: .Selected)
-                    cView.setImage(mode_heating_selImage, forState: [.Highlighted, .Selected])
+                    cView.setImage(mode_heatingImage, for: UIControlState())
+                    cView.setImage(mode_heating_selImage, for: .selected)
+                    cView.setImage(mode_heating_selImage, for: [.highlighted, .selected])
                     
                 case 51:
-                    cView.setImage(mode_refrigerationImage, forState: .Normal)
-                    cView.setImage(mode_refrigeration_selImage, forState: .Selected)
-                    cView.setImage(mode_refrigeration_selImage, forState: [.Highlighted, .Selected])
+                    cView.setImage(mode_refrigerationImage, for: UIControlState())
+                    cView.setImage(mode_refrigeration_selImage, for: .selected)
+                    cView.setImage(mode_refrigeration_selImage, for: [.highlighted, .selected])
                     
                 case 52:
-                    cView.setImage(mode_ventilationImage, forState: .Normal)
-                    cView.setImage(mode_ventilation_selImage, forState: .Selected)
-                    cView.setImage(mode_ventilation_selImage, forState: [.Highlighted, .Selected])
+                    cView.setImage(mode_ventilationImage, for: UIControlState())
+                    cView.setImage(mode_ventilation_selImage, for: .selected)
+                    cView.setImage(mode_ventilation_selImage, for: [.highlighted, .selected])
                     
                 case 53:
-                    cView.setImage(mode_desiccantImage, forState: .Normal)
-                    cView.setImage(mode_desiccant_selImage, forState: .Selected)
-                    cView.setImage(mode_desiccant_selImage, forState: [.Highlighted, .Selected])
+                    cView.setImage(mode_desiccantImage, for: UIControlState())
+                    cView.setImage(mode_desiccant_selImage, for: .selected)
+                    cView.setImage(mode_desiccant_selImage, for: [.highlighted, .selected])
                
                 default:
                     break
@@ -62,12 +63,12 @@ class LecModelView: LecCamView {
                 
                 cView.adjustsImageWhenHighlighted = false
                 cView.tag = cam.camType
-                cView.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-                cView.setTitleColor(LecConstants.AppColor.CamTintColor, forState: .Selected)
-                cView.setTitleColor(LecConstants.AppColor.CamTintColor, forState: [.Highlighted, .Selected])
-                cView.setTitle(cam.camName, forState: .Normal)
-                cView.addTarget(self, action: #selector(camButtonTapped), forControlEvents: .TouchUpInside)
-                cView.titleLabel?.font = UIFont.systemFontOfSize(13)
+                cView.setTitleColor(UIColor.white, for: UIControlState())
+                cView.setTitleColor(LecConstants.AppColor.CamTintColor, for: .selected)
+                cView.setTitleColor(LecConstants.AppColor.CamTintColor, for: [.highlighted, .selected])
+                cView.setTitle(cam.camName, for: UIControlState())
+                cView.addTarget(self, action: #selector(camButtonTapped), for: .touchUpInside)
+                cView.titleLabel?.font = UIFont.systemFont(ofSize: 13)
                 cView.setButtonSpacing(14)
                 modelButtons += [cView]
                 addSubview(cView)
@@ -79,22 +80,22 @@ class LecModelView: LecCamView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let views: NSArray = modelButtons
-        views.autoAlignViewsToEdge(.Bottom)
-        views.autoAlignViewsToEdge(.Top)
-        views.autoDistributeViewsAlongAxis(.Horizontal, alignedTo: .Horizontal, withFixedSpacing: 20.0, insetSpacing: true, matchedSizes: true)
-        modelButtons.first!.autoAlignAxisToSuperviewAxis(.Horizontal)
-        modelButtons.first!.autoSetDimension(.Height, toSize: LecConstants.DeviceCellHeight.AirConditioning_Model)
+        let views: NSArray = modelButtons as NSArray
+        views.autoAlignViews(to: .bottom)
+        views.autoAlignViews(to: .top)
+        views.autoDistributeViews(along: .horizontal, alignedTo: .horizontal, withFixedSpacing: 20.0, insetSpacing: true, matchedSizes: true)
+        modelButtons.first!.autoAlignAxis(toSuperviewAxis: .horizontal)
+        modelButtons.first!.autoSetDimension(.height, toSize: LecConstants.DeviceCellHeight.AirConditioning_Model)
     }
     
-    override func refreshState(feedbackAddress: String, statusValue: Int) {
+    override func refreshState(_ feedbackAddress: String, statusValue: Int) {
         if let cams = self.cams {
             for cam in cams {
                 if cam.statusAddress == feedbackAddress && cam.statusValue == statusValue {
                     for b in modelButtons {
                         print(b.tag)
                         print(cam.camType)
-                        b.selected = b.tag == cam.camType
+                        b.isSelected = b.tag == cam.camType
                     }
                     return
                 }
@@ -105,9 +106,9 @@ class LecModelView: LecCamView {
         }
     }
 
-    func camButtonTapped(sender: UIButton) {
+    func camButtonTapped(_ sender: UIButton) {
         for b in modelButtons {
-            b.selected = sender === b
+            b.isSelected = sender === b
         }
         if let cams = self.cams {
             let cs = cams.filter { $0.camType == sender.tag }

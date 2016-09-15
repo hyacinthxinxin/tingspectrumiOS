@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-func parseBuilding(jsons: [JSON]) -> [LecBuilding] {
+func parseBuilding(_ jsons: [JSON]) -> [LecBuilding] {
     return jsons.map {
         let building = LecBuilding()
         if let buildingId =  $0[LecConstants.LecJSONKey.BuildingId].string{
@@ -29,7 +29,7 @@ func parseBuilding(jsons: [JSON]) -> [LecBuilding] {
     }
 }
 
-func parseFloor(jsons: [JSON]) -> [LecFloor] {
+func parseFloor(_ jsons: [JSON]) -> [LecFloor] {
     return jsons.map {
         let floor = LecFloor()
         if let buildingId = $0[LecConstants.LecJSONKey.BuildingId].string {
@@ -45,7 +45,7 @@ func parseFloor(jsons: [JSON]) -> [LecFloor] {
     }
 }
 
-func parseArea(jsons: [JSON]) -> [LecArea] {
+func parseArea(_ jsons: [JSON]) -> [LecArea] {
     return jsons.map {
         let area = LecArea()
         if let floorId = $0[LecConstants.LecJSONKey.FloorId].string {
@@ -65,7 +65,7 @@ func parseArea(jsons: [JSON]) -> [LecArea] {
     
 }
 
-func parseDevice(jsons: [JSON]) -> [LecDevice] {
+func parseDevice(_ jsons: [JSON]) -> [LecDevice] {
     return jsons.map {
         let device = LecDevice()
         if let areaId = $0[LecConstants.LecJSONKey.AreaId].string {
@@ -89,7 +89,7 @@ func parseDevice(jsons: [JSON]) -> [LecDevice] {
     }
 }
 
-func parseCam(jsons: [JSON]) -> [LecCam] {
+func parseCam(_ jsons: [JSON]) -> [LecCam] {
     return jsons.map {
         let cam = LecCam()
         if let deviceId = $0[LecConstants.LecJSONKey.DeviceId].string {
@@ -106,7 +106,7 @@ func parseCam(jsons: [JSON]) -> [LecCam] {
             cam.camType = camType
         }
         
-        if let rawCommandType = $0[LecConstants.LecJSONKey.CommandType].int, commandType = LecCommand(rawValue: rawCommandType) {
+        if let rawCommandType = $0[LecConstants.LecJSONKey.CommandType].int, let commandType = LecCommand(rawValue: rawCommandType) {
             cam.commandType = commandType
         }
         

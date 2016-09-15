@@ -21,13 +21,13 @@ class LecDimmingView: LecCamViewWithNib {
         }
     }
     
-    override func refreshState(feedbackAddress: String, statusValue: Int) {
+    override func refreshState(_ feedbackAddress: String, statusValue: Int) {
         if let cam = self.cams?.first {
             dimmingSlider.value = Float(cam.statusValue) / 225
         }
     }
 
-    @IBAction func sliderDimming(sender: UISlider) {
+    @IBAction func sliderDimming(_ sender: UISlider) {
         if let cam = cams?.first {
             cam.controlValue = Int(sender.value * 225)
             LecSocketManager.sharedSocket.sendMessageWithCam(cam)

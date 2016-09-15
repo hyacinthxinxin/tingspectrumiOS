@@ -39,22 +39,22 @@ class LecDeviceViewController: UIViewController {
 
 extension LecDeviceViewController: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return devices.count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let device = devices[indexPath.row]
+    @objc(tableView:heightForRowAtIndexPath:) func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let device = devices[(indexPath as NSIndexPath).row]
         let cams = self.cams.filter { $0.deviceId == device.deviceId }
         return LecDeviceCell.calculatorCellHeight(device, cams: cams)
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let device = devices[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let device = devices[(indexPath as NSIndexPath).row]
         let cams = self.cams.filter { $0.deviceId == device.deviceId }
         let cell = LecDeviceCell(device: device, cams: cams)
         return cell
@@ -64,20 +64,20 @@ extension LecDeviceViewController: UITableViewDataSource {
 // MARK: - Table view delegate
 
 extension LecDeviceViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        cell.backgroundColor = UIColor.clearColor()
-        if cell.respondsToSelector(Selector("setSeparatorInset:")){
-            cell.separatorInset = UIEdgeInsetsZero
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
+        if cell.responds(to: #selector(setter: UITableViewCell.separatorInset)){
+            cell.separatorInset = UIEdgeInsets.zero
         }
-        if cell.respondsToSelector(Selector("setPreservesSuperviewLayoutMargins:")) {
+        if cell.responds(to: #selector(setter: UIView.preservesSuperviewLayoutMargins)) {
             cell.preservesSuperviewLayoutMargins = false
         }
-        if cell.respondsToSelector(Selector("setLayoutMargins:")){
-            cell.layoutMargins = UIEdgeInsetsZero
+        if cell.responds(to: #selector(setter: UIView.layoutMargins)){
+            cell.layoutMargins = UIEdgeInsets.zero
         }
     }
 
-    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
     }
 }
@@ -85,7 +85,7 @@ extension LecDeviceViewController: UITableViewDelegate {
 // MARK: - Cam refresh delegate
 
 extension LecDeviceViewController: LecCamRefreshDelegate {
-    func refreshCam(feedbackAddress: String, statusValue: Int) {
+    func refreshCam(_ feedbackAddress: String, statusValue: Int) {
         print("LecCamRefreshDelegate")
         for c in deviceTableView.visibleCells {
             for v in c.contentView.subviews {

@@ -38,8 +38,8 @@ struct ControlMessage: Hashable {
 }
 
 class LecSocketData {
-    static func generatorStatusReadingByte(msg: StatusMessage) -> [UInt8] {
-        let address = msg.address.componentsSeparatedByString(".")
+    static func generatorStatusReadingByte(_ msg: StatusMessage) -> [UInt8] {
+        let address = msg.address.components(separatedBy: ".")
         let type = msg.type
         
         if let firstAddress = UInt8(address[0]), let secondAddress = UInt8(address[1]), let thirdAddress = UInt8(address[2]) {
@@ -56,17 +56,17 @@ class LecSocketData {
         return [UInt8]()
     }
     
-    static func getStatusReadingData(cams: [LecCam]) -> NSData {
+    static func getStatusReadingData(_ cams: [LecCam]) -> Data {
         let camMessages = cams.map { StatusMessage(address: $0.statusAddress, type: $0.commandType.rawValue) }
         var bytes = [UInt8]()
         for camMessage in Set(camMessages) {
             bytes += generatorStatusReadingByte(camMessage)
         }
-        return NSData(bytes: bytes, length: bytes.count)
+        return Data(bytes: UnsafePointer<UInt8>(bytes), count: bytes.count)
     }
     
-    static func generatorControlByte(msg: ControlMessage) -> [UInt8] {
-        let address = msg.address.componentsSeparatedByString(".")
+    static func generatorControlByte(_ msg: ControlMessage) -> [UInt8] {
+        let address = msg.address.components(separatedBy: ".")
         let type = msg.type
         let value = msg.value
         
@@ -86,19 +86,19 @@ class LecSocketData {
         return [UInt8]()
     }
     
-    static func getControlData(cam: LecCam) -> NSData {
+    static func getControlData(_ cam: LecCam) -> Data {
         let msg = ControlMessage(address: cam.controlAddress, type: cam.commandType.rawValue, value: cam.controlValue)
         let bytes = generatorControlByte(msg)
-        return NSData(bytes: bytes, length: bytes.count)
+        return Data(bytes: UnsafePointer<UInt8>(bytes), count: bytes.count)
     }
     
-    static func addrGet(fs: UInt8, t: UInt8) -> String {
+    static func addrGet(_ fs: UInt8, t: UInt8) -> String {
         let s = fs & 0x0F
         let f = (fs & 0xF0) >> 4
         return String(f)+"."+String(s)+"."+String(t)
     }
     
-    static func handle(data: NSData) {
+    static func handle(_ data: Data) {
         print(data.getBytes())
         var needAppend = false
         var code2D = [[UInt8]]()
@@ -132,12 +132,12 @@ class LecSocketData {
     }
 }
 
-extension NSData {
+extension Data {
     func getBytes() -> [UInt8] {
         // create buffer, this is an array of UInt8
-        var array = [UInt8](count: length / sizeof(UInt8), repeatedValue: 0)
+        var array = [UInt8](repeating: 0, count: count / MemoryLayout<UInt8>.size)
         // copy bytes into array
-        getBytes(&array, length:length)
+        copyBytes(to: &array, count:count)
         return array
     }
 }

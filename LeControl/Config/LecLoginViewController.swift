@@ -7,11 +7,12 @@
 //
 
 import UIKit
-import Whisper
 import SwiftyJSON
+import Alamofire
+import JDStatusBarNotification
 
 protocol LecLoginViewControllerDelegate: class {
-    func loginViewController(controller: LecLoginViewController, didLogInWithUserId userId: String)
+    func loginViewController(_ controller: LecLoginViewController, didLogInWithUserId userId: String)
 }
 
 class LecLoginViewController: UIViewController {
@@ -25,28 +26,30 @@ class LecLoginViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func cancel(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancel(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func login(sender: AnyObject) {
-        if let userName = userNameTextField.text, password = passwordTextField.text {
-            Network.POSTLogin(userName: userName, password: password).go() { [weak weakSelf = self] response in
-                switch response {
-                case .Success(let json):
-                    guard json["Ok"].boolValue else {
-                        if let msg = json["Msg"].string{
-                            Whistle(Murmur(title: msg, backgroundColor: UIColor.redColor()), action: .Show(1.5))
+    @IBAction func login(_ sender: AnyObject) {
+        if let userName = userNameTextField.text, let password = passwordTextField.text {
+            let parameters = ["name": userName, "password": password]
+            let loginUrl = environment.httpAddress + LecConstants.NetworkSubAddress.Login
+            Alamofire.request(loginUrl, method: .get, parameters: parameters).responseJSON(completionHandler: { [weak weakSelf = self] (response) in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    guard json["isAuthed"].boolValue else {
+                        if let msg = json["msg"].string{
+                            JDStatusBarNotification.show(withStatus: msg, dismissAfter: 2.0, styleName: JDStatusBarStyleSuccess);
+                            print(msg)
                         }
                         return
                     }
-                    weakSelf?.delegate?.loginViewController(self, didLogInWithUserId: json["UserId"].stringValue)
-                case .Failure(let error):
-                    Whistle(Murmur(title: error, backgroundColor: UIColor.redColor()), action: .Show(1.5))
+                    weakSelf?.delegate?.loginViewController(self, didLogInWithUserId: json["userID"].stringValue)
+                case .failure:
+                    JDStatusBarNotification.show(withStatus: "登录失败", dismissAfter: 2.0, styleName: JDStatusBarStyleSuccess);
                 }
-                
-            }
-            
+            })
         }
     }
 }

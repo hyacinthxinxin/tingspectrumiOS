@@ -11,14 +11,14 @@ import Foundation
 
 enum LecEternal {
     
-    static func setObject(value: AnyObject!, forKey defaultName: String!) {
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(value, forKey:defaultName)
+    static func setObject(_ value: AnyObject!, forKey defaultName: String!) {
+        let defaults:UserDefaults = UserDefaults.standard
+        defaults.set(value, forKey:defaultName)
         defaults.synchronize()
     }
     
-    static func objectForKey(defaultName: String!) -> AnyObject! {
-        let defaults:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        return defaults.objectForKey(defaultName)
+    static func objectForKey(_ defaultName: String!) -> AnyObject! {
+        let defaults:UserDefaults = UserDefaults.standard
+        return defaults.object(forKey: defaultName) as AnyObject!
     }
 }

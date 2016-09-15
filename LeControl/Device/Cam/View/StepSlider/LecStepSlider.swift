@@ -20,11 +20,11 @@ let StepSliderSelectionCirclesRadius : CGFloat = 31/2
 
 class LecStepSliderKnob: UIButton {
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
         //Draw Main Cirlce
-        CGContextSetFillColorWithColor(context,  LecConstants.AppColor.CamTintColor.CGColor)
-        CGContextFillEllipseInRect(context,  CGRectMake(0, 0, KnobRadius * 2, KnobRadius * 2))
+        context?.setFillColor(LecConstants.AppColor.CamTintColor.cgColor)
+        context?.fillEllipse(in: CGRect(x: 0, y: 0, width: KnobRadius * 2, height: KnobRadius * 2))
     }
 }
 
@@ -40,7 +40,7 @@ class LecStepSlider: UIControl {
     }
     
     var knob = LecStepSliderKnob()
-    var diffPoint: CGPoint = CGPointZero
+    var diffPoint: CGPoint = CGPoint.zero
     var titles = [String]() {
         didSet {
             setupLables()
@@ -60,7 +60,7 @@ class LecStepSlider: UIControl {
     }
     
     convenience init(titles: [String]) {
-        self.init(frame: CGRectZero)
+        self.init(frame: CGRect.zero)
         self.titles = titles
         setupLables()
     }
@@ -73,22 +73,22 @@ class LecStepSlider: UIControl {
         addGestureRecognizer(tap)
         
         knob.adjustsImageWhenHighlighted = false
-        knob.addTarget(self, action: #selector(LecStepSlider.touchDown(_:withEvent:)), forControlEvents: .TouchDown)
-        knob.addTarget(self, action: #selector(LecStepSlider.touchUp(_:)), forControlEvents: .TouchUpInside)
-        knob.addTarget(self, action: #selector(LecStepSlider.touchMove(_:withEvent:)), forControlEvents: [.TouchDragOutside, .TouchDragInside])
+        knob.addTarget(self, action: #selector(LecStepSlider.touchDown(_:withEvent:)), for: .touchDown)
+        knob.addTarget(self, action: #selector(LecStepSlider.touchUp(_:)), for: .touchUpInside)
+        knob.addTarget(self, action: #selector(LecStepSlider.touchMove(_:withEvent:)), for: [.touchDragOutside, .touchDragInside])
         addSubview(knob)
         addSubview(minimumValueImageView)
         addSubview(maximumValueImageView)
     }
     
     func setupLables() {
-        for (_, title) in titles.enumerate() {
+        for (_, title) in titles.enumerated() {
             let label = UILabel()
-            label.backgroundColor = UIColor.clearColor()
+            label.backgroundColor = UIColor.clear
             label.text = title
-            label.textColor = UIColor.whiteColor()
-            label.textAlignment = .Center
-            label.font = UIFont.systemFontOfSize(13)
+            label.textColor = UIColor.white
+            label.textAlignment = .center
+            label.font = UIFont.systemFont(ofSize: 13)
             labels += [label]
             addSubview(label)
         }
@@ -97,10 +97,10 @@ class LecStepSlider: UIControl {
     override func layoutSubviews() {
         super.layoutSubviews()
         oneSlotSize = (frame.size.width - StepSliderLeftOffset - StepSliderRightOffset)/CGFloat(titles.count-1)
-        knob.frame = CGRectMake(StepSliderLeftOffset, frame.size.height/2 - KnobRadius, KnobRadius * 2, KnobRadius * 2)
+        knob.frame = CGRect(x: StepSliderLeftOffset, y: frame.size.height/2 - KnobRadius, width: KnobRadius * 2, height: KnobRadius * 2)
         animateKnobToIndex(selectedIndex)
-        for (index, label) in labels.enumerate() {
-            label.frame = CGRectMake(0, 0, oneSlotSize, 25)
+        for (index, label) in labels.enumerated() {
+            label.frame = CGRect(x: 0, y: 0, width: oneSlotSize, height: 25)
             label.center = getCenterPointForIndex(index)
         }
         minimumValueImageView.center = CGPoint(x: 23, y: frame.size.height/2)
@@ -109,49 +109,49 @@ class LecStepSlider: UIControl {
     
     // MARK - Actions
     
-    func itemSelected(tap: UITapGestureRecognizer) {
-        selectedIndex = getSelectedIndexInPoint(tap.locationInView(self))
-        sendActionsForControlEvents(.TouchUpInside)
-        sendActionsForControlEvents(.ValueChanged)
+    func itemSelected(_ tap: UITapGestureRecognizer) {
+        selectedIndex = getSelectedIndexInPoint(tap.location(in: self))
+        sendActions(for: .touchUpInside)
+        sendActions(for: .valueChanged)
     }
     
-    func touchDown(sender: UIButton, withEvent event: UIEvent) {
-        if let currentPoint = event.allTouches()?.first?.locationInView(self) {
-            diffPoint = CGPointMake(currentPoint.x - sender.frame.origin.x, currentPoint.y - sender.frame.origin.y)
+    func touchDown(_ sender: UIButton, withEvent event: UIEvent) {
+        if let currentPoint = event.allTouches?.first?.location(in: self) {
+            diffPoint = CGPoint(x: currentPoint.x - sender.frame.origin.x, y: currentPoint.y - sender.frame.origin.y)
         }
-        sendActionsForControlEvents(.TouchDown)
+        sendActions(for: .touchDown)
     }
     
-    func touchUp(sender: UIButton) {
+    func touchUp(_ sender: UIButton) {
         selectedIndex = getSelectedIndexInPoint(sender.center)
         animateKnobToIndex(selectedIndex)
-        sendActionsForControlEvents(.TouchUpInside)
-        sendActionsForControlEvents(.ValueChanged)
+        sendActions(for: .touchUpInside)
+        sendActions(for: .valueChanged)
     }
     
-    func touchMove(sender: UIButton, withEvent event: UIEvent) {
-        if let currentPoint = event.allTouches()?.first?.locationInView(self) {
-            var toPoint = CGPointMake(currentPoint.x - diffPoint.x, knob.frame.origin.y)
+    func touchMove(_ sender: UIButton, withEvent event: UIEvent) {
+        if let currentPoint = event.allTouches?.first?.location(in: self) {
+            var toPoint = CGPoint(x: currentPoint.x - diffPoint.x, y: knob.frame.origin.y)
             toPoint = fixFinalPoint(toPoint)
-            knob.frame = CGRectMake(toPoint.x, toPoint.y, knob.frame.size.width, knob.frame.size.height)
+            knob.frame = CGRect(x: toPoint.x, y: toPoint.y, width: knob.frame.size.width, height: knob.frame.size.height)
         }
         
         let selected = getSelectedIndexInPoint(sender.center)
         animateTitleToIndex(selected)
-        sendActionsForControlEvents(.TouchDragInside)
+        sendActions(for: .touchDragInside)
     }
     
-    private func getSelectedIndexInPoint(point: CGPoint) -> Int {
+    fileprivate func getSelectedIndexInPoint(_ point: CGPoint) -> Int {
         let p = Float((point.x - StepSliderLeftOffset)/oneSlotSize)
         return min(titles.count - 1, max(0, lroundf(p)))
     }
     
-    private func animateTitleToIndex(index: Int) {
-        for (i, label) in labels.enumerate() {
+    fileprivate func animateTitleToIndex(_ index: Int) {
+        for (i, label) in labels.enumerated() {
             UIView.beginAnimations(nil, context: nil)
             UIView.setAnimationBeginsFromCurrentState(true)
             if i == index {
-                label.center = CGPointMake(getCenterPointForIndex(i).x, getCenterPointForIndex(i).y-StepSliderTitleSelectedDistance)
+                label.center = CGPoint(x: getCenterPointForIndex(i).x, y: getCenterPointForIndex(i).y-StepSliderTitleSelectedDistance)
                 label.alpha = 1.0
             } else {
                 label.center = getCenterPointForIndex(i)
@@ -162,43 +162,43 @@ class LecStepSlider: UIControl {
         }
     }
     
-    private func animateKnobToIndex(index: Int) {
+    fileprivate func animateKnobToIndex(_ index: Int) {
         var toPoint = getCenterPointForIndex(index)
-        toPoint = CGPointMake(toPoint.x-(knob.frame.size.width/2.0), knob.frame.origin.y)
+        toPoint = CGPoint(x: toPoint.x-(knob.frame.size.width/2.0), y: knob.frame.origin.y)
         toPoint = fixFinalPoint(toPoint)
         
         UIView.beginAnimations(nil, context: nil)
-        knob.frame = CGRectMake(toPoint.x, toPoint.y, knob.frame.size.width, knob.frame.size.height)
+        knob.frame = CGRect(x: toPoint.x, y: toPoint.y, width: knob.frame.size.width, height: knob.frame.size.height)
         UIView.commitAnimations()
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
         
         //Fill Main Path
         
-        CGContextSetFillColorWithColor(context, "#928f9b".hexColor.CGColor)
-        CGContextFillRect(context, CGRectMake(StepSliderLeftOffset, rect.size.height / 2 - StepSliderLineHeight / 2, rect.size.width-StepSliderRightOffset-StepSliderLeftOffset, StepSliderLineHeight))
-        CGContextSaveGState(context)
-        for (index, _) in titles.enumerate() {
+        context?.setFillColor("#928f9b".hexColor.cgColor)
+        context?.fill(CGRect(x: StepSliderLeftOffset, y: rect.size.height / 2 - StepSliderLineHeight / 2, width: rect.size.width-StepSliderRightOffset-StepSliderLeftOffset, height: StepSliderLineHeight))
+        context?.saveGState()
+        for (index, _) in titles.enumerated() {
             let centerPoint = getCenterPointForIndex(index)
             //Draw Selection Circles
-            CGContextSetFillColorWithColor(context, UIColor.whiteColor().CGColor)
-            CGContextFillEllipseInRect(context, CGRectMake(centerPoint.x - StepSliderSelectionCirclesRadius, rect.size.height/2-StepSliderSelectionCirclesRadius, StepSliderSelectionCirclesRadius * 2, StepSliderSelectionCirclesRadius * 2))
+            context?.setFillColor(UIColor.white.cgColor)
+            context?.fillEllipse(in: CGRect(x: centerPoint.x - StepSliderSelectionCirclesRadius, y: rect.size.height/2-StepSliderSelectionCirclesRadius, width: StepSliderSelectionCirclesRadius * 2, height: StepSliderSelectionCirclesRadius * 2))
         }
     }
 
 }
 
 extension LecStepSlider {
-    func getCenterPointForIndex(index: Int) -> CGPoint {
+    func getCenterPointForIndex(_ index: Int) -> CGPoint {
         let width = CGFloat(index)/CGFloat(titles.count-1) * (self.frame.size.width-StepSliderRightOffset-StepSliderLeftOffset) + StepSliderLeftOffset
 //        let height = index == 0 ? frame.size.height/2-StepSliderTitleNormalDistance : frame.size.height/2-StepSliderTitleNormalDistance
         let height = frame.size.height/2-StepSliderTitleNormalDistance
-        return CGPointMake(width, height)
+        return CGPoint(x: width, y: height)
     }
     
-    func fixFinalPoint(point: CGPoint) -> CGPoint {
+    func fixFinalPoint(_ point: CGPoint) -> CGPoint {
         var ptn: CGPoint = point
         if (point.x < StepSliderLeftOffset-(knob.frame.size.width/2.0)) {
             ptn.x = StepSliderLeftOffset-(knob.frame.size.width/2.0)

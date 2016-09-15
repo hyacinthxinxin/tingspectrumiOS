@@ -1,45 +1,45 @@
 PODS:
-  - Alamofire (3.4.1)
+  - Alamofire (4.0.0)
   - ASValueTrackingSlider (0.11.2)
-  - CocoaAsyncSocket (7.4.3):
-    - CocoaAsyncSocket/All (= 7.4.3)
-  - CocoaAsyncSocket/All (7.4.3):
-    - CocoaAsyncSocket/GCD
-    - CocoaAsyncSocket/RunLoop
-  - CocoaAsyncSocket/GCD (7.4.3)
-  - CocoaAsyncSocket/RunLoop (7.4.3)
-  - Kingfisher (2.4.1)
+  - CocoaAsyncSocket (7.5.0):
+    - CocoaAsyncSocket/GCD (= 7.5.0)
+  - CocoaAsyncSocket/GCD (7.5.0)
+  - JDStatusBarNotification (1.5.4)
   - PureLayout (3.0.2)
   - SwiftyJSON (2.3.2)
-  - Whisper (3.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.3)
+  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `master`)
   - ASValueTrackingSlider
   - CocoaAsyncSocket
-  - Kingfisher (~> 2.4.1)
+  - JDStatusBarNotification
   - PureLayout
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
-  - Whisper
+  - SwiftyJSON (from `https://github.com/BaiduHiDeviOS/SwiftyJSON.git`, branch `swift3`)
 
 EXTERNAL SOURCES:
+  Alamofire:
+    :branch: master
+    :git: https://github.com/Alamofire/Alamofire.git
   SwiftyJSON:
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+    :branch: swift3
+    :git: https://github.com/BaiduHiDeviOS/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 8ac0e19fe0d4debcfb6f394c012db99caaf741c9
+    :git: https://github.com/Alamofire/Alamofire.git
   SwiftyJSON:
-    :commit: 73670b94292b8d8496c398a973f56ac67789ba9f
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+    :commit: de5dc3b1b421805769590d331178551bbb0e5733
+    :git: https://github.com/BaiduHiDeviOS/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
   ASValueTrackingSlider: 45c9f78252da60de01d8f2afe869aaf90dd978d9
-  CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
-  Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
+  CocoaAsyncSocket: 3baeb1ddd969f81cf9fca81053ae49ef2d1cbbfa
+  JDStatusBarNotification: d47dded0594a50a39c84a2cc5aa356fcf6750d0e
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  Whisper: 42a3ee7c2936f861b23d41bd6cd7dfd22f102405
+  SwiftyJSON: 6118fb49d7519c4d31a0c1f3d5af936e9047b556
 
-PODFILE CHECKSUM: 4a2502dd453b5a04551513330ec1f2a02ca553f9
+PODFILE CHECKSUM: a19447ac17845650050885d407b8ed98c9c286fb
 
 COCOAPODS: 1.0.1

@@ -10,13 +10,13 @@ import UIKit
 
 class LecCamViewWithNib: LecCamView {
 
-    private var didSetupConstraints = false
-    private var containerView: UIView?
+    fileprivate var didSetupConstraints = false
+    fileprivate var containerView: UIView?
     
     func loadViewFfromNib() -> UIView {
-        let bundle = NSBundle(forClass: self.dynamicType)
-        let nib = UINib(nibName: String(self.dynamicType), bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
     }
     
@@ -36,7 +36,7 @@ class LecCamViewWithNib: LecCamView {
     
     func commonInit() {
         containerView = loadViewFfromNib()
-        containerView?.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        containerView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         if let cView = containerView {
             addSubview(cView)
         }
@@ -46,10 +46,10 @@ class LecCamViewWithNib: LecCamView {
     override func updateConstraints() {
         if (!didSetupConstraints) {
             if let cview = containerView {
-                cview.autoPinEdgeToSuperviewEdge(.Bottom)
-                cview.autoPinEdgeToSuperviewEdge(.Right)
-                cview.autoPinEdgeToSuperviewEdge(.Left)
-                cview.autoPinEdgeToSuperviewEdge(.Top)
+                cview.autoPinEdge(toSuperviewEdge: .bottom)
+                cview.autoPinEdge(toSuperviewEdge: .right)
+                cview.autoPinEdge(toSuperviewEdge: .left)
+                cview.autoPinEdge(toSuperviewEdge: .top)
             }
             didSetupConstraints = true
         }

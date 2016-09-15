@@ -22,17 +22,17 @@ class LecSwitchView: LecCamViewWithNib {
         }
     }
     
-    @IBAction func switchCam(sender: UISwitch) {
+    @IBAction func switchCam(_ sender: UISwitch) {
         if let cam = cams?.first {
-            cam.controlValue = sender.on ? 1: 0
+            cam.controlValue = sender.isOn ? 1: 0
             LecSocketManager.sharedSocket.sendMessageWithCam(cam)
         }
     }
     
-    override func refreshState(feedbackAddress: String, statusValue: Int) {
+    override func refreshState(_ feedbackAddress: String, statusValue: Int) {
         if let cam = cams?.first {
-            camNameLabel.textColor = cam.statusValue == 1 ? UIColor.whiteColor(): UIColor(white: 1.0, alpha: 0.5)
-            camSwitch.on = cam.statusValue == 1
+            camNameLabel.textColor = cam.statusValue == 1 ? UIColor.white: UIColor(white: 1.0, alpha: 0.5)
+            camSwitch.isOn = cam.statusValue == 1
         }
     }
 }

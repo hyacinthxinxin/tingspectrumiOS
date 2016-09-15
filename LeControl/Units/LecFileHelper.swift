@@ -12,12 +12,12 @@ import UIKit
 class LecFileHelper {
     //1
     // MARK:- Error Types
-    private enum FileErrors:ErrorType {
-        case JsonNotSerialized
-        case FileNotSaved
-        case ImageNotConvertedToData
-        case FileNotRead
-        case FileNotFound
+    fileprivate enum FileErrors:Error {
+        case jsonNotSerialized
+        case fileNotSaved
+        case imageNotConvertedToData
+        case fileNotRead
+        case fileNotFound
     }
     
     //2
@@ -33,34 +33,34 @@ class LecFileHelper {
     
     //3
     // MARK:- Private Properties
-    private let directory:NSSearchPathDirectory
-    private let directoryPath: String
-    private let fileManager = NSFileManager.defaultManager()
-    private let fileName:String
-    private let fileExtension:FileExtension
-    private let filePath:String
-    private let fullyQualifiedPath:String
-    private let subDirectory:String
+    fileprivate let directory:FileManager.SearchPathDirectory
+    fileprivate let directoryPath: String
+    fileprivate let fileManager = FileManager.default
+    fileprivate let fileName:String
+    fileprivate let fileExtension:FileExtension
+    fileprivate let filePath:String
+    fileprivate let fullyQualifiedPath:String
+    fileprivate let subDirectory:String
     
     var fileExists:Bool {
         get {
-            return fileManager.fileExistsAtPath(fullyQualifiedPath)
+            return fileManager.fileExists(atPath: fullyQualifiedPath)
         }
     }
     
     var directoryExists:Bool {
         get {
             var isDir = ObjCBool(true)
-            return fileManager.fileExistsAtPath(filePath, isDirectory: &isDir )
+            return fileManager.fileExists(atPath: filePath, isDirectory: &isDir )
         }
     }
     
-    init(fileName:String, fileExtension:FileExtension, subDirectory:String, directory:NSSearchPathDirectory) {
+    init(fileName:String, fileExtension:FileExtension, subDirectory:String, directory:FileManager.SearchPathDirectory) {
         self.fileExtension = fileExtension
         self.fileName = fileName + fileExtension.rawValue
         self.subDirectory = "/\(subDirectory)"
         self.directory = directory
-        self.directoryPath = NSSearchPathForDirectoriesInDomains(directory, .UserDomainMask, true).first!
+        self.directoryPath = NSSearchPathForDirectoriesInDomains(directory, .userDomainMask, true).first!
         self.filePath = directoryPath + self.subDirectory
         self.fullyQualifiedPath = "\(filePath)/\(self.fileName)"
         //        print(self.fullyQualifiedPath)
@@ -68,17 +68,17 @@ class LecFileHelper {
     }
     
     convenience init(fileName:String, fileExtension:FileExtension, subDirectory:String){
-        self.init(fileName:fileName, fileExtension:fileExtension, subDirectory:subDirectory, directory:.DocumentDirectory)
+        self.init(fileName:fileName, fileExtension:fileExtension, subDirectory:subDirectory, directory:.documentDirectory)
     }
     
     convenience init(fileName:String, fileExtension:FileExtension){
-        self.init(fileName:fileName, fileExtension:fileExtension, subDirectory:"", directory:.DocumentDirectory)
+        self.init(fileName:fileName, fileExtension:fileExtension, subDirectory:"", directory:.documentDirectory)
     }
     
-    private func createDirectory(){
+    fileprivate func createDirectory(){
         if !directoryExists {
             do {
-                try fileManager.createDirectoryAtPath(filePath, withIntermediateDirectories: false, attributes: nil)
+                try fileManager.createDirectory(atPath: filePath, withIntermediateDirectories: false, attributes: nil)
             }
             catch {
                 print("An Error was generated creating directory")
@@ -86,62 +86,62 @@ class LecFileHelper {
         }
     }
     
-    func saveFile<T>(file: T) throws {
+    func saveFile<T>(_ file: T) throws {
         do {
             if let str = file as? String{
-                try str.writeToFile(fullyQualifiedPath, atomically: true, encoding: NSUTF8StringEncoding)
-            } else if let data = file as? NSData {
-                if !fileManager.createFileAtPath(fullyQualifiedPath, contents: data, attributes: nil) {
-                    throw FileErrors.FileNotSaved
+                try str.write(toFile: fullyQualifiedPath, atomically: true, encoding: String.Encoding.utf8)
+            } else if let data = file as? Data {
+                if !fileManager.createFile(atPath: fullyQualifiedPath, contents: data, attributes: nil) {
+                    throw FileErrors.fileNotSaved
                 }
             } else if let image = file as? UIImage {
                 if let data = UIImageJPEGRepresentation(image, 1.0) {
-                    if !fileManager.createFileAtPath(fullyQualifiedPath, contents: data, attributes: nil){
-                        throw FileErrors.FileNotSaved
+                    if !fileManager.createFile(atPath: fullyQualifiedPath, contents: data, attributes: nil){
+                        throw FileErrors.fileNotSaved
                     }
                 } else if let data = UIImagePNGRepresentation(image) {
-                    if !fileManager.createFileAtPath(fullyQualifiedPath, contents: data, attributes: nil){
-                        throw FileErrors.FileNotSaved
+                    if !fileManager.createFile(atPath: fullyQualifiedPath, contents: data, attributes: nil){
+                        throw FileErrors.fileNotSaved
                     }
                 }
             } else if let dictionary = file as? NSDictionary {
-                dictionary.writeToFile(fullyQualifiedPath, atomically: true)
+                dictionary.write(toFile: fullyQualifiedPath, atomically: true)
             } else if let array = file as? NSArray {
-                array.writeToFile(fullyQualifiedPath, atomically: true)
+                array.write(toFile: fullyQualifiedPath, atomically: true)
             }
         } catch {
             throw error
         }
     }
     
-    private func convertObjectToData(data:AnyObject) throws -> NSData {
+    fileprivate func convertObjectToData(_ data:AnyObject) throws -> Data {
         do {
-            let newData = try NSJSONSerialization.dataWithJSONObject(data, options: .PrettyPrinted)
+            let newData = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
             return newData
         }
         catch {
             print("Error writing data: \(error)")
         }
-        throw FileErrors.JsonNotSerialized
+        throw FileErrors.jsonNotSerialized
     }
     
     func getContentsOfFile<T>() throws -> T? {
         guard fileExists else {
-            throw FileErrors.FileNotFound
+            throw FileErrors.fileNotFound
         }
         
         var data: T?
         do {
             switch fileExtension {
             case .TXT:
-                data = try String(contentsOfFile: fullyQualifiedPath, encoding: NSUTF8StringEncoding) as? T
+                data = try String(contentsOfFile: fullyQualifiedPath, encoding: String.Encoding.utf8) as? T
                 return data
             case .JSON:
-                data = try NSData(contentsOfFile: fullyQualifiedPath, options: NSDataReadingOptions.DataReadingMappedIfSafe) as? T
+                data = try Data(contentsOf: URL(fileURLWithPath: fullyQualifiedPath), options: NSData.ReadingOptions.mappedIfSafe) as? T
                 return data
             case .JPG, .JPEG, .PNG:
                 guard let image = UIImage(contentsOfFile: fullyQualifiedPath) else {
-                    throw FileErrors.FileNotRead
+                    throw FileErrors.fileNotRead
                 }
                 return image as? T
             case .PLIST:
@@ -153,7 +153,7 @@ class LecFileHelper {
                 return data
             }
         } catch {
-            throw FileErrors.FileNotRead
+            throw FileErrors.fileNotRead
         }
     }
 }

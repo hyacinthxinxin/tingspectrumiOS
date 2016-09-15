@@ -90,8 +90,8 @@ struct LecConstants {
     }
     
     struct Path {
-        static let Documents = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
-        static let Library = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true).first!
+        static let Documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        static let Library = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first!
         static let Tmp = NSTemporaryDirectory()
         static let SubDirectoryName = "UserProject"
     }
@@ -113,14 +113,15 @@ struct LecConstants {
     }
     
     struct NetworkSubAddress {
-        static let Login = "api/login"
-        static let Userprojects = "api/userprojects"
-        static let Userprojects2 = "api/userprojects2"
+//        static let Login = "api/login"
+        static let Login: String = "ting/login"
+        static let Buildings = "ting/getBuildings"
+        static let GetBuildingDetail = "ting/getBuildingDetail"
     }
     
     struct NetworkAddress {
-        static let DevelopAddress = "http://localhost:9000/"
-        static let ProductAddress = "http://www.tingspectrum.com/"
+        static let DevelopAddress: String = "http://localhost:9000/"
+        static let ProductAddress: String = "http://www.tingspectrum.com/"
     }
     
 }

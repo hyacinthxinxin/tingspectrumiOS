@@ -9,7 +9,7 @@
 import UIKit
 
 protocol LecCamViewUpdateDelegate {
-    func refreshState(feedbackAddress: String, statusValue: Int)
+    func refreshState(_ feedbackAddress: String, statusValue: Int)
 }
 
 class LecCamView: UIView {
@@ -17,7 +17,7 @@ class LecCamView: UIView {
 }
 
 extension LecCamView: LecCamViewUpdateDelegate {
-    func refreshState(feedbackAddress: String, statusValue: Int) {
+    func refreshState(_ feedbackAddress: String, statusValue: Int) {
         
     }
 }

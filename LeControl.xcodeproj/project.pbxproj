@@ -26,7 +26,6 @@
 		BA2B4FC71D6C872E007D96B6 /* LecAreaDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FC61D6C872E007D96B6 /* LecAreaDetailCell.swift */; };
 		BA2B4FCA1D6EE2D7007D96B6 /* LecLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FC91D6EE2D7007D96B6 /* LecLoginViewController.swift */; };
 		BA2B4FCC1D6EE2EA007D96B6 /* LecConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FCB1D6EE2EA007D96B6 /* LecConfigViewController.swift */; };
-		BA2B4FCE1D6EE8C0007D96B6 /* LecNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FCD1D6EE8C0007D96B6 /* LecNetwork.swift */; };
 		BA2B4FD01D6EE90B007D96B6 /* LecGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FCF1D6EE90B007D96B6 /* LecGlobal.swift */; };
 		BA2B4FD21D6F170B007D96B6 /* LecBuildingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FD11D6F170B007D96B6 /* LecBuildingCell.swift */; };
 		BA2B4FD41D6F19E6007D96B6 /* LecExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FD31D6F19E6007D96B6 /* LecExtensions.swift */; };
@@ -73,7 +72,6 @@
 		BA2B4FC61D6C872E007D96B6 /* LecAreaDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecAreaDetailCell.swift; path = Device/LecAreaDetailCell.swift; sourceTree = "<group>"; };
 		BA2B4FC91D6EE2D7007D96B6 /* LecLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecLoginViewController.swift; path = Config/LecLoginViewController.swift; sourceTree = "<group>"; };
 		BA2B4FCB1D6EE2EA007D96B6 /* LecConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecConfigViewController.swift; path = Config/LecConfigViewController.swift; sourceTree = "<group>"; };
-		BA2B4FCD1D6EE8C0007D96B6 /* LecNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecNetwork.swift; path = Units/LecNetwork.swift; sourceTree = "<group>"; };
 		BA2B4FCF1D6EE90B007D96B6 /* LecGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecGlobal.swift; path = Units/LecGlobal.swift; sourceTree = "<group>"; };
 		BA2B4FD11D6F170B007D96B6 /* LecBuildingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecBuildingCell.swift; path = Config/LecBuildingCell.swift; sourceTree = "<group>"; };
 		BA2B4FD31D6F19E6007D96B6 /* LecExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecExtensions.swift; path = Units/LecExtensions.swift; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 			children = (
 				BA2B4FB81D6C7D67007D96B6 /* LecConstants.swift */,
 				BA2B4FC01D6C7EBC007D96B6 /* LecFileHelper.swift */,
-				BA2B4FCD1D6EE8C0007D96B6 /* LecNetwork.swift */,
 				BA2B4FD31D6F19E6007D96B6 /* LecExtensions.swift */,
 				BAF596861D75AA0B00E3ACEC /* LecEternal.swift */,
 				BA0C51E41D770A6300671B74 /* LecUnitFunction.swift */,
@@ -303,12 +300,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = TingSpectrum;
 				TargetAttributes = {
 					BA2B4F8E1D6C752B007D96B6 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 9YE7FFAQ8S;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -425,7 +423,6 @@
 				BA2B4FCC1D6EE2EA007D96B6 /* LecConfigViewController.swift in Sources */,
 				BA2B4FD01D6EE90B007D96B6 /* LecGlobal.swift in Sources */,
 				BA2B4FD61D6F482E007D96B6 /* LecJsonParseHelper.swift in Sources */,
-				BA2B4FCE1D6EE8C0007D96B6 /* LecNetwork.swift in Sources */,
 				BAF596871D75AA0B00E3ACEC /* LecEternal.swift in Sources */,
 				BA2B500E1D72D464007D96B6 /* LecModelView.swift in Sources */,
 				BA2B4FD41D6F19E6007D96B6 /* LecExtensions.swift in Sources */,
@@ -472,8 +469,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -518,8 +517,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -538,6 +539,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -547,6 +549,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5846A9020629982D025C7257 /* Pods-LeControl.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = LeControl/Info.plist;
@@ -554,6 +557,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fanxin.tingspectrum.LeControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -561,6 +565,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CEC71C0DE0B2144F48235161 /* Pods-LeControl.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = LeControl/Info.plist;
@@ -568,6 +573,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fanxin.tingspectrum.LeControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -51,20 +51,20 @@ class LecDeviceCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = LecConstants.AppColor.ThemeBGColor
-        selectionStyle = .Default
+        selectionStyle = .default
     }
     
     convenience init(device: LecDevice, cams: [LecCam]) {
-        self.init(style: .Default, reuseIdentifier: LecConstants.ReuseIdentifier.DeviceCell)
+        self.init(style: .default, reuseIdentifier: LecConstants.ReuseIdentifier.DeviceCell)
         self.device = device
         self.cams = cams
         setupSubviews()
     }
     
-    private func setupSubviews() {
+    fileprivate func setupSubviews() {
         if let cams = self.cams, let device = self.device {
             switch device.deviceType {
-            case .Light:
+            case .light:
                 let light_SwitchCams =  cams.filter { $0.camType == 10 }
                 if !light_SwitchCams.isEmpty {
                     light_SwitchView = LecSwitchView()
@@ -76,7 +76,7 @@ class LecDeviceCell: UITableViewCell {
                         contentView.addSubview(camView)
                     }
                 }
-            case .LightDimming:
+            case .lightDimming:
                 let lightDimming_SwitchCams =  cams.filter { $0.camType == 11 }
                 if !lightDimming_SwitchCams.isEmpty {
                     lightDimming_SwitchView = LecSwitchView()
@@ -96,7 +96,7 @@ class LecDeviceCell: UITableViewCell {
                         contentView.addSubview(cView)
                     }
                 }
-            case .Curtain:
+            case .curtain:
                 let curtain_Cams = cams.filter { 30 <= $0.camType && $0.camType < 40 }
                 if !curtain_Cams.isEmpty {
                     curtain_CurtainView = LecCurtainView(cams: curtain_Cams)
@@ -106,7 +106,7 @@ class LecDeviceCell: UITableViewCell {
                         contentView.addSubview(cView)
                     }
                 }
-            case .AirConditioning:
+            case .airConditioning:
                 let airConditioning_SwitchCams =  cams.filter { $0.camType == 12 }
                 if !airConditioning_SwitchCams.isEmpty {
                     airConditioning_SwitchView = LecSwitchView()
@@ -146,7 +146,7 @@ class LecDeviceCell: UITableViewCell {
                         contentView.addSubview(cView)
                     }
                 }
-            case .FloorHeating:
+            case .floorHeating:
                 let floorHeating_SwitchCams =  cams.filter { $0.camType == 13 }
                 if !floorHeating_SwitchCams.isEmpty {
                     floorHeating_SwitchView = LecSwitchView()
@@ -166,7 +166,7 @@ class LecDeviceCell: UITableViewCell {
                         contentView.addSubview(cView)
                     }
                 }
-            case .FreshAir:
+            case .freshAir:
                 let freshAir_SwitchCams =  cams.filter { $0.camType == 14 }
                 if !freshAir_SwitchCams.isEmpty {
                     freshAir_SwitchView = LecSwitchView()
@@ -192,16 +192,16 @@ class LecDeviceCell: UITableViewCell {
     }
     
     //计算cell高度
-    static func calculatorCellHeight(device: LecDevice, cams: [LecCam]) -> CGFloat {
+    static func calculatorCellHeight(_ device: LecDevice, cams: [LecCam]) -> CGFloat {
         var height: CGFloat = 0.0
         
             switch device.deviceType {
-            case .Light:
+            case .light:
                 let light_SwitchCams =  cams.filter { $0.camType == 10 }
                 if !light_SwitchCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.Light_Switch
                 }
-            case .LightDimming:
+            case .lightDimming:
                 let lightDimming_SwitchCams =  cams.filter { $0.camType == 11 }
                 if !lightDimming_SwitchCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.LightDimming_Switch
@@ -210,12 +210,12 @@ class LecDeviceCell: UITableViewCell {
                 if !lightDimming_DimmingCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.LightDimming_Dimming
                 }
-            case .Curtain:
+            case .curtain:
                 let curtain_Cams = cams.filter { 30 <= $0.camType && $0.camType < 40 }
                 if !curtain_Cams.isEmpty {
                     height += LecConstants.DeviceCellHeight.Curtain_Curtain
                 }
-            case .AirConditioning:
+            case .airConditioning:
                 let airConditioning_SwitchCams =  cams.filter { $0.camType == 12 }
                 if !airConditioning_SwitchCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.AirConditioning_Switch
@@ -232,7 +232,7 @@ class LecDeviceCell: UITableViewCell {
                 if !airConditioning_ModelCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.AirConditioning_Model
                 }
-            case .FloorHeating:
+            case .floorHeating:
                 let floorHeating_SwitchCams =  cams.filter { $0.camType == 13 }
                 if !floorHeating_SwitchCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.FloorHeating_Switch
@@ -241,7 +241,7 @@ class LecDeviceCell: UITableViewCell {
                 if !floorHeating_TemperatureCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.FloorHeating_Temperature
                 }
-            case .FreshAir:
+            case .freshAir:
                 let freshAir_SwitchCams =  cams.filter { $0.camType == 14 }
                 if !freshAir_SwitchCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.FreshAir_Switch
@@ -256,11 +256,11 @@ class LecDeviceCell: UITableViewCell {
         return height
     }
     
-    private func positionCamView(cView: LecCamView, topMargin: CGFloat, height: CGFloat) {
-        cView.autoPinEdgeToSuperviewEdge(.Left)
-        cView.autoPinEdgeToSuperviewEdge(.Right)
-        cView.autoPinEdgeToSuperviewEdge(.Top, withInset: topMargin)
-        cView.autoSetDimension(.Height, toSize: height)
+    fileprivate func positionCamView(_ cView: LecCamView, topMargin: CGFloat, height: CGFloat) {
+        cView.autoPinEdge(toSuperviewEdge: .left)
+        cView.autoPinEdge(toSuperviewEdge: .right)
+        cView.autoPinEdge(toSuperviewEdge: .top, withInset: topMargin)
+        cView.autoSetDimension(.height, toSize: height)
     }
     
     override func layoutSubviews() {

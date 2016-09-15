@@ -8,9 +8,11 @@
 
 import UIKit
 import SwiftyJSON
+import Alamofire
+import JDStatusBarNotification
 
 protocol LecConfigViewControllerDelegate: class {
-    func configViewController(controller: LecConfigViewController, didChooseBuilding building: LecBuilding)
+    func configViewController(_ controller: LecConfigViewController, didChooseBuilding building: LecBuilding)
 }
 
 class LecConfigViewController: UITableViewController {
@@ -32,12 +34,35 @@ class LecConfigViewController: UITableViewController {
         tableView.cellLayoutMarginsFollowReadableWidth = false
         //        }
 
-        loadConfigWithUserId(userId)
+        loadConfig(with: userId);
     }
     
     
-    func loadConfigWithUserId(userId: String) {
-        Network.GETUserProjectsJSON(userId: userId).go() { [weak weakSelf = self] response in
+    func loadConfig(with userID: String) {
+        print(userID)
+        let loginUrl = environment.httpAddress + LecConstants.NetworkSubAddress.Buildings
+        Alamofire.request(loginUrl, method: .get, parameters: ["sID":userID]).responseJSON(completionHandler: { [weak weakSelf = self] (response) in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                if let buildingsArray = json.array {
+                    weakSelf?.buildings = buildingsArray.map {
+                        let building = LecBuilding()
+                        if let iID = $0["iID"].string {
+                            building.iID = iID
+                        }
+                        if let name = $0["name"].string {
+                            building.name = name
+                        }
+                        return building
+                    }
+                    weakSelf?.tableView.reloadData()
+                }
+            case .failure:
+                JDStatusBarNotification.show(withStatus: "登录失败", dismissAfter: 2.0, styleName: JDStatusBarStyleSuccess);
+            }})
+        /*
+        Network.getUserProjectsJSON(userId: userId).go() { [weak weakSelf = self] response in
             switch response {
             case .Success(let json):
                 if let buildingsArray = json[LecConstants.LecJSONKey.Buildings].array {
@@ -57,49 +82,65 @@ class LecConfigViewController: UITableViewController {
                 if let camsArray = json[LecConstants.LecJSONKey.Cams].array {
                     weakSelf?.cams = parseCam(camsArray)
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
             }
         }
+ */
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return buildings.count
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        cell.backgroundColor = UIColor.clearColor()
-        cell.contentView.backgroundColor = UIColor.clearColor()
-        cell.textLabel?.textColor = UIColor.whiteColor()
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
+        cell.contentView.backgroundColor = UIColor.clear
+        cell.textLabel?.textColor = UIColor.white
 
-        if cell.respondsToSelector(Selector("setSeparatorInset:")){
-            cell.separatorInset = UIEdgeInsetsZero
+        if cell.responds(to: #selector(setter: UITableViewCell.separatorInset)){
+            cell.separatorInset = UIEdgeInsets.zero
         }
-        if cell.respondsToSelector(Selector("setPreservesSuperviewLayoutMargins:")) {
+        if cell.responds(to: #selector(setter: UIView.preservesSuperviewLayoutMargins)) {
             cell.preservesSuperviewLayoutMargins = false
         }
-        if cell.respondsToSelector(Selector("setLayoutMargins:")){
-            cell.layoutMargins = UIEdgeInsetsZero
+        if cell.responds(to: #selector(setter: UIView.layoutMargins)){
+            cell.layoutMargins = UIEdgeInsets.zero
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier(LecConstants.ReuseIdentifier.BuildingCell, forIndexPath: indexPath) as? LecBuildingCell {
-            cell.building = buildings[indexPath.row]
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: LecConstants.ReuseIdentifier.BuildingCell, for: indexPath) as? LecBuildingCell {
+            cell.building = buildings[(indexPath as NSIndexPath).row]
             return cell
         }
         assert(false, "The dequeued table view cell was of an unknown type!")
         return UITableViewCell()
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
-        let building = buildings[indexPath.row]
+        let building = buildings[(indexPath as NSIndexPath).row]
+        let buildingID = building.iID;
+        print(buildingID)
+        let loginUrl = environment.httpAddress + LecConstants.NetworkSubAddress.GetBuildingDetail
+        Alamofire.request(loginUrl, method: .get, parameters: ["buildingID":buildingID]).responseJSON(completionHandler: { [weak weakSelf = self] (response) in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print(json);
+                //if let buildingsArray = json.array {
+                //}
+            case .failure:
+                JDStatusBarNotification.show(withStatus: "登录失败", dismissAfter: 2.0, styleName: JDStatusBarStyleSuccess);
+            }})
+        
+        /*
         let buildingId = building.buildingId
         let currentFloors = (getCurrentFloors(buildingId)).map { $0.convertToDictionary() }
         let currentAreas = (getCurrentAreas(buildingId)).map { $0.convertToDictionary() }
@@ -122,23 +163,25 @@ class LecConfigViewController: UITableViewController {
         } catch {
             
         }
+        
+        */
     }
     
-    func getCurrentFloors(buildingId: String) -> [LecFloor] {
+    func getCurrentFloors(_ buildingId: String) -> [LecFloor] {
         return floors.filter { $0.buildingId == buildingId}
     }
     
-    func getCurrentAreas(buildingId: String) -> [LecArea] {
+    func getCurrentAreas(_ buildingId: String) -> [LecArea] {
         let floors = getCurrentFloors(buildingId).map { $0.floorId }
         return areas.filter{ floors.contains($0.floorId) }
     }
     
-    func getCurrentDevices(buildingId: String) -> [LecDevice] {
+    func getCurrentDevices(_ buildingId: String) -> [LecDevice] {
         let areas = getCurrentAreas(buildingId).map { $0.areaId }
         return devices.filter{ areas.contains($0.areaId) }
     }
     
-    func getCurrentCams(buildingId: String) -> [LecCam] {
+    func getCurrentCams(_ buildingId: String) -> [LecCam] {
         let devices = getCurrentDevices(buildingId).map { $0.deviceId }
         return cams.filter{ devices.contains( $0.deviceId ) }
     }

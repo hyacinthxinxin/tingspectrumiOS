@@ -29,12 +29,12 @@ class LecTemperatureView: LecCamViewWithNib {
     
     func setupSubviews() {
         temperatureSlider.setMaxFractionDigitsDisplayed(0)
-        temperatureSlider.popUpViewColor = UIColor.clearColor()
-        temperatureSlider.font = UIFont.systemFontOfSize(15)
-        let formatter = NSNumberFormatter()
+        temperatureSlider.popUpViewColor = UIColor.clear
+        temperatureSlider.font = UIFont.systemFont(ofSize: 15)
+        let formatter = NumberFormatter()
         formatter.positiveSuffix = "°C"
         temperatureSlider.numberFormatter = formatter
-        temperatureSlider.showPopUpViewAnimated(false)
+        temperatureSlider.showPopUpView(animated: false)
     }
     
     override var cams: [LecCam]? {
@@ -42,7 +42,7 @@ class LecTemperatureView: LecCamViewWithNib {
             if let cam = cams?.first {
                 switch cam.camType {
                 case 22:
-                    temperatureSlider.thumbTintColor = UIColor.whiteColor()
+                    temperatureSlider.thumbTintColor = UIColor.white
                     temperatureSlider.minimumTrackTintColor = LecConstants.AppColor.CamTintColor
                 case 23:
                     temperatureSlider.thumbTintColor = "#54377b".hexColor
@@ -57,14 +57,14 @@ class LecTemperatureView: LecCamViewWithNib {
         }
     }
     
-    override func refreshState(feedbackAddress: String, statusValue: Int) {
+    override func refreshState(_ feedbackAddress: String, statusValue: Int) {
         if let cam = cams?.first {
             temperatureSlider.value = Float(cam.statusValue)
             //        temperatureSlider.value = Float(cam.statusValue) / Float(cam.maxStatusValue - cam.minStatusValue)
         }
     }
     
-    @IBAction func sliderTemperature(sender: UISlider) {
+    @IBAction func sliderTemperature(_ sender: UISlider) {
         if let cam = cams?.first {
 //            cam.controlValue = cam.minControlValue + Int(sender.value * Float(cam.maxControlValue - cam.minControlValue))
             cam.controlValue = Int(sender.value)

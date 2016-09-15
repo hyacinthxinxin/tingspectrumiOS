@@ -12,22 +12,22 @@ import UIKit
 private let detailNames = ["场景选择", "灯光控制", "温度控制", "窗帘控制"]
 private let detailImageNames = ["scenes_choice", "lights_control", "curtains_control", "temperature_control"]
 
-private let deviceGroupTypeImageNameDictionary = [LecDeviceGroupType.GroupScene: detailImageNames[0],
-                                                  LecDeviceGroupType.GroupLight: detailImageNames[1],
-                                                  LecDeviceGroupType.GroupTemperature: detailImageNames[2],
-                                                  LecDeviceGroupType.GroupCurtain: detailImageNames[3]]
+private let deviceGroupTypeImageNameDictionary = [LecDeviceGroupType.groupScene: detailImageNames[0],
+                                                  LecDeviceGroupType.groupLight: detailImageNames[1],
+                                                  LecDeviceGroupType.groupTemperature: detailImageNames[2],
+                                                  LecDeviceGroupType.groupCurtain: detailImageNames[3]]
 
-private let deviceGroupTypeDescriptionDictionary = [LecDeviceGroupType.GroupScene: detailNames[0],
-                                                    LecDeviceGroupType.GroupLight: detailNames[1],
-                                                    LecDeviceGroupType.GroupTemperature: detailNames[2],
-                                                    LecDeviceGroupType.GroupCurtain: detailNames[3]]
+private let deviceGroupTypeDescriptionDictionary = [LecDeviceGroupType.groupScene: detailNames[0],
+                                                    LecDeviceGroupType.groupLight: detailNames[1],
+                                                    LecDeviceGroupType.groupTemperature: detailNames[2],
+                                                    LecDeviceGroupType.groupCurtain: detailNames[3]]
 
 
 enum LecDeviceGroupType {
-    case GroupScene
-    case GroupLight
-    case GroupTemperature
-    case GroupCurtain
+    case groupScene
+    case groupLight
+    case groupTemperature
+    case groupCurtain
     
     var description: String{
         return deviceGroupTypeDescriptionDictionary[self] ?? "未知的"
@@ -51,17 +51,17 @@ class LecAreaDetailViewController: UICollectionViewController {
     var groupTypes: [LecDeviceGroupType] {
         if let _  = devices {
             var g = [LecDeviceGroupType]()
-            if (devices.contains{ $0.deviceType == .Scene }) {
-                g.append(.GroupScene)
+            if (devices.contains{ $0.deviceType == .scene }) {
+                g.append(.groupScene)
             }
-            if (devices.contains{ $0.deviceType == .Light || $0.deviceType == .LightDimming}) {
-                g.append(.GroupLight)
+            if (devices.contains{ $0.deviceType == .light || $0.deviceType == .lightDimming}) {
+                g.append(.groupLight)
             }
-            if (devices.contains{ $0.deviceType == .AirConditioning } || devices.contains{ $0.deviceType == .FloorHeating } || devices.contains{ $0.deviceType == .FreshAir }) {
-                g.append(.GroupTemperature)
+            if (devices.contains{ $0.deviceType == .airConditioning } || devices.contains{ $0.deviceType == .floorHeating } || devices.contains{ $0.deviceType == .freshAir }) {
+                g.append(.groupTemperature)
             }
-            if (devices.contains{ $0.deviceType == .Curtain }) {
-                g.append(.GroupCurtain)
+            if (devices.contains{ $0.deviceType == .curtain }) {
+                g.append(.groupCurtain)
             }
             return g
         }
@@ -80,33 +80,33 @@ class LecAreaDetailViewController: UICollectionViewController {
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             switch identifier {
             case LecConstants.SegueIdentifier.ShowScene:
-                let sceneViewController = segue.destinationViewController as! LecSceneViewController
-                sceneViewController.title = LecDeviceGroupType.GroupScene.description
-                sceneViewController.devices = devices.filter { $0.deviceType == .Scene }
+                let sceneViewController = segue.destination as! LecSceneViewController
+                sceneViewController.title = LecDeviceGroupType.groupScene.description
+                sceneViewController.devices = devices.filter { $0.deviceType == .scene }
 
             case LecConstants.SegueIdentifier.ShowDevice:
-                let deviceViewController = segue.destinationViewController as! LecDeviceViewController
+                let deviceViewController = segue.destination as! LecDeviceViewController
                 let cell = sender as! LecAreaDetailCell
                 if let deviceGroupType = cell.deviceGroupType {
                     deviceViewController.title = deviceGroupType.description
                     switch deviceGroupType {
-                    case .GroupScene:
-                        deviceViewController.devices = devices.filter { $0.deviceType == .Scene }
-                    case .GroupLight:
-                        var ds = devices.filter { $0.deviceType == .Light }
-                        ds += devices.filter { $0.deviceType == .LightDimming }
+                    case .groupScene:
+                        deviceViewController.devices = devices.filter { $0.deviceType == .scene }
+                    case .groupLight:
+                        var ds = devices.filter { $0.deviceType == .light }
+                        ds += devices.filter { $0.deviceType == .lightDimming }
                         deviceViewController.devices = ds
-                    case .GroupTemperature:
-                        var ds = devices.filter { $0.deviceType == .AirConditioning }
-                        ds += devices.filter { $0.deviceType == .FloorHeating }
-                        ds += devices.filter { $0.deviceType == .FreshAir }
+                    case .groupTemperature:
+                        var ds = devices.filter { $0.deviceType == .airConditioning }
+                        ds += devices.filter { $0.deviceType == .floorHeating }
+                        ds += devices.filter { $0.deviceType == .freshAir }
                         deviceViewController.devices = ds
-                    case .GroupCurtain:
-                        deviceViewController.devices = devices.filter { $0.deviceType == .Curtain}
+                    case .groupCurtain:
+                        deviceViewController.devices = devices.filter { $0.deviceType == .curtain}
                     }
                 }
                 
@@ -117,17 +117,17 @@ class LecAreaDetailViewController: UICollectionViewController {
     
     // MARK: UICollectionViewDataSource
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return groupTypes.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCellWithReuseIdentifier(LecConstants.ReuseIdentifier.AreaDetailCell, forIndexPath: indexPath) as? LecAreaDetailCell {
-            cell.deviceGroupType = groupTypes[indexPath.row]
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LecConstants.ReuseIdentifier.AreaDetailCell, for: indexPath) as? LecAreaDetailCell {
+            cell.deviceGroupType = groupTypes[(indexPath as NSIndexPath).row]
             return cell
         }
         assert(false, "The dequeued collection view cell was of an unknown type!")
@@ -136,12 +136,12 @@ class LecAreaDetailViewController: UICollectionViewController {
     
     // MARK: UICollectionViewDelegate
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? LecAreaDetailCell {
-            if cell.deviceGroupType == .GroupScene {
-                performSegueWithIdentifier(LecConstants.SegueIdentifier.ShowScene, sender: cell)
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? LecAreaDetailCell {
+            if cell.deviceGroupType == .groupScene {
+                performSegue(withIdentifier: LecConstants.SegueIdentifier.ShowScene, sender: cell)
             } else {
-                performSegueWithIdentifier(LecConstants.SegueIdentifier.ShowDevice, sender: cell)
+                performSegue(withIdentifier: LecConstants.SegueIdentifier.ShowDevice, sender: cell)
             }
         }
         
@@ -185,20 +185,20 @@ let hMargin: CGFloat = 70.0
 let hSpacing: CGFloat = 76.0
 
 extension LecAreaDetailViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let size = CGSizeMake(80, 196)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = CGSize(width: 80, height: 196)
         return size
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return view.window!.rootViewController!.traitCollection.horizontalSizeClass == .Compact ? UIEdgeInsets(top:148 - 64, left:(screenWidth - 2 * cellWidth) / 3 - 2, bottom:0, right:(screenWidth - 2 * cellWidth) / 3 - 2) : UIEdgeInsets(top:148 - 64, left:hMargin, bottom: 0, right:hMargin)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact ? UIEdgeInsets(top:148 - 64, left:(screenWidth - 2 * cellWidth) / 3 - 2, bottom:0, right:(screenWidth - 2 * cellWidth) / 3 - 2) : UIEdgeInsets(top:148 - 64, left:hMargin, bottom: 0, right:hMargin)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return  view.window!.rootViewController!.traitCollection.horizontalSizeClass == .Compact ? (screenWidth - 2 * cellWidth) / 3 : hSpacing
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return  view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact ? (screenWidth - 2 * cellWidth) / 3 : hSpacing
     }
 }

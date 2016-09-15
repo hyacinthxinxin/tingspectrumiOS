@@ -35,7 +35,7 @@ class LecSpeedView: LecCamView {
         setupSubviews()
     }
     
-    private func setupSubviews() {
+    fileprivate func setupSubviews() {
 
         if let cams = self.cams {
             let titles = cams.map { $0.camName }
@@ -43,15 +43,15 @@ class LecSpeedView: LecCamView {
             if let speedSlider = self.speedSlider {
                 speedSlider.backgroundColor = LecConstants.AppColor.ThemeBGColor
                 speedSlider.selectedIndex = 0
-                speedSlider.addTarget(self, action: #selector(LecSpeedView.speedChange(_:)), forControlEvents: .ValueChanged)
+                speedSlider.addTarget(self, action: #selector(LecSpeedView.speedChange(_:)), for: .valueChanged)
                 addSubview(speedSlider)
             }
         }
         
         speedNameLabel = UILabel()
         if let dView = self.speedNameLabel {
-            dView.font = UIFont.systemFontOfSize(15)
-            dView.textColor = UIColor.whiteColor()
+            dView.font = UIFont.systemFont(ofSize: 15)
+            dView.textColor = UIColor.white
             dView.text = "风速控制"
             addSubview(dView)
         }
@@ -67,31 +67,31 @@ class LecSpeedView: LecCamView {
         super.layoutSubviews()
         
         if let dView = self.speedNameLabel {
-            dView.autoPinEdgeToSuperviewEdge(.Left, withInset: 14)
-            dView.autoPinEdgeToSuperviewEdge(.Top, withInset: 5)
+            dView.autoPinEdge(toSuperviewEdge: .left, withInset: 14)
+            dView.autoPinEdge(toSuperviewEdge: .top, withInset: 5)
         }
 
         if let speedSlider = self.speedSlider {
-            speedSlider.autoPinEdgeToSuperviewEdge(.Left, withInset: 0)
-            speedSlider.autoPinEdgeToSuperviewEdge(.Right, withInset: 0)
-            speedSlider.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 0)
-            speedSlider.autoPinEdgeToSuperviewEdge(.Top, withInset: 0)
+            speedSlider.autoPinEdge(toSuperviewEdge: .left, withInset: 0)
+            speedSlider.autoPinEdge(toSuperviewEdge: .right, withInset: 0)
+            speedSlider.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
+            speedSlider.autoPinEdge(toSuperviewEdge: .top, withInset: 0)
         }
         
         if let sView = self.separatorView {
-            sView.autoPinEdgeToSuperviewEdge(.Left, withInset: 0)
-            sView.autoPinEdgeToSuperviewEdge(.Right, withInset: 0)
-            sView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 0)
-            sView.autoSetDimension(.Height, toSize: 0.5)
+            sView.autoPinEdge(toSuperviewEdge: .left, withInset: 0)
+            sView.autoPinEdge(toSuperviewEdge: .right, withInset: 0)
+            sView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
+            sView.autoSetDimension(.height, toSize: 0.5)
         }
 
     }
 
-    override func refreshState(feedbackAddress: String, statusValue: Int) {
+    override func refreshState(_ feedbackAddress: String, statusValue: Int) {
         if let cams = self.cams {
             for cam in cams {
                 if cam.statusAddress == feedbackAddress && cam.statusValue == statusValue {
-                    if let index = cams.indexOf(cam) {
+                    if let index = cams.index(of: cam) {
                         speedSlider?.selectedIndex = index
                     }
                     return
@@ -100,7 +100,7 @@ class LecSpeedView: LecCamView {
         }
     }
 
-    func speedChange(sender: LecStepSlider) {
+    func speedChange(_ sender: LecStepSlider) {
         if let cams = self.cams {
             let cam  = cams[sender.selectedIndex]
             LecSocketManager.sharedSocket.sendMessageWithCam(cam)
