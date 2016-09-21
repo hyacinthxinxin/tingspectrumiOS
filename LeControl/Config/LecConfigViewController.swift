@@ -35,20 +35,21 @@ class LecConfigViewController: UITableViewController {
         //        }
 
         loadConfig(with: userId);
+        print(userId)
     }
     
     
     func loadConfig(with userID: String) {
         print(userID)
         let loginUrl = environment.httpAddress + LecConstants.NetworkSubAddress.Buildings
-        Alamofire.request(loginUrl, method: .get, parameters: ["sID":userID]).responseJSON(completionHandler: { [weak weakSelf = self] (response) in
+        Alamofire.request(loginUrl, method: .get, parameters: ["userID":userID]).responseJSON(completionHandler: { [weak weakSelf = self] (response) in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
                 if let buildingsArray = json.array {
                     weakSelf?.buildings = buildingsArray.map {
                         let building = LecBuilding()
-                        if let iID = $0["iID"].string {
+                        if let iID = $0["buildingID"].string {
                             building.iID = iID
                         }
                         if let name = $0["name"].string {

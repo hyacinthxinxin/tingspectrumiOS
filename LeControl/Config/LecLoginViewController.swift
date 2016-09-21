@@ -38,16 +38,16 @@ class LecLoginViewController: UIViewController {
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
+                    print(json)
                     guard json["isAuthed"].boolValue else {
                         if let msg = json["msg"].string{
-                            JDStatusBarNotification.show(withStatus: msg, dismissAfter: 2.0, styleName: JDStatusBarStyleSuccess);
-                            print(msg)
+                            JDStatusBarNotification.show(withStatus: msg, dismissAfter: 2.0, styleName: JDStatusBarStyleError);
                         }
                         return
                     }
                     weakSelf?.delegate?.loginViewController(self, didLogInWithUserId: json["userID"].stringValue)
                 case .failure:
-                    JDStatusBarNotification.show(withStatus: "登录失败", dismissAfter: 2.0, styleName: JDStatusBarStyleSuccess);
+                    JDStatusBarNotification.show(withStatus: "登录失败", dismissAfter: 2.0, styleName: JDStatusBarStyleError);
                 }
             })
         }

@@ -38,14 +38,7 @@ enum LecDeviceType: Int {
     }
 }
 
-class Ting: NSObject {
-    var sID: String = ""
-    var iID: String = ""
-    var name: String = ""
-    var imageName: String = ""
-}
-
-class LecBuilding: Ting {
+class LecBuilding: NSObject {
     var buildingId :String = ""
     var buildingName = ""
     var buildingImageName = ""
@@ -53,7 +46,7 @@ class LecBuilding: Ting {
     var socketPort: UInt16 = 0
 }
 
-class LecFloor: Ting {
+class LecFloor: NSObject {
     var floorId: String = ""
     var buildingId :String = ""
     var floorName: String = ""
@@ -66,7 +59,7 @@ class LecFloor: Ting {
     }
 }
 
-class LecArea: Ting {
+class LecArea: NSObject {
 //    private let areaImageNames = ["living_room", "dining_room", "main_bedroom", "study_room", "childrem_room", "video_room"];
     
     var areaId: String = ""
@@ -87,7 +80,7 @@ class LecArea: Ting {
     }
 }
 
-class LecDevice: Ting {
+class LecDevice: NSObject {
     var deviceId: String = ""
     var areaId: String = ""
     var deviceType: LecDeviceType = .scene
@@ -103,7 +96,7 @@ class LecDevice: Ting {
     }
 }
 
-class LecCam: Ting {
+class LecCam: NSObject {
     var camId: String = ""
     var deviceId: String = ""
     var camName: String = ""

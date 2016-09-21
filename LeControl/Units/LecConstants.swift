@@ -115,13 +115,13 @@ struct LecConstants {
     struct NetworkSubAddress {
 //        static let Login = "api/login"
         static let Login: String = "ting/login"
-        static let Buildings = "ting/getBuildings"
-        static let GetBuildingDetail = "ting/getBuildingDetail"
+        static let Buildings = "ting/GetBuildingsWithUserID"
+        static let GetBuildingDetail = "ting/GetBuildingDetailWithBuildingID"
     }
     
     struct NetworkAddress {
         static let DevelopAddress: String = "http://localhost:9000/"
-        static let ProductAddress: String = "http://www.tingspectrum.com/"
+        static let ProductAddress: String = "http://www.tingspectrum.com:9000/"
     }
     
 }
