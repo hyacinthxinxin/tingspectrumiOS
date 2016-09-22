@@ -16,10 +16,10 @@ class LecAreaCell: UITableViewCell {
         didSet {
             if let area = self.area {
                 if let areaNameLabel = self.areaNameLabel {
-                    areaNameLabel.text = area.areaName
+                    areaNameLabel.text = area.name
                 }
                 if let areaImageView = self.areaImageView {
-                    areaImageView.image = UIImage(named: area.areaImageName)
+                    areaImageView.image = UIImage(named: area.imageName)
                 }
             }
         }

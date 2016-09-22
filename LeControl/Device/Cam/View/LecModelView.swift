@@ -36,7 +36,7 @@ class LecModelView: LecCamView {
             for cam in cams {
                 let cView = UIButton()
                 //                cView.layer.borderWidth = 1
-                switch cam.camType {
+                switch cam.iType {
                 case 50:
                     cView.setImage(mode_heatingImage, for: UIControlState())
                     cView.setImage(mode_heating_selImage, for: .selected)
@@ -62,11 +62,11 @@ class LecModelView: LecCamView {
                 }
                 
                 cView.adjustsImageWhenHighlighted = false
-                cView.tag = cam.camType
+                cView.tag = cam.iType
                 cView.setTitleColor(UIColor.white, for: UIControlState())
                 cView.setTitleColor(LecConstants.AppColor.CamTintColor, for: .selected)
                 cView.setTitleColor(LecConstants.AppColor.CamTintColor, for: [.highlighted, .selected])
-                cView.setTitle(cam.camName, for: UIControlState())
+                cView.setTitle(cam.name, for: UIControlState())
                 cView.addTarget(self, action: #selector(camButtonTapped), for: .touchUpInside)
                 cView.titleLabel?.font = UIFont.systemFont(ofSize: 13)
                 cView.setButtonSpacing(14)
@@ -94,8 +94,8 @@ class LecModelView: LecCamView {
                 if cam.statusAddress == feedbackAddress && cam.statusValue == statusValue {
                     for b in modelButtons {
                         print(b.tag)
-                        print(cam.camType)
-                        b.isSelected = b.tag == cam.camType
+                        print(cam.iType)
+                        b.isSelected = b.tag == cam.iType
                     }
                     return
                 }
@@ -111,7 +111,7 @@ class LecModelView: LecCamView {
             b.isSelected = sender === b
         }
         if let cams = self.cams {
-            let cs = cams.filter { $0.camType == sender.tag }
+            let cs = cams.filter { $0.iType == sender.tag }
             if let cam = cs.first {
                 LecSocketManager.sharedSocket.sendMessageWithCam(cam)
             }

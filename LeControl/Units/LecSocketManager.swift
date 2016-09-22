@@ -31,7 +31,7 @@ class LecSocketManager: NSObject {
     }
     
     func startConnectHost() {
-        //Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(LecSocketManager.connectHost), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(LecSocketManager.connectHost), userInfo: nil, repeats: true)
     }
     
     // 声明断开连接方法,断开socket连接
@@ -47,6 +47,7 @@ class LecSocketManager: NSObject {
         //socketInfo.address = "192.168.100.9"
         socketInfo.port = dataModel.building.socketPort
         //socketInfo.port = 4196
+        print(socketInfo)
         do {
             try socket.connect(toHost: socketInfo.address, onPort: socketInfo.port)
         } catch let error {
@@ -72,21 +73,21 @@ class LecSocketManager: NSObject {
 
 extension LecSocketManager: GCDAsyncSocketDelegate {
     func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
-        print(#function)
+//        print(#function)
         let msg = "已连接上服务端，（地址: " + host + "）"
-        print(msg)
+//        print(msg)
         isErrorNotificationShowed = false
         JDStatusBarNotification.show(withStatus: msg, dismissAfter: 2.0, styleName: JDStatusBarStyleSuccess);
         sock.readData(withTimeout: -1, tag: 0)
     }
     
     func socket(_ sock: GCDAsyncSocket, didWriteDataWithTag tag: Int) {
-        print(#function)
+//        print(#function)
         sock.readData(withTimeout: -1, tag: 0)
     }
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-        print(#function)
+//        print(#function)
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         LecSocketData.handle(data)
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
@@ -94,9 +95,9 @@ extension LecSocketManager: GCDAsyncSocketDelegate {
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-        print(#function)
+//        print(#function)
         let msg = "连接服务端（地址: " + socketInfo.address + "）失败，请检查设置"
-        print(msg)
+//        print(msg)
         if !isErrorNotificationShowed {
             JDStatusBarNotification.show(withStatus: msg, dismissAfter: 3.0, styleName: JDStatusBarStyleError);
             isErrorNotificationShowed = true

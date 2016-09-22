@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import JDStatusBarNotification
 
 class LecDataModel: NSObject {
     var building = LecBuilding()
@@ -40,39 +41,39 @@ class LecDataModel: NSObject {
                 let json = JSON(data: data)
                 parseProject(json)
             }
+            JDStatusBarNotification.show(withStatus: "没有找到配置项目，将在事例程序下运行", dismissAfter: 2.0, styleName: JDStatusBarStyleSuccess);
         }
-
     }
     
     fileprivate func parseProject(_ json: JSON) {
-        if let buildingId =  json[LecConstants.LecJSONKey.BuildingId].string{
-            building.buildingId = buildingId
+        if let buildingID =  json[LecConstants.LecJSONKey.Building, LecConstants.LecJSONKey.BuildingID].string{
+            building.buildingID = buildingID
         }
-        if let buildingName = json[LecConstants.LecJSONKey.BuildingName].string {
-            building.buildingName = buildingName
+        if let buildingName = json[LecConstants.LecJSONKey.Building, LecConstants.LecJSONKey.BuildingName].string {
+            building.name = buildingName
         }
-        if let socketAddress = json[LecConstants.LecJSONKey.IpAddress].string {
+        if let socketAddress = json[LecConstants.LecJSONKey.Building, LecConstants.LecJSONKey.SocketAddress].string {
             building.socketAddress = socketAddress
         }
         
-        if let socketPort = json[LecConstants.LecJSONKey.IpPort].int {
+        if let socketPort = json[LecConstants.LecJSONKey.Building, LecConstants.LecJSONKey.SocketPort].int {
             building.socketPort = UInt16(socketPort)
         }
         
         if let floorsArray = json[LecConstants.LecJSONKey.Floors].array {
-            floors = parseFloor(floorsArray)
+            floors = LecJsonParseHelper.parseFloor(floorsArray)
         }
         
         if let areasArray = json[LecConstants.LecJSONKey.Areas].array {
-            areas = parseArea(areasArray)
+            areas = LecJsonParseHelper.parseArea(areasArray)
         }
         
         if let devicesArray = json[LecConstants.LecJSONKey.Devices].array {
-            devices = parseDevice(devicesArray)
+            devices = LecJsonParseHelper.parseDevice(devicesArray)
         }
         
         if let camsArray = json[LecConstants.LecJSONKey.Cams].array {
-            cams = parseCam(camsArray)
+            cams = LecJsonParseHelper.parseCam(camsArray)
         }
         
     }
@@ -81,9 +82,11 @@ class LecDataModel: NSObject {
         return cams.filter { $0.statusAddress == statusAddress }.first
     }
     
-    func getCamByCamId(_ camId: String) -> LecCam? {
-        return cams.filter { $0.camId == camId }.first
+    func getCamByCamID(_ camID: String) -> LecCam? {
+        return cams.filter { $0.camID == camID }.first
     }
+    
+    
 }
 
 

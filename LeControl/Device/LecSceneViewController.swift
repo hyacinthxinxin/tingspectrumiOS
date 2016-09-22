@@ -11,8 +11,8 @@ import UIKit
 class LecSceneViewController: UIViewController {
     var devices: [LecDevice]! {
         didSet {
-            let deviceIds = devices.map { $0.deviceId }
-            cams = LecSocketManager.sharedSocket.dataModel.cams.filter{ deviceIds.contains( $0.deviceId ) }
+            let deviceIds = devices.map { $0.deviceID }
+            cams = LecSocketManager.sharedSocket.dataModel.cams.filter{ deviceIds.contains( $0.deviceID ) }
         }
     }
     var cams: [LecCam]!
@@ -38,7 +38,7 @@ extension LecSceneViewController: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LecConstants.ReuseIdentifier.SceneCell, for: indexPath) as? LecSceneCell {
             let scene = devices[(indexPath as NSIndexPath).row]
             cell.scene = scene
-            cell.cams = cams.filter { $0.deviceId == scene.deviceId }
+            cell.cams = cams.filter { $0.deviceID == scene.deviceID }
             return cell
         }
         assert(false, "The dequeued collection view cell was of an unknown type!")

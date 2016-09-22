@@ -15,8 +15,8 @@ class LecDeviceViewController: UIViewController {
     
     var devices: [LecDevice]! {
         didSet {
-            let deviceIds = devices.map { $0.deviceId }
-            cams = LecSocketManager.sharedSocket.dataModel.cams.filter{ deviceIds.contains( $0.deviceId ) }
+            let deviceIds = devices.map { $0.deviceID }
+            cams = LecSocketManager.sharedSocket.dataModel.cams.filter{ deviceIds.contains( $0.deviceID ) }
         }
     }
     var cams: [LecCam]!
@@ -49,13 +49,13 @@ extension LecDeviceViewController: UITableViewDataSource {
     
     @objc(tableView:heightForRowAtIndexPath:) func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let device = devices[(indexPath as NSIndexPath).row]
-        let cams = self.cams.filter { $0.deviceId == device.deviceId }
+        let cams = self.cams.filter { $0.deviceID == device.deviceID }
         return LecDeviceCell.calculatorCellHeight(device, cams: cams)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let device = devices[(indexPath as NSIndexPath).row]
-        let cams = self.cams.filter { $0.deviceId == device.deviceId }
+        let cams = self.cams.filter { $0.deviceID == device.deviceID }
         let cell = LecDeviceCell(device: device, cams: cams)
         return cell
     }

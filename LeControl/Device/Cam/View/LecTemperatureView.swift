@@ -40,7 +40,7 @@ class LecTemperatureView: LecCamViewWithNib {
     override var cams: [LecCam]? {
         didSet {
             if let cam = cams?.first {
-                switch cam.camType {
+                switch cam.iType {
                 case 22:
                     temperatureSlider.thumbTintColor = UIColor.white
                     temperatureSlider.minimumTrackTintColor = LecConstants.AppColor.CamTintColor

@@ -17,41 +17,41 @@ struct LecConstants {
     }
     
     struct LecJSONKey {
-        static let BuildingId = "BuildingId"
-        static let BuildingName = "BuildingName"
-        static let IpAddress = "IpAddress"
-        static let IpPort = "IpPort"
-        static let FloorId = "FloorId"
-        static let FloorName = "FloorName"
-        static let FloorImageName = "FloorImageName"
-        static let AreaId = "AreaId"
-        static let AreaName = "AreaName"
-        static let AreaImageName = "AreaImageName"
-        static let DeviceId = "DeviceId"
-        static let DeviceType = "DeviceType"
-        static let DeviceName = "DeviceName"
-        static let DeviceImageName = "DeviceImageName"
-        static let CamId = "CamId"
-        static let CamName = "CamName"
-        static let CamImageName = "CamImageName"
-        static let CamType = "CamType"
-        static let CommandType = "ControlType"//这里服务器和客户端写的名字不同
-        static let ControlAddress = "ControlAddress"
-        static let StatusAddress = "StatusAddress"
-        static let ControlValue = "ControlValue"
-        static let StatusValue = "StatusValue"
-        static let MinControlValue = "MinControlValue"
-        static let MaxControlValue = "MaxControlValue"
-        static let MaxStatusValue = "MaxStatusValue"
-        static let MinStatusValue = "MinStatusValue"
+        static let BuildingID = "buildingID"
+        static let BuildingName = "name"
+        static let SocketAddress = "socketAddress"
+        static let SocketPort = "socketPort"
+        static let FloorID = "floorID"
+        static let FloorName = "name"
+        static let FloorImageName = "imageName"
+        static let AreaID = "areaID"
+        static let AreaName = "name"
+        static let AreaImageName = "imageName"
+        static let DeviceID = "deviceID"
+        static let DeviceType = "iType"
+        static let DeviceName = "name"
+        static let DeviceImageName = "imageName"
+        static let CamID = "camID"
+        static let CamName = "name"
+        static let CamImageName = "imageName"
+        static let CamType = "iType"
+        static let ControlType = "controlType"//这里服务器和客户端写的名字不同
+        static let ControlAddress = "controlAddress"
+        static let StatusAddress = "statusAddress"
+        static let ControlValue = "controlValue"
+        static let StatusValue = "statusValue"
+        static let MinControlValue = "minControlValue"
+        static let MaxControlValue = "maxControlValue"
+        static let MaxStatusValue = "maxStatusValue"
+        static let MinStatusValue = "minStatusValue"
         static let IsVisible = "IsVisible"
-        static let Usn = "Usn"
+        static let Usn = "usn"
         
-        static let Buildings = "Buildings"
-        static let Floors = "Floors"
-        static let Areas = "Areas"
-        static let Devices = "Devices"
-        static let Cams = "Cams"
+        static let Building = "building"
+        static let Floors = "floors"
+        static let Areas = "areas"
+        static let Devices = "devices"
+        static let Cams = "cams"
     }
     
     struct Command {
@@ -86,7 +86,7 @@ struct LecConstants {
     }
     
     struct AddressInfo {
-        static let EmptyAddress = "0.0.0"
+        static let EmptyAddress = "0/0/0"
     }
     
     struct Path {
@@ -113,7 +113,6 @@ struct LecConstants {
     }
     
     struct NetworkSubAddress {
-//        static let Login = "api/login"
         static let Login: String = "ting/login"
         static let Buildings = "ting/GetBuildingsWithUserID"
         static let GetBuildingDetail = "ting/GetBuildingDetailWithBuildingID"

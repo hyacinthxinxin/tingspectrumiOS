@@ -41,7 +41,7 @@ enum LecDeviceGroupType {
 class LecAreaDetailViewController: UICollectionViewController {
     var area: LecArea! {
         didSet {
-            devices = LecSocketManager.sharedSocket.dataModel.devices.filter { $0.areaId == area.areaId }
+            devices = LecSocketManager.sharedSocket.dataModel.devices.filter { $0.areaID == area.areaID }
             self.configureView()
         }
     }
@@ -51,16 +51,16 @@ class LecAreaDetailViewController: UICollectionViewController {
     var groupTypes: [LecDeviceGroupType] {
         if let _  = devices {
             var g = [LecDeviceGroupType]()
-            if (devices.contains{ $0.deviceType == .scene }) {
+            if (devices.contains{ $0.iType == .scene }) {
                 g.append(.groupScene)
             }
-            if (devices.contains{ $0.deviceType == .light || $0.deviceType == .lightDimming}) {
+            if (devices.contains{ $0.iType == .light || $0.iType == .lightDimming}) {
                 g.append(.groupLight)
             }
-            if (devices.contains{ $0.deviceType == .airConditioning } || devices.contains{ $0.deviceType == .floorHeating } || devices.contains{ $0.deviceType == .freshAir }) {
+            if (devices.contains{ $0.iType == .airConditioning } || devices.contains{ $0.iType == .floorHeating } || devices.contains{ $0.iType == .freshAir }) {
                 g.append(.groupTemperature)
             }
-            if (devices.contains{ $0.deviceType == .curtain }) {
+            if (devices.contains{ $0.iType == .curtain }) {
                 g.append(.groupCurtain)
             }
             return g
@@ -69,13 +69,12 @@ class LecAreaDetailViewController: UICollectionViewController {
     }
     
     func configureView() {
-        title = area.areaName
+        title = area.name
         collectionView?.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     // MARK: - Navigation
@@ -86,7 +85,7 @@ class LecAreaDetailViewController: UICollectionViewController {
             case LecConstants.SegueIdentifier.ShowScene:
                 let sceneViewController = segue.destination as! LecSceneViewController
                 sceneViewController.title = LecDeviceGroupType.groupScene.description
-                sceneViewController.devices = devices.filter { $0.deviceType == .scene }
+                sceneViewController.devices = devices.filter { $0.iType == .scene }
 
             case LecConstants.SegueIdentifier.ShowDevice:
                 let deviceViewController = segue.destination as! LecDeviceViewController
@@ -95,18 +94,18 @@ class LecAreaDetailViewController: UICollectionViewController {
                     deviceViewController.title = deviceGroupType.description
                     switch deviceGroupType {
                     case .groupScene:
-                        deviceViewController.devices = devices.filter { $0.deviceType == .scene }
+                        deviceViewController.devices = devices.filter { $0.iType == .scene }
                     case .groupLight:
-                        var ds = devices.filter { $0.deviceType == .light }
-                        ds += devices.filter { $0.deviceType == .lightDimming }
+                        var ds = devices.filter { $0.iType == .light }
+                        ds += devices.filter { $0.iType == .lightDimming }
                         deviceViewController.devices = ds
                     case .groupTemperature:
-                        var ds = devices.filter { $0.deviceType == .airConditioning }
-                        ds += devices.filter { $0.deviceType == .floorHeating }
-                        ds += devices.filter { $0.deviceType == .freshAir }
+                        var ds = devices.filter { $0.iType == .airConditioning }
+                        ds += devices.filter { $0.iType == .floorHeating }
+                        ds += devices.filter { $0.iType == .freshAir }
                         deviceViewController.devices = ds
                     case .groupCurtain:
-                        deviceViewController.devices = devices.filter { $0.deviceType == .curtain}
+                        deviceViewController.devices = devices.filter { $0.iType == .curtain}
                     }
                 }
                 

@@ -38,7 +38,7 @@ class LecSpeedView: LecCamView {
     fileprivate func setupSubviews() {
 
         if let cams = self.cams {
-            let titles = cams.map { $0.camName }
+            let titles = cams.map { $0.name }
             speedSlider = LecStepSlider(titles: titles)
             if let speedSlider = self.speedSlider {
                 speedSlider.backgroundColor = LecConstants.AppColor.ThemeBGColor

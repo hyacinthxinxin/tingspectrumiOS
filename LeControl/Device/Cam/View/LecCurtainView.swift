@@ -43,15 +43,15 @@ class LecCurtainView: LecCamView {
             for cam in cams {
                 let cView = UIButton(type: .custom)
 //                cView.layer.borderWidth = 1
-                cView.setButtonImage(cam.camType)
+                cView.setButtonImage(cam.iType)
                 cView.showsTouchWhenHighlighted = true
                 cView.adjustsImageWhenHighlighted = false
-                cView.tag = cam.camType
+                cView.tag = cam.iType
                 cView.tintColor = LecConstants.AppColor.CamTintColor
                 cView.setTitleColor(UIColor.white, for: UIControlState())
                 cView.setTitleColor(LecConstants.AppColor.CamTintColor, for: .selected)
                 cView.setTitleColor(LecConstants.AppColor.CamTintColor, for: [.highlighted, .selected])
-                cView.setTitle(cam.camName, for: UIControlState())
+                cView.setTitle(cam.name, for: UIControlState())
                 cView.addTarget(self, action: #selector(camButtonTapped), for: .touchUpInside)
                 cView.titleLabel?.font = UIFont.systemFont(ofSize: 13)
                 cView.setButtonSpacing(14)
@@ -85,7 +85,7 @@ class LecCurtainView: LecCamView {
             b.isSelected = sender === b
         }
         if let cams = self.cams {
-            let cs = cams.filter { $0.camType == sender.tag }
+            let cs = cams.filter { $0.iType == sender.tag }
             if let cam = cs.first {
                 LecSocketManager.sharedSocket.sendMessageWithCam(cam)
             }

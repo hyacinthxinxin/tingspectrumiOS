@@ -9,105 +9,107 @@
 import Foundation
 import SwiftyJSON
 
-func parseBuilding(_ jsons: [JSON]) -> [LecBuilding] {
+class LecJsonParseHelper {
+    
+ static func parseBuilding(_ jsons: [JSON]) -> [LecBuilding] {
     return jsons.map {
         let building = LecBuilding()
-        if let buildingId =  $0[LecConstants.LecJSONKey.BuildingId].string{
-            building.buildingId = buildingId
+        if let buildingID =  $0[LecConstants.LecJSONKey.BuildingID].string{
+            building.buildingID = buildingID
         }
         if let buildingName = $0[LecConstants.LecJSONKey.BuildingName].string {
-            building.buildingName = buildingName
+            building.name = buildingName
         }
-        if let socketAddress = $0[LecConstants.LecJSONKey.IpAddress].string {
+        if let socketAddress = $0[LecConstants.LecJSONKey.SocketAddress].string {
             building.socketAddress = socketAddress
         }
         
-        if let socketPort = $0[LecConstants.LecJSONKey.IpPort].int {
+        if let socketPort = $0[LecConstants.LecJSONKey.SocketPort].int {
             building.socketPort = UInt16(socketPort)
         }
         return building
     }
 }
 
-func parseFloor(_ jsons: [JSON]) -> [LecFloor] {
+static func parseFloor(_ jsons: [JSON]) -> [LecFloor] {
     return jsons.map {
         let floor = LecFloor()
-        if let buildingId = $0[LecConstants.LecJSONKey.BuildingId].string {
-            floor.buildingId = buildingId
+        if let buildingID = $0[LecConstants.LecJSONKey.BuildingID].string {
+            floor.buildingID = buildingID
         }
-        if let floorId = $0[LecConstants.LecJSONKey.FloorId].string {
-            floor.floorId = floorId
+        if let floorID = $0[LecConstants.LecJSONKey.FloorID].string {
+            floor.floorID = floorID
         }
         if let floorName = $0[LecConstants.LecJSONKey.FloorName].string {
-            floor.floorName = floorName
+            floor.name = floorName
         }
         return floor
     }
 }
 
-func parseArea(_ jsons: [JSON]) -> [LecArea] {
+static func parseArea(_ jsons: [JSON]) -> [LecArea] {
     return jsons.map {
         let area = LecArea()
-        if let floorId = $0[LecConstants.LecJSONKey.FloorId].string {
-            area.floorId = floorId
+        if let floorID = $0[LecConstants.LecJSONKey.FloorID].string {
+            area.floorID = floorID
         }
-        if let areaId = $0[LecConstants.LecJSONKey.AreaId].string {
-            area.areaId = areaId
+        if let areaID = $0[LecConstants.LecJSONKey.AreaID].string {
+            area.areaID = areaID
         }
         if let areaName = $0[LecConstants.LecJSONKey.AreaName].string {
-            area.areaName = areaName
+            area.name = areaName
         }
         if let areaImageName = $0[LecConstants.LecJSONKey.AreaImageName].string {
-            area.areaImageName = areaImageName
+            area.imageName = areaImageName
         }
         return area
     }
     
 }
 
-func parseDevice(_ jsons: [JSON]) -> [LecDevice] {
+static func parseDevice(_ jsons: [JSON]) -> [LecDevice] {
     return jsons.map {
         let device = LecDevice()
-        if let areaId = $0[LecConstants.LecJSONKey.AreaId].string {
-            device.areaId = areaId
+        if let areaID = $0[LecConstants.LecJSONKey.AreaID].string {
+            device.areaID = areaID
         }
-        if let deviceId = $0[LecConstants.LecJSONKey.DeviceId].string {
-            device.deviceId = deviceId
+        if let deviceID = $0[LecConstants.LecJSONKey.DeviceID].string {
+            device.deviceID = deviceID
         }
         if let deviceName = $0[LecConstants.LecJSONKey.DeviceName].string {
-            device.deviceName = deviceName
+            device.name = deviceName
         }
         if let deviceImageName = $0[LecConstants.LecJSONKey.DeviceImageName].string {
-            device.deviceImageName = deviceImageName
+            device.imageName = deviceImageName
         }
         if let deviceType = $0[LecConstants.LecJSONKey.DeviceType].int {
             if let type = LecDeviceType(rawValue: deviceType) {
-                device.deviceType = type
+                device.iType = type
             }
         }
         return device
     }
 }
 
-func parseCam(_ jsons: [JSON]) -> [LecCam] {
+    static func parseCam(_ jsons: [JSON]) -> [LecCam] {
     return jsons.map {
         let cam = LecCam()
-        if let deviceId = $0[LecConstants.LecJSONKey.DeviceId].string {
-            cam.deviceId = deviceId
+        if let deviceID = $0[LecConstants.LecJSONKey.DeviceID].string {
+            cam.deviceID = deviceID
         }
-        if let camId = $0[LecConstants.LecJSONKey.CamId].string {
-            cam.camId = camId
+        if let camID = $0[LecConstants.LecJSONKey.CamID].string {
+            cam.camID = camID
         }
         if let camName = $0[LecConstants.LecJSONKey.CamName].string {
-            cam.camName = camName
+            cam.name = camName
         }
         
         if let camType = $0[LecConstants.LecJSONKey.CamType].int {
-            cam.camType = camType
+            cam.iType = camType
         }
         
-        if let rawCommandType = $0[LecConstants.LecJSONKey.CommandType].int, let commandType = LecCommand(rawValue: rawCommandType) {
-            cam.commandType = commandType
+        if let rawControlType = $0[LecConstants.LecJSONKey.ControlType].int, let controlType = LecCommand(rawValue: rawControlType) {
+            cam.controlType = controlType
         }
         
         if let controlAddress = $0[LecConstants.LecJSONKey.ControlAddress].string {
@@ -152,4 +154,4 @@ func parseCam(_ jsons: [JSON]) -> [LecCam] {
         return cam
     }
 }
-
+}

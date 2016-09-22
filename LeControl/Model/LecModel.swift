@@ -38,101 +38,45 @@ enum LecDeviceType: Int {
     }
 }
 
-class LecBuilding: NSObject {
-    var buildingId :String = ""
-    var buildingName = ""
-    var buildingImageName = ""
+class Ting: NSObject {
+    var name: String = ""
+    var imageName: String = ""
+}
+
+class LecFloor: Ting {
+    var floorID: String = ""
+    var buildingID :String = ""
+}
+
+class LecBuilding: Ting {
+    var buildingID :String = ""
     var socketAddress: String = ""
     var socketPort: UInt16 = 0
 }
 
-class LecFloor: NSObject {
-    var floorId: String = ""
-    var buildingId :String = ""
-    var floorName: String = ""
-    var floorImageName: String = ""
-    func convertToDictionary() -> [String: AnyObject] {
-        return [LecConstants.LecJSONKey.FloorId: floorId as AnyObject,
-                LecConstants.LecJSONKey.BuildingId: buildingId as AnyObject,
-                LecConstants.LecJSONKey.FloorName: floorName as AnyObject,
-                LecConstants.LecJSONKey.FloorImageName: floorImageName as AnyObject]
-    }
+class LecArea: Ting {
+    var areaID: String = ""
+    var floorID: String = ""
 }
 
-class LecArea: NSObject {
-//    private let areaImageNames = ["living_room", "dining_room", "main_bedroom", "study_room", "childrem_room", "video_room"];
-    
-    var areaId: String = ""
-    var floorId: String = ""
-    var areaName: String = ""
-    var areaImageName: String = ""
-    
-//    override init() {
-//        areaImageName = areaImageNames[Int(arc4random_uniform(5))]
-//    }
-    
-    func convertToDictionary() -> [String: AnyObject] {
-        return [LecConstants.LecJSONKey.AreaId: areaId as AnyObject,
-                LecConstants.LecJSONKey.FloorId: floorId as AnyObject,
-                LecConstants.LecJSONKey.AreaName: areaName as AnyObject,
-                LecConstants.LecJSONKey.AreaImageName: areaImageName as AnyObject
-        ]
-    }
+class LecDevice: Ting {
+    var deviceID: String = ""
+    var areaID: String = ""
+    var iType: LecDeviceType = .scene
 }
 
-class LecDevice: NSObject {
-    var deviceId: String = ""
-    var areaId: String = ""
-    var deviceType: LecDeviceType = .scene
-    var deviceName: String = ""
-    var deviceImageName: String = ""
-    func convertToDictionary() -> [String: AnyObject] {
-        return [LecConstants.LecJSONKey.DeviceId: deviceId as AnyObject,
-                LecConstants.LecJSONKey.AreaId: areaId as AnyObject,
-                LecConstants.LecJSONKey.DeviceType: deviceType.rawValue as AnyObject,
-                LecConstants.LecJSONKey.DeviceName: deviceName as AnyObject,
-                LecConstants.LecJSONKey.DeviceImageName: deviceImageName as AnyObject
-        ]
-    }
-}
-
-class LecCam: NSObject {
-    var camId: String = ""
-    var deviceId: String = ""
-    var camName: String = ""
-    var camImageName: String = ""
-    var camType: Int = 0
-    var commandType: LecCommand = .type1bit
+class LecCam: Ting {
+    var camID: String = ""
+    var deviceID: String = ""
+    var iType: Int = 0
+    var controlType: LecCommand = .type1bit
     var controlAddress: String = ""
     var statusAddress: String = ""
     var controlValue: Int = 0
     var statusValue: Int = 0
-    var minControlValue = 0
-    var maxControlValue = 0
-    var maxStatusValue = 0
-    var minStatusValue = 0
-    var usn = 0
-
-    func updateStatusValue(_ statusValue: Int) {
-        self.statusValue = statusValue
-    }
-    
-    func convertToDictionary() -> [String: AnyObject] {
-        return [LecConstants.LecJSONKey.CamId: camId as AnyObject,
-                LecConstants.LecJSONKey.DeviceId: deviceId as AnyObject,
-                LecConstants.LecJSONKey.CamName: camName as AnyObject,
-                LecConstants.LecJSONKey.CamImageName: camImageName as AnyObject,
-                LecConstants.LecJSONKey.CamType: camType as AnyObject,
-                LecConstants.LecJSONKey.CommandType: commandType.rawValue as AnyObject,
-                LecConstants.LecJSONKey.ControlAddress: controlAddress as AnyObject,
-                LecConstants.LecJSONKey.StatusAddress: statusAddress as AnyObject,
-                LecConstants.LecJSONKey.ControlValue: controlValue as Int as AnyObject,
-                LecConstants.LecJSONKey.StatusValue: statusValue as AnyObject,
-                LecConstants.LecJSONKey.MinControlValue: minControlValue as AnyObject,
-                LecConstants.LecJSONKey.MaxControlValue: maxControlValue as AnyObject,
-                LecConstants.LecJSONKey.MinStatusValue: minStatusValue as AnyObject,
-                LecConstants.LecJSONKey.MaxStatusValue: maxStatusValue as AnyObject,
-                LecConstants.LecJSONKey.Usn: usn as AnyObject
-        ]
-    }
+    var minControlValue: Int = 0
+    var maxControlValue: Int = 0
+    var maxStatusValue: Int = 0
+    var minStatusValue: Int = 0
+    var usn: Int = 0
 }

@@ -22,10 +22,10 @@ class LecSceneCell: UICollectionViewCell {
     var scene: LecDevice? {
         didSet {
             if let scene = self.scene {
-                norImageName = scene.deviceImageName + "_nor"
-                selImageName = scene.deviceImageName + "_sel"
+                norImageName = scene.imageName + "_nor"
+                selImageName = scene.imageName + "_sel"
                 if let sceneNameLabel = self.sceneNameLabel {
-                    sceneNameLabel.text = scene.deviceName
+                    sceneNameLabel.text = scene.name
                 }
                 if let sceneImageView = self.sceneImageView {
                     sceneImageView.image = UIImage(named: norImageName)

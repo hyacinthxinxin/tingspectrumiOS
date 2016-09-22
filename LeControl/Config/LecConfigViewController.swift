@@ -49,11 +49,17 @@ class LecConfigViewController: UITableViewController {
                 if let buildingsArray = json.array {
                     weakSelf?.buildings = buildingsArray.map {
                         let building = LecBuilding()
-                        if let iID = $0["buildingID"].string {
-                            building.iID = iID
+                        if let buildingID = $0["buildingID"].string {
+                            building.buildingID = buildingID
                         }
                         if let name = $0["name"].string {
                             building.name = name
+                        }
+                        if let socketAddress = $0["socketAddress"].string {
+                            building.socketAddress = socketAddress
+                        }
+                        if let socketPort = $0["socketPort"].int{
+                            building.socketPort = UInt16(socketPort)
                         }
                         return building
                     }
@@ -127,64 +133,24 @@ class LecConfigViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let building = buildings[(indexPath as NSIndexPath).row]
-        let buildingID = building.iID;
-        print(buildingID)
-        let loginUrl = environment.httpAddress + LecConstants.NetworkSubAddress.GetBuildingDetail
-        Alamofire.request(loginUrl, method: .get, parameters: ["buildingID":buildingID]).responseJSON(completionHandler: { [weak weakSelf = self] (response) in
+        LecSocketManager.sharedSocket.dataModel.building = building;
+        
+        Alamofire.request(environment.httpAddress + LecConstants.NetworkSubAddress.GetBuildingDetail, method: .get, parameters: ["buildingID":building.buildingID]).responseJSON(completionHandler: { [weak weakSelf = self] (response) in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
                 print(json);
-                //if let buildingsArray = json.array {
-                //}
+                do {
+                    let dataCurrentBuilding = try json.rawData()
+                    try LecFileHelper(fileName: "CurrentProject", fileExtension: .JSON, subDirectory: LecConstants.Path.SubDirectoryName).saveFile(dataCurrentBuilding)
+                    LecSocketManager.sharedSocket.dataModel.loadData()
+                    weakSelf?.delegate?.configViewController(self, didChooseBuilding: building)
+                } catch {
+                    
+                }
             case .failure:
                 JDStatusBarNotification.show(withStatus: "登录失败", dismissAfter: 2.0, styleName: JDStatusBarStyleSuccess);
             }})
-        
-        /*
-        let buildingId = building.buildingId
-        let currentFloors = (getCurrentFloors(buildingId)).map { $0.convertToDictionary() }
-        let currentAreas = (getCurrentAreas(buildingId)).map { $0.convertToDictionary() }
-        let currentDevices = (getCurrentDevices(buildingId)).map { $0.convertToDictionary() }
-        let currentCams = (getCurrentCams(buildingId)).map { $0.convertToDictionary() }
-        let json: JSON = [LecConstants.LecJSONKey.BuildingId: building.buildingId,
-                          LecConstants.LecJSONKey.BuildingName: building.buildingName,
-                          LecConstants.LecJSONKey.IpAddress: building.socketAddress,
-                          LecConstants.LecJSONKey.IpPort: Int(building.socketPort),
-                          LecConstants.LecJSONKey.Floors: currentFloors,
-                          LecConstants.LecJSONKey.Areas: currentAreas,
-                          LecConstants.LecJSONKey.Devices: currentDevices,
-                          LecConstants.LecJSONKey.Cams: currentCams]
-        
-        do {
-            let dataBuilding = try json.rawData()
-            try LecFileHelper(fileName: "CurrentProject", fileExtension: .JSON, subDirectory: LecConstants.Path.SubDirectoryName).saveFile(dataBuilding)
-            LecSocketManager.sharedSocket.dataModel.loadData()
-            delegate?.configViewController(self, didChooseBuilding: building)
-        } catch {
-            
-        }
-        
-        */
-    }
-    
-    func getCurrentFloors(_ buildingId: String) -> [LecFloor] {
-        return floors.filter { $0.buildingId == buildingId}
-    }
-    
-    func getCurrentAreas(_ buildingId: String) -> [LecArea] {
-        let floors = getCurrentFloors(buildingId).map { $0.floorId }
-        return areas.filter{ floors.contains($0.floorId) }
-    }
-    
-    func getCurrentDevices(_ buildingId: String) -> [LecDevice] {
-        let areas = getCurrentAreas(buildingId).map { $0.areaId }
-        return devices.filter{ areas.contains($0.areaId) }
-    }
-    
-    func getCurrentCams(_ buildingId: String) -> [LecCam] {
-        let devices = getCurrentDevices(buildingId).map { $0.deviceId }
-        return cams.filter{ devices.contains( $0.deviceId ) }
     }
 }
 
