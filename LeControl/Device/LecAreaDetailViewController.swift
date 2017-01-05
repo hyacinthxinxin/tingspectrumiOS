@@ -9,25 +9,25 @@
 import UIKit
 
 
-private let detailNames = ["场景选择", "灯光控制", "温度控制", "窗帘控制"]
+private let detailNames = ["场景选择", "灯光控制", "窗帘控制", "温度控制"]
 private let detailImageNames = ["scenes_choice", "lights_control", "curtains_control", "temperature_control"]
 
 private let deviceGroupTypeImageNameDictionary = [LecDeviceGroupType.groupScene: detailImageNames[0],
                                                   LecDeviceGroupType.groupLight: detailImageNames[1],
-                                                  LecDeviceGroupType.groupTemperature: detailImageNames[2],
-                                                  LecDeviceGroupType.groupCurtain: detailImageNames[3]]
+                                                  LecDeviceGroupType.groupCurtain: detailImageNames[2],
+                                                  LecDeviceGroupType.groupTemperature: detailImageNames[3]]
 
 private let deviceGroupTypeDescriptionDictionary = [LecDeviceGroupType.groupScene: detailNames[0],
                                                     LecDeviceGroupType.groupLight: detailNames[1],
-                                                    LecDeviceGroupType.groupTemperature: detailNames[2],
-                                                    LecDeviceGroupType.groupCurtain: detailNames[3]]
+                                                    LecDeviceGroupType.groupCurtain: detailNames[2],
+                                                    LecDeviceGroupType.groupTemperature: detailNames[3]]
 
 
 enum LecDeviceGroupType {
     case groupScene
     case groupLight
-    case groupTemperature
     case groupCurtain
+    case groupTemperature
     
     var description: String{
         return deviceGroupTypeDescriptionDictionary[self] ?? "未知的"
@@ -57,11 +57,11 @@ class LecAreaDetailViewController: UICollectionViewController {
             if (devices.contains{ $0.iType == .light || $0.iType == .lightDimming}) {
                 g.append(.groupLight)
             }
-            if (devices.contains{ $0.iType == .airConditioning } || devices.contains{ $0.iType == .floorHeating } || devices.contains{ $0.iType == .freshAir }) {
-                g.append(.groupTemperature)
-            }
             if (devices.contains{ $0.iType == .curtain }) {
                 g.append(.groupCurtain)
+            }
+            if (devices.contains{ $0.iType == .airConditioning } || devices.contains{ $0.iType == .floorHeating } || devices.contains{ $0.iType == .freshAir }) {
+                g.append(.groupTemperature)
             }
             return g
         }
@@ -99,13 +99,13 @@ class LecAreaDetailViewController: UICollectionViewController {
                         var ds = devices.filter { $0.iType == .light }
                         ds += devices.filter { $0.iType == .lightDimming }
                         deviceViewController.devices = ds
+                    case .groupCurtain:
+                        deviceViewController.devices = devices.filter { $0.iType == .curtain}
                     case .groupTemperature:
                         var ds = devices.filter { $0.iType == .airConditioning }
                         ds += devices.filter { $0.iType == .floorHeating }
                         ds += devices.filter { $0.iType == .freshAir }
                         deviceViewController.devices = ds
-                    case .groupCurtain:
-                        deviceViewController.devices = devices.filter { $0.iType == .curtain}
                     }
                 }
                 
@@ -145,34 +145,6 @@ class LecAreaDetailViewController: UICollectionViewController {
         }
         
     }
-    /*
-     // Uncomment this method to specify if the specified item should be highlighted during tracking
-     override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-     
-     }
-     */
     
 }
 

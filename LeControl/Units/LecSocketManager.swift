@@ -44,10 +44,7 @@ class LecSocketManager: NSObject {
         guard !socket.isConnected else { return }
         cutOffSocket()
         socketInfo.address = dataModel.building.socketAddress
-        //socketInfo.address = "192.168.100.9"
         socketInfo.port = dataModel.building.socketPort
-        //socketInfo.port = 4196
-        print(socketInfo)
         do {
             try socket.connect(toHost: socketInfo.address, onPort: socketInfo.port)
         } catch let error {

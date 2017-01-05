@@ -8,13 +8,13 @@
 
 import UIKit
 
-let imgs = ["mode_back_home","mode_leave_home","mode_receive","mode_video"]
+//let imgs = ["mode_back_home","mode_leave_home","mode_receive","mode_video"]
 
 class LecSceneCell: UICollectionViewCell {
     @IBOutlet weak var sceneImageView: UIImageView!
     @IBOutlet weak var sceneNameLabel: UILabel!
     
-    let img = imgs[Int(arc4random_uniform(3))]
+//    let img = imgs[Int(arc4random_uniform(3))]
     
     var norImageName = ""
     var selImageName = ""
@@ -28,7 +28,13 @@ class LecSceneCell: UICollectionViewCell {
                     sceneNameLabel.text = scene.name
                 }
                 if let sceneImageView = self.sceneImageView {
-                    sceneImageView.image = UIImage(named: norImageName)
+                    
+                    if let img = UIImage(named: norImageName) {
+                        sceneImageView.image = img
+                    } else {
+                        sceneImageView.image = UIImage(named: "mode_other_nor")
+                    }
+                    
                 }
             }
         }
@@ -43,11 +49,19 @@ class LecSceneCell: UICollectionViewCell {
         set {
             if newValue {
                 super.isSelected = true
-                sceneImageView.image = UIImage(named: selImageName)
+                if let img = UIImage(named: selImageName) {
+                    sceneImageView.image = img
+                } else {
+                    sceneImageView.image = UIImage(named: "mode_other_sel")
+                }
                 sceneNameLabel.textColor = LecConstants.AppColor.CamTintColor
             } else if newValue == false {
                 super.isSelected = false
-                sceneImageView.image = UIImage(named: norImageName)
+                if let img = UIImage(named: norImageName) {
+                    sceneImageView.image = img
+                } else {
+                    sceneImageView.image = UIImage(named: "mode_other_nor")
+                }
                 sceneNameLabel.textColor = UIColor.white
             }
         }

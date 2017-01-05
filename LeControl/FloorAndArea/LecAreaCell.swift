@@ -19,7 +19,11 @@ class LecAreaCell: UITableViewCell {
                     areaNameLabel.text = area.name
                 }
                 if let areaImageView = self.areaImageView {
-                    areaImageView.image = UIImage(named: area.imageName)
+                    if let img = UIImage(named: area.imageName+"_room") {
+                        areaImageView.image = img
+                    } else {
+                        areaImageView.image = UIImage(named: "other_room")
+                    }
                 }
             }
         }
@@ -32,17 +36,9 @@ class LecAreaCell: UITableViewCell {
         selectedBackgroundView = v
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        if selected {
-            areaNameLabel.textColor = LecConstants.AppColor.ThemeBGColor
-        } else {
-            areaNameLabel.textColor = UIColor.white
-        }
+        areaNameLabel.textColor = selected ? LecConstants.AppColor.ThemeBGColor : UIColor.white
     }
 
 }

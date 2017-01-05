@@ -7,24 +7,25 @@
 //
 
 import UIKit
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l < r
+    case (nil, _?):
+        return true
+    default:
+        return false
+    }
 }
 
 fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l > r
+    default:
+        return rhs < lhs
+    }
 }
 
 
@@ -85,19 +86,17 @@ class LecFloorAndAreaViewController: UITableViewController {
             if let area = cell.area {
                 areaDetailViewController?.area = area
                 if areaDetailViewController?.navigationController?.viewControllers.count > 1 {
-                    
                     _ = areaDetailViewController?.navigationController?.popToRootViewController(animated: false)
                 }
             }
         }
-        
     }
     
     func hideMasterPane() {
         UIView.animate(withDuration: 0.25, animations: {
             self.splitViewController!.preferredDisplayMode = .primaryHidden
-            }, completion: { _ in
-                self.splitViewController!.preferredDisplayMode = .automatic
+        }, completion: { _ in
+            self.splitViewController!.preferredDisplayMode = .automatic
         })
     }
     
@@ -118,7 +117,6 @@ class LecFloorAndAreaViewController: UITableViewController {
                 if let area = cell.area {
                     areaDetailViewController.area = area
                 }
-                
             case LecConstants.SegueIdentifier.ShowLogin:
                 let navigationController = segue.destination as! UINavigationController
                 let loginViewController = navigationController.topViewController as! LecLoginViewController
