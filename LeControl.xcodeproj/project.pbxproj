@@ -1,608 +1,1700 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		5E020810B31A68695B78A41E /* Pods_LeControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34DFA78CB608C3E0EF4E93B5 /* Pods_LeControl.framework */; };
-		BA0C51E51D770A6300671B74 /* LecUnitFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0C51E41D770A6300671B74 /* LecUnitFunction.swift */; };
-		BA2B4F931D6C752B007D96B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4F921D6C752B007D96B6 /* AppDelegate.swift */; };
-		BA2B4F9D1D6C752B007D96B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4F9B1D6C752B007D96B6 /* Main.storyboard */; };
-		BA2B4F9F1D6C752B007D96B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4F9E1D6C752B007D96B6 /* Assets.xcassets */; };
-		BA2B4FA21D6C752C007D96B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4FA01D6C752C007D96B6 /* LaunchScreen.storyboard */; };
-		BA2B4FAE1D6C787B007D96B6 /* LecFloorAndAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FAD1D6C787B007D96B6 /* LecFloorAndAreaViewController.swift */; };
-		BA2B4FB11D6C78C2007D96B6 /* LecModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FB01D6C78C2007D96B6 /* LecModel.swift */; };
-		BA2B4FB31D6C79CC007D96B6 /* LecDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FB21D6C79CC007D96B6 /* LecDataModel.swift */; };
-		BA2B4FB51D6C7B2F007D96B6 /* LecAreaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FB41D6C7B2F007D96B6 /* LecAreaDetailViewController.swift */; };
-		BA2B4FB71D6C7B50007D96B6 /* LecDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FB61D6C7B50007D96B6 /* LecDeviceViewController.swift */; };
-		BA2B4FB91D6C7D67007D96B6 /* LecConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FB81D6C7D67007D96B6 /* LecConstants.swift */; };
-		BA2B4FBD1D6C7E07007D96B6 /* LecSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FBC1D6C7E07007D96B6 /* LecSocketManager.swift */; };
-		BA2B4FC11D6C7EBC007D96B6 /* LecFileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FC01D6C7EBC007D96B6 /* LecFileHelper.swift */; };
-		BA2B4FC31D6C7F59007D96B6 /* DefaultProject.json in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4FC21D6C7F59007D96B6 /* DefaultProject.json */; };
-		BA2B4FC51D6C7FE4007D96B6 /* LecAreaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FC41D6C7FE4007D96B6 /* LecAreaCell.swift */; };
-		BA2B4FC71D6C872E007D96B6 /* LecAreaDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FC61D6C872E007D96B6 /* LecAreaDetailCell.swift */; };
-		BA2B4FCA1D6EE2D7007D96B6 /* LecLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FC91D6EE2D7007D96B6 /* LecLoginViewController.swift */; };
-		BA2B4FCC1D6EE2EA007D96B6 /* LecConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FCB1D6EE2EA007D96B6 /* LecConfigViewController.swift */; };
-		BA2B4FD01D6EE90B007D96B6 /* LecGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FCF1D6EE90B007D96B6 /* LecGlobal.swift */; };
-		BA2B4FD21D6F170B007D96B6 /* LecBuildingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FD11D6F170B007D96B6 /* LecBuildingCell.swift */; };
-		BA2B4FD41D6F19E6007D96B6 /* LecExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FD31D6F19E6007D96B6 /* LecExtensions.swift */; };
-		BA2B4FD61D6F482E007D96B6 /* LecJsonParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FD51D6F482E007D96B6 /* LecJsonParseHelper.swift */; };
-		BA2B4FD91D716607007D96B6 /* LecSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FD81D716607007D96B6 /* LecSceneViewController.swift */; };
-		BA2B4FDB1D7167CF007D96B6 /* LecSceneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FDA1D7167CF007D96B6 /* LecSceneCell.swift */; };
-		BA2B4FDD1D7167EA007D96B6 /* LecDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FDC1D7167EA007D96B6 /* LecDeviceCell.swift */; };
-		BA2B4FF51D718D14007D96B6 /* LecSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FF41D718D14007D96B6 /* LecSwitchView.swift */; };
-		BA2B4FF81D718E38007D96B6 /* LecCamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FF71D718E38007D96B6 /* LecCamView.swift */; };
-		BA2B4FFA1D718F7B007D96B6 /* LecSwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2B4FF91D718F7B007D96B6 /* LecSwitchView.xib */; };
-		BA2B4FFC1D71926E007D96B6 /* LecDimmingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FFB1D71926E007D96B6 /* LecDimmingView.swift */; };
-		BA2B4FFE1D719293007D96B6 /* LecCurtainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B4FFD1D719293007D96B6 /* LecCurtainView.swift */; };
-		BA2B50041D71EF10007D96B6 /* LecCamViewWithNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B50031D71EF10007D96B6 /* LecCamViewWithNib.swift */; };
-		BA2B50061D71F87A007D96B6 /* LecDimmingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2B50051D71F87A007D96B6 /* LecDimmingView.xib */; };
-		BA2B50081D72C102007D96B6 /* LecTemperatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B50071D72C102007D96B6 /* LecTemperatureView.swift */; };
-		BA2B500A1D72C118007D96B6 /* LecTemperatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2B50091D72C118007D96B6 /* LecTemperatureView.xib */; };
-		BA2B500C1D72D449007D96B6 /* LecSpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B500B1D72D449007D96B6 /* LecSpeedView.swift */; };
-		BA2B500E1D72D464007D96B6 /* LecModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B500D1D72D464007D96B6 /* LecModelView.swift */; };
-		BA2B50131D72EB25007D96B6 /* LecStepSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2B50121D72EB25007D96B6 /* LecStepSlider.swift */; };
-		BA95F8DF1D754DE1009F6F8C /* LecSocketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA95F8DE1D754DE1009F6F8C /* LecSocketData.swift */; };
-		BAF596871D75AA0B00E3ACEC /* LecEternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF596861D75AA0B00E3ACEC /* LecEternal.swift */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXFileReference section */
-		34DFA78CB608C3E0EF4E93B5 /* Pods_LeControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LeControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5846A9020629982D025C7257 /* Pods-LeControl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeControl.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeControl/Pods-LeControl.debug.xcconfig"; sourceTree = "<group>"; };
-		BA0C51E41D770A6300671B74 /* LecUnitFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecUnitFunction.swift; path = Units/LecUnitFunction.swift; sourceTree = "<group>"; };
-		BA2B4F8F1D6C752B007D96B6 /* LeControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA2B4F921D6C752B007D96B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BA2B4F9C1D6C752B007D96B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BA2B4F9E1D6C752B007D96B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BA2B4FA11D6C752C007D96B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		BA2B4FA31D6C752C007D96B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BA2B4FAD1D6C787B007D96B6 /* LecFloorAndAreaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecFloorAndAreaViewController.swift; path = FloorAndArea/LecFloorAndAreaViewController.swift; sourceTree = "<group>"; };
-		BA2B4FB01D6C78C2007D96B6 /* LecModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecModel.swift; path = Model/LecModel.swift; sourceTree = "<group>"; };
-		BA2B4FB21D6C79CC007D96B6 /* LecDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecDataModel.swift; path = Model/LecDataModel.swift; sourceTree = "<group>"; };
-		BA2B4FB41D6C7B2F007D96B6 /* LecAreaDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecAreaDetailViewController.swift; path = Device/LecAreaDetailViewController.swift; sourceTree = "<group>"; };
-		BA2B4FB61D6C7B50007D96B6 /* LecDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecDeviceViewController.swift; path = Device/LecDeviceViewController.swift; sourceTree = "<group>"; };
-		BA2B4FB81D6C7D67007D96B6 /* LecConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecConstants.swift; path = Units/LecConstants.swift; sourceTree = "<group>"; };
-		BA2B4FBC1D6C7E07007D96B6 /* LecSocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecSocketManager.swift; path = Units/LecSocketManager.swift; sourceTree = "<group>"; };
-		BA2B4FC01D6C7EBC007D96B6 /* LecFileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecFileHelper.swift; path = Units/LecFileHelper.swift; sourceTree = "<group>"; };
-		BA2B4FC21D6C7F59007D96B6 /* DefaultProject.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DefaultProject.json; sourceTree = "<group>"; };
-		BA2B4FC41D6C7FE4007D96B6 /* LecAreaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecAreaCell.swift; path = FloorAndArea/LecAreaCell.swift; sourceTree = "<group>"; };
-		BA2B4FC61D6C872E007D96B6 /* LecAreaDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecAreaDetailCell.swift; path = Device/LecAreaDetailCell.swift; sourceTree = "<group>"; };
-		BA2B4FC91D6EE2D7007D96B6 /* LecLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecLoginViewController.swift; path = Config/LecLoginViewController.swift; sourceTree = "<group>"; };
-		BA2B4FCB1D6EE2EA007D96B6 /* LecConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecConfigViewController.swift; path = Config/LecConfigViewController.swift; sourceTree = "<group>"; };
-		BA2B4FCF1D6EE90B007D96B6 /* LecGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecGlobal.swift; path = Units/LecGlobal.swift; sourceTree = "<group>"; };
-		BA2B4FD11D6F170B007D96B6 /* LecBuildingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecBuildingCell.swift; path = Config/LecBuildingCell.swift; sourceTree = "<group>"; };
-		BA2B4FD31D6F19E6007D96B6 /* LecExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecExtensions.swift; path = Units/LecExtensions.swift; sourceTree = "<group>"; };
-		BA2B4FD51D6F482E007D96B6 /* LecJsonParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecJsonParseHelper.swift; path = Units/LecJsonParseHelper.swift; sourceTree = "<group>"; };
-		BA2B4FD81D716607007D96B6 /* LecSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecSceneViewController.swift; path = Device/LecSceneViewController.swift; sourceTree = "<group>"; };
-		BA2B4FDA1D7167CF007D96B6 /* LecSceneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecSceneCell.swift; path = Device/LecSceneCell.swift; sourceTree = "<group>"; };
-		BA2B4FDC1D7167EA007D96B6 /* LecDeviceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecDeviceCell.swift; path = Device/LecDeviceCell.swift; sourceTree = "<group>"; };
-		BA2B4FF41D718D14007D96B6 /* LecSwitchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecSwitchView.swift; path = Device/Cam/View/LecSwitchView.swift; sourceTree = "<group>"; };
-		BA2B4FF71D718E38007D96B6 /* LecCamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecCamView.swift; path = Device/Cam/View/LecCamView.swift; sourceTree = "<group>"; };
-		BA2B4FF91D718F7B007D96B6 /* LecSwitchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LecSwitchView.xib; path = Device/Cam/View/LecSwitchView.xib; sourceTree = "<group>"; };
-		BA2B4FFB1D71926E007D96B6 /* LecDimmingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecDimmingView.swift; path = Device/Cam/View/LecDimmingView.swift; sourceTree = "<group>"; };
-		BA2B4FFD1D719293007D96B6 /* LecCurtainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecCurtainView.swift; path = Device/Cam/View/LecCurtainView.swift; sourceTree = "<group>"; };
-		BA2B50031D71EF10007D96B6 /* LecCamViewWithNib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecCamViewWithNib.swift; path = Device/Cam/View/LecCamViewWithNib.swift; sourceTree = "<group>"; };
-		BA2B50051D71F87A007D96B6 /* LecDimmingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LecDimmingView.xib; path = Device/Cam/View/LecDimmingView.xib; sourceTree = "<group>"; };
-		BA2B50071D72C102007D96B6 /* LecTemperatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecTemperatureView.swift; path = Device/Cam/View/LecTemperatureView.swift; sourceTree = "<group>"; };
-		BA2B50091D72C118007D96B6 /* LecTemperatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LecTemperatureView.xib; path = Device/Cam/View/LecTemperatureView.xib; sourceTree = "<group>"; };
-		BA2B500B1D72D449007D96B6 /* LecSpeedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecSpeedView.swift; path = Device/Cam/View/LecSpeedView.swift; sourceTree = "<group>"; };
-		BA2B500D1D72D464007D96B6 /* LecModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecModelView.swift; path = Device/Cam/View/LecModelView.swift; sourceTree = "<group>"; };
-		BA2B50121D72EB25007D96B6 /* LecStepSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecStepSlider.swift; path = Device/Cam/View/StepSlider/LecStepSlider.swift; sourceTree = "<group>"; };
-		BA95F8DE1D754DE1009F6F8C /* LecSocketData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecSocketData.swift; path = Socket/LecSocketData.swift; sourceTree = "<group>"; };
-		BAF596861D75AA0B00E3ACEC /* LecEternal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecEternal.swift; path = Units/LecEternal.swift; sourceTree = "<group>"; };
-		CEC71C0DE0B2144F48235161 /* Pods-LeControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeControl.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeControl/Pods-LeControl.release.xcconfig"; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		BA2B4F8C1D6C752B007D96B6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5E020810B31A68695B78A41E /* Pods_LeControl.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		502816CAF14867B6F6FDC03B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				5846A9020629982D025C7257 /* Pods-LeControl.debug.xcconfig */,
-				CEC71C0DE0B2144F48235161 /* Pods-LeControl.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		BA2B4F861D6C752B007D96B6 = {
-			isa = PBXGroup;
-			children = (
-				BA2B4F911D6C752B007D96B6 /* LeControl */,
-				BA2B4F901D6C752B007D96B6 /* Products */,
-				502816CAF14867B6F6FDC03B /* Pods */,
-				DDA0FFB10DF8CC3904772E82 /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		BA2B4F901D6C752B007D96B6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				BA2B4F8F1D6C752B007D96B6 /* LeControl.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		BA2B4F911D6C752B007D96B6 /* LeControl */ = {
-			isa = PBXGroup;
-			children = (
-				BA2B4FCF1D6EE90B007D96B6 /* LecGlobal.swift */,
-				BA2B4F921D6C752B007D96B6 /* AppDelegate.swift */,
-				BA2B4FC21D6C7F59007D96B6 /* DefaultProject.json */,
-				BA2B4FA91D6C7778007D96B6 /* Units */,
-				BA95F8DD1D754DC6009F6F8C /* Socket */,
-				BA2B4FAF1D6C78A2007D96B6 /* Model */,
-				BA2B4FC81D6EE2B7007D96B6 /* Config */,
-				BA2B4FAB1D6C77FF007D96B6 /* FloorAndArea */,
-				BA2B4FDE1D7168FF007D96B6 /* AreaDetail */,
-				BA2B4FAC1D6C780C007D96B6 /* Device */,
-				BA2B4F9B1D6C752B007D96B6 /* Main.storyboard */,
-				BA2B4F9E1D6C752B007D96B6 /* Assets.xcassets */,
-				BA2B4FA01D6C752C007D96B6 /* LaunchScreen.storyboard */,
-				BA2B4FA31D6C752C007D96B6 /* Info.plist */,
-			);
-			path = LeControl;
-			sourceTree = "<group>";
-		};
-		BA2B4FA91D6C7778007D96B6 /* Units */ = {
-			isa = PBXGroup;
-			children = (
-				BA2B4FB81D6C7D67007D96B6 /* LecConstants.swift */,
-				BA2B4FC01D6C7EBC007D96B6 /* LecFileHelper.swift */,
-				BA2B4FD31D6F19E6007D96B6 /* LecExtensions.swift */,
-				BAF596861D75AA0B00E3ACEC /* LecEternal.swift */,
-				BA0C51E41D770A6300671B74 /* LecUnitFunction.swift */,
-			);
-			name = Units;
-			sourceTree = "<group>";
-		};
-		BA2B4FAB1D6C77FF007D96B6 /* FloorAndArea */ = {
-			isa = PBXGroup;
-			children = (
-				BA2B4FAD1D6C787B007D96B6 /* LecFloorAndAreaViewController.swift */,
-				BA2B4FC41D6C7FE4007D96B6 /* LecAreaCell.swift */,
-			);
-			name = FloorAndArea;
-			sourceTree = "<group>";
-		};
-		BA2B4FAC1D6C780C007D96B6 /* Device */ = {
-			isa = PBXGroup;
-			children = (
-				BA2B4FDF1D718798007D96B6 /* Cam */,
-				BA2B4FD81D716607007D96B6 /* LecSceneViewController.swift */,
-				BA2B4FDA1D7167CF007D96B6 /* LecSceneCell.swift */,
-				BA2B4FB61D6C7B50007D96B6 /* LecDeviceViewController.swift */,
-				BA2B4FDC1D7167EA007D96B6 /* LecDeviceCell.swift */,
-			);
-			name = Device;
-			sourceTree = "<group>";
-		};
-		BA2B4FAF1D6C78A2007D96B6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				BA2B4FB01D6C78C2007D96B6 /* LecModel.swift */,
-				BA2B4FB21D6C79CC007D96B6 /* LecDataModel.swift */,
-				BA2B4FD51D6F482E007D96B6 /* LecJsonParseHelper.swift */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		BA2B4FC81D6EE2B7007D96B6 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				BA2B4FC91D6EE2D7007D96B6 /* LecLoginViewController.swift */,
-				BA2B4FCB1D6EE2EA007D96B6 /* LecConfigViewController.swift */,
-				BA2B4FD11D6F170B007D96B6 /* LecBuildingCell.swift */,
-			);
-			name = Config;
-			sourceTree = "<group>";
-		};
-		BA2B4FDE1D7168FF007D96B6 /* AreaDetail */ = {
-			isa = PBXGroup;
-			children = (
-				BA2B4FB41D6C7B2F007D96B6 /* LecAreaDetailViewController.swift */,
-				BA2B4FC61D6C872E007D96B6 /* LecAreaDetailCell.swift */,
-			);
-			name = AreaDetail;
-			sourceTree = "<group>";
-		};
-		BA2B4FDF1D718798007D96B6 /* Cam */ = {
-			isa = PBXGroup;
-			children = (
-				BA2B4FF61D718D19007D96B6 /* View */,
-			);
-			name = Cam;
-			sourceTree = "<group>";
-		};
-		BA2B4FF61D718D19007D96B6 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BA2B500F1D72EAA6007D96B6 /* StepSlider */,
-				BA2B4FF71D718E38007D96B6 /* LecCamView.swift */,
-				BA2B50031D71EF10007D96B6 /* LecCamViewWithNib.swift */,
-				BA2B4FF41D718D14007D96B6 /* LecSwitchView.swift */,
-				BA2B4FF91D718F7B007D96B6 /* LecSwitchView.xib */,
-				BA2B4FFB1D71926E007D96B6 /* LecDimmingView.swift */,
-				BA2B50051D71F87A007D96B6 /* LecDimmingView.xib */,
-				BA2B50071D72C102007D96B6 /* LecTemperatureView.swift */,
-				BA2B50091D72C118007D96B6 /* LecTemperatureView.xib */,
-				BA2B4FFD1D719293007D96B6 /* LecCurtainView.swift */,
-				BA2B500B1D72D449007D96B6 /* LecSpeedView.swift */,
-				BA2B500D1D72D464007D96B6 /* LecModelView.swift */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		BA2B500F1D72EAA6007D96B6 /* StepSlider */ = {
-			isa = PBXGroup;
-			children = (
-				BA2B50121D72EB25007D96B6 /* LecStepSlider.swift */,
-			);
-			name = StepSlider;
-			sourceTree = "<group>";
-		};
-		BA95F8DD1D754DC6009F6F8C /* Socket */ = {
-			isa = PBXGroup;
-			children = (
-				BA95F8DE1D754DE1009F6F8C /* LecSocketData.swift */,
-				BA2B4FBC1D6C7E07007D96B6 /* LecSocketManager.swift */,
-			);
-			name = Socket;
-			sourceTree = "<group>";
-		};
-		DDA0FFB10DF8CC3904772E82 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				34DFA78CB608C3E0EF4E93B5 /* Pods_LeControl.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		BA2B4F8E1D6C752B007D96B6 /* LeControl */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BA2B4FA61D6C752C007D96B6 /* Build configuration list for PBXNativeTarget "LeControl" */;
-			buildPhases = (
-				64784564B337BB39321CA290 /* [CP] Check Pods Manifest.lock */,
-				BA2B4F8B1D6C752B007D96B6 /* Sources */,
-				BA2B4F8C1D6C752B007D96B6 /* Frameworks */,
-				BA2B4F8D1D6C752B007D96B6 /* Resources */,
-				6A70000B551C9118EDA0C6E2 /* [CP] Embed Pods Frameworks */,
-				3E87E761A6D8273D9EE6147E /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = LeControl;
-			productName = LeControl;
-			productReference = BA2B4F8F1D6C752B007D96B6 /* LeControl.app */;
-			productType = "com.apple.product-type.application";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		BA2B4F871D6C752B007D96B6 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = TingSpectrum;
-				TargetAttributes = {
-					BA2B4F8E1D6C752B007D96B6 = {
-						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 9YE7FFAQ8S;
-						LastSwiftMigration = 0800;
-					};
-				};
-			};
-			buildConfigurationList = BA2B4F8A1D6C752B007D96B6 /* Build configuration list for PBXProject "LeControl" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = BA2B4F861D6C752B007D96B6;
-			productRefGroup = BA2B4F901D6C752B007D96B6 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				BA2B4F8E1D6C752B007D96B6 /* LeControl */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		BA2B4F8D1D6C752B007D96B6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BA2B500A1D72C118007D96B6 /* LecTemperatureView.xib in Resources */,
-				BA2B4FA21D6C752C007D96B6 /* LaunchScreen.storyboard in Resources */,
-				BA2B4F9F1D6C752B007D96B6 /* Assets.xcassets in Resources */,
-				BA2B4F9D1D6C752B007D96B6 /* Main.storyboard in Resources */,
-				BA2B4FFA1D718F7B007D96B6 /* LecSwitchView.xib in Resources */,
-				BA2B4FC31D6C7F59007D96B6 /* DefaultProject.json in Resources */,
-				BA2B50061D71F87A007D96B6 /* LecDimmingView.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		3E87E761A6D8273D9EE6147E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LeControl/Pods-LeControl-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		64784564B337BB39321CA290 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		6A70000B551C9118EDA0C6E2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LeControl/Pods-LeControl-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		BA2B4F8B1D6C752B007D96B6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BA2B4FF51D718D14007D96B6 /* LecSwitchView.swift in Sources */,
-				BA2B4FD91D716607007D96B6 /* LecSceneViewController.swift in Sources */,
-				BA2B4FFC1D71926E007D96B6 /* LecDimmingView.swift in Sources */,
-				BA2B4FC71D6C872E007D96B6 /* LecAreaDetailCell.swift in Sources */,
-				BA2B4FDD1D7167EA007D96B6 /* LecDeviceCell.swift in Sources */,
-				BA2B4FB11D6C78C2007D96B6 /* LecModel.swift in Sources */,
-				BA2B4FB71D6C7B50007D96B6 /* LecDeviceViewController.swift in Sources */,
-				BA2B4FCA1D6EE2D7007D96B6 /* LecLoginViewController.swift in Sources */,
-				BA95F8DF1D754DE1009F6F8C /* LecSocketData.swift in Sources */,
-				BA0C51E51D770A6300671B74 /* LecUnitFunction.swift in Sources */,
-				BA2B50041D71EF10007D96B6 /* LecCamViewWithNib.swift in Sources */,
-				BA2B4FBD1D6C7E07007D96B6 /* LecSocketManager.swift in Sources */,
-				BA2B4FB31D6C79CC007D96B6 /* LecDataModel.swift in Sources */,
-				BA2B4FAE1D6C787B007D96B6 /* LecFloorAndAreaViewController.swift in Sources */,
-				BA2B50081D72C102007D96B6 /* LecTemperatureView.swift in Sources */,
-				BA2B4FF81D718E38007D96B6 /* LecCamView.swift in Sources */,
-				BA2B500C1D72D449007D96B6 /* LecSpeedView.swift in Sources */,
-				BA2B4FC51D6C7FE4007D96B6 /* LecAreaCell.swift in Sources */,
-				BA2B4FD21D6F170B007D96B6 /* LecBuildingCell.swift in Sources */,
-				BA2B4FB91D6C7D67007D96B6 /* LecConstants.swift in Sources */,
-				BA2B4FC11D6C7EBC007D96B6 /* LecFileHelper.swift in Sources */,
-				BA2B4FFE1D719293007D96B6 /* LecCurtainView.swift in Sources */,
-				BA2B4FCC1D6EE2EA007D96B6 /* LecConfigViewController.swift in Sources */,
-				BA2B4FD01D6EE90B007D96B6 /* LecGlobal.swift in Sources */,
-				BA2B4FD61D6F482E007D96B6 /* LecJsonParseHelper.swift in Sources */,
-				BAF596871D75AA0B00E3ACEC /* LecEternal.swift in Sources */,
-				BA2B500E1D72D464007D96B6 /* LecModelView.swift in Sources */,
-				BA2B4FD41D6F19E6007D96B6 /* LecExtensions.swift in Sources */,
-				BA2B4F931D6C752B007D96B6 /* AppDelegate.swift in Sources */,
-				BA2B50131D72EB25007D96B6 /* LecStepSlider.swift in Sources */,
-				BA2B4FB51D6C7B2F007D96B6 /* LecAreaDetailViewController.swift in Sources */,
-				BA2B4FDB1D7167CF007D96B6 /* LecSceneCell.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		BA2B4F9B1D6C752B007D96B6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BA2B4F9C1D6C752B007D96B6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		BA2B4FA01D6C752C007D96B6 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BA2B4FA11D6C752C007D96B6 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		BA2B4FA41D6C752C007D96B6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		BA2B4FA51D6C752C007D96B6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		BA2B4FA71D6C752C007D96B6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5846A9020629982D025C7257 /* Pods-LeControl.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9YE7FFAQ8S;
-				INFOPLIST_FILE = LeControl/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fanxin.tingspectrum.LeControl;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		BA2B4FA81D6C752C007D96B6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CEC71C0DE0B2144F48235161 /* Pods-LeControl.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9YE7FFAQ8S;
-				INFOPLIST_FILE = LeControl/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fanxin.tingspectrum.LeControl;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		BA2B4F8A1D6C752B007D96B6 /* Build configuration list for PBXProject "LeControl" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BA2B4FA41D6C752C007D96B6 /* Debug */,
-				BA2B4FA51D6C752C007D96B6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BA2B4FA61D6C752C007D96B6 /* Build configuration list for PBXNativeTarget "LeControl" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BA2B4FA71D6C752C007D96B6 /* Debug */,
-				BA2B4FA81D6C752C007D96B6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = BA2B4F871D6C752B007D96B6 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>34DFA78CB608C3E0EF4E93B5</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods_LeControl.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>3E87E761A6D8273D9EE6147E</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>[CP] Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-LeControl/Pods-LeControl-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>502816CAF14867B6F6FDC03B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5846A9020629982D025C7257</string>
+				<string>CEC71C0DE0B2144F48235161</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5846A9020629982D025C7257</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-LeControl.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-LeControl/Pods-LeControl.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5E020810B31A68695B78A41E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>34DFA78CB608C3E0EF4E93B5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>64784564B337BB39321CA290</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>[CP] Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [ $? != 0 ] ; then
+    # print error to STDERR
+    echo "error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation." &gt;&amp;2
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>6A70000B551C9118EDA0C6E2</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>[CP] Embed Pods Frameworks</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-LeControl/Pods-LeControl-frameworks.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>BA0C51E41D770A6300671B74</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecUnitFunction.swift</string>
+			<key>path</key>
+			<string>Units/LecUnitFunction.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA0C51E51D770A6300671B74</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA0C51E41D770A6300671B74</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4F861D6C752B007D96B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA2B4F911D6C752B007D96B6</string>
+				<string>BA2B4F901D6C752B007D96B6</string>
+				<string>502816CAF14867B6F6FDC03B</string>
+				<string>DDA0FFB10DF8CC3904772E82</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4F871D6C752B007D96B6</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastSwiftUpdateCheck</key>
+				<string>0730</string>
+				<key>LastUpgradeCheck</key>
+				<string>0820</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>TingSpectrum</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>BA2B4F8E1D6C752B007D96B6</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>7.3.1</string>
+						<key>DevelopmentTeam</key>
+						<string>9YE7FFAQ8S</string>
+						<key>LastSwiftMigration</key>
+						<string>0800</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>BA2B4F8A1D6C752B007D96B6</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>BA2B4F861D6C752B007D96B6</string>
+			<key>productRefGroup</key>
+			<string>BA2B4F901D6C752B007D96B6</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>BA2B4F8E1D6C752B007D96B6</string>
+			</array>
+		</dict>
+		<key>BA2B4F8A1D6C752B007D96B6</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>BA2B4FA41D6C752C007D96B6</string>
+				<string>BA2B4FA51D6C752C007D96B6</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>BA2B4F8B1D6C752B007D96B6</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>BA2B4FF51D718D14007D96B6</string>
+				<string>BA2B4FD91D716607007D96B6</string>
+				<string>BA2B4FFC1D71926E007D96B6</string>
+				<string>BA2B4FC71D6C872E007D96B6</string>
+				<string>BA2B4FDD1D7167EA007D96B6</string>
+				<string>BA2B4FB11D6C78C2007D96B6</string>
+				<string>BA2B4FB71D6C7B50007D96B6</string>
+				<string>BA2B4FCA1D6EE2D7007D96B6</string>
+				<string>BA95F8DF1D754DE1009F6F8C</string>
+				<string>BA0C51E51D770A6300671B74</string>
+				<string>BA2B50041D71EF10007D96B6</string>
+				<string>BA2B4FBD1D6C7E07007D96B6</string>
+				<string>BA2B4FB31D6C79CC007D96B6</string>
+				<string>BA2B4FAE1D6C787B007D96B6</string>
+				<string>BA2B50081D72C102007D96B6</string>
+				<string>BA2B4FF81D718E38007D96B6</string>
+				<string>BA2B500C1D72D449007D96B6</string>
+				<string>BA2B4FC51D6C7FE4007D96B6</string>
+				<string>BA2B4FD21D6F170B007D96B6</string>
+				<string>BA2B4FB91D6C7D67007D96B6</string>
+				<string>BA2B4FC11D6C7EBC007D96B6</string>
+				<string>BA2B4FFE1D719293007D96B6</string>
+				<string>BA2B4FCC1D6EE2EA007D96B6</string>
+				<string>BA2B4FD01D6EE90B007D96B6</string>
+				<string>BA2B4FD61D6F482E007D96B6</string>
+				<string>BAF596871D75AA0B00E3ACEC</string>
+				<string>BA2B500E1D72D464007D96B6</string>
+				<string>BA2B4FD41D6F19E6007D96B6</string>
+				<string>BA2B4F931D6C752B007D96B6</string>
+				<string>BA2B50131D72EB25007D96B6</string>
+				<string>BA2B4FB51D6C7B2F007D96B6</string>
+				<string>BA2B4FDB1D7167CF007D96B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>BA2B4F8C1D6C752B007D96B6</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>5E020810B31A68695B78A41E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>BA2B4F8D1D6C752B007D96B6</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>BA2B500A1D72C118007D96B6</string>
+				<string>BA2B4FA21D6C752C007D96B6</string>
+				<string>BA2B4F9F1D6C752B007D96B6</string>
+				<string>BA2B4F9D1D6C752B007D96B6</string>
+				<string>BA2B4FFA1D718F7B007D96B6</string>
+				<string>BA2B4FC31D6C7F59007D96B6</string>
+				<string>BA2B50061D71F87A007D96B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>BA2B4F8E1D6C752B007D96B6</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>BA2B4FA61D6C752C007D96B6</string>
+			<key>buildPhases</key>
+			<array>
+				<string>64784564B337BB39321CA290</string>
+				<string>BA2B4F8B1D6C752B007D96B6</string>
+				<string>BA2B4F8C1D6C752B007D96B6</string>
+				<string>BA2B4F8D1D6C752B007D96B6</string>
+				<string>6A70000B551C9118EDA0C6E2</string>
+				<string>3E87E761A6D8273D9EE6147E</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>LeControl</string>
+			<key>productName</key>
+			<string>LeControl</string>
+			<key>productReference</key>
+			<string>BA2B4F8F1D6C752B007D96B6</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>BA2B4F8F1D6C752B007D96B6</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>LeControl.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>BA2B4F901D6C752B007D96B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA2B4F8F1D6C752B007D96B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4F911D6C752B007D96B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA2B4FCF1D6EE90B007D96B6</string>
+				<string>BA2B4F921D6C752B007D96B6</string>
+				<string>BA2B4FC21D6C7F59007D96B6</string>
+				<string>BA2B4FA91D6C7778007D96B6</string>
+				<string>BA95F8DD1D754DC6009F6F8C</string>
+				<string>BA2B4FAF1D6C78A2007D96B6</string>
+				<string>BA2B4FC81D6EE2B7007D96B6</string>
+				<string>BA2B4FAB1D6C77FF007D96B6</string>
+				<string>BA2B4FDE1D7168FF007D96B6</string>
+				<string>BA2B4FAC1D6C780C007D96B6</string>
+				<string>BA2B4F9B1D6C752B007D96B6</string>
+				<string>BA2B4F9E1D6C752B007D96B6</string>
+				<string>BA2B4FA01D6C752C007D96B6</string>
+				<string>BA2B4FA31D6C752C007D96B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>LeControl</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4F921D6C752B007D96B6</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AppDelegate.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4F931D6C752B007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4F921D6C752B007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4F9B1D6C752B007D96B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA2B4F9C1D6C752B007D96B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4F9C1D6C752B007D96B6</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4F9D1D6C752B007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4F9B1D6C752B007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4F9E1D6C752B007D96B6</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Assets.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4F9F1D6C752B007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4F9E1D6C752B007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FA01D6C752C007D96B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA2B4FA11D6C752C007D96B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FA11D6C752C007D96B6</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FA21D6C752C007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FA01D6C752C007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FA31D6C752C007D96B6</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FA41D6C752C007D96B6</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INFINITE_RECURSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_SUSPICIOUS_MOVE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>ENABLE_TESTABILITY</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.0</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>BA2B4FA51D6C752C007D96B6</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INFINITE_RECURSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_SUSPICIOUS_MOVE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf-with-dsym</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.0</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Owholemodule</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>BA2B4FA61D6C752C007D96B6</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>BA2B4FA71D6C752C007D96B6</string>
+				<string>BA2B4FA81D6C752C007D96B6</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>BA2B4FA71D6C752C007D96B6</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>5846A9020629982D025C7257</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES</key>
+				<string>YES</string>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string>iPhone Developer</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>9YE7FFAQ8S</string>
+				<key>INFOPLIST_FILE</key>
+				<string>LeControl/Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.fanxin.tingspectrum.LeControl</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>BA2B4FA81D6C752C007D96B6</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>CEC71C0DE0B2144F48235161</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES</key>
+				<string>YES</string>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string>iPhone Developer</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>9YE7FFAQ8S</string>
+				<key>INFOPLIST_FILE</key>
+				<string>LeControl/Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.fanxin.tingspectrum.LeControl</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>BA2B4FA91D6C7778007D96B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA2B4FB81D6C7D67007D96B6</string>
+				<string>BA2B4FC01D6C7EBC007D96B6</string>
+				<string>BA2B4FD31D6F19E6007D96B6</string>
+				<string>BAF596861D75AA0B00E3ACEC</string>
+				<string>BA0C51E41D770A6300671B74</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Units</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FAB1D6C77FF007D96B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA2B4FAD1D6C787B007D96B6</string>
+				<string>BA2B4FC41D6C7FE4007D96B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>FloorAndArea</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FAC1D6C780C007D96B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA2B4FDF1D718798007D96B6</string>
+				<string>BA2B4FD81D716607007D96B6</string>
+				<string>BA2B4FDA1D7167CF007D96B6</string>
+				<string>BA2B4FB61D6C7B50007D96B6</string>
+				<string>BA2B4FDC1D7167EA007D96B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Device</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FAD1D6C787B007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecFloorAndAreaViewController.swift</string>
+			<key>path</key>
+			<string>FloorAndArea/LecFloorAndAreaViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FAE1D6C787B007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FAD1D6C787B007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FAF1D6C78A2007D96B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA2B4FB01D6C78C2007D96B6</string>
+				<string>BA2B4FB21D6C79CC007D96B6</string>
+				<string>BA2B4FD51D6F482E007D96B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Model</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FB01D6C78C2007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecModel.swift</string>
+			<key>path</key>
+			<string>Model/LecModel.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FB11D6C78C2007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FB01D6C78C2007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FB21D6C79CC007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecDataModel.swift</string>
+			<key>path</key>
+			<string>Model/LecDataModel.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FB31D6C79CC007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FB21D6C79CC007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FB41D6C7B2F007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecAreaDetailViewController.swift</string>
+			<key>path</key>
+			<string>Device/LecAreaDetailViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FB51D6C7B2F007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FB41D6C7B2F007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FB61D6C7B50007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecDeviceViewController.swift</string>
+			<key>path</key>
+			<string>Device/LecDeviceViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FB71D6C7B50007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FB61D6C7B50007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FB81D6C7D67007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecConstants.swift</string>
+			<key>path</key>
+			<string>Units/LecConstants.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FB91D6C7D67007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FB81D6C7D67007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FBC1D6C7E07007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecSocketManager.swift</string>
+			<key>path</key>
+			<string>Units/LecSocketManager.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FBD1D6C7E07007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FBC1D6C7E07007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FC01D6C7EBC007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecFileHelper.swift</string>
+			<key>path</key>
+			<string>Units/LecFileHelper.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FC11D6C7EBC007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FC01D6C7EBC007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FC21D6C7F59007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.json</string>
+			<key>path</key>
+			<string>DefaultProject.json</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FC31D6C7F59007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FC21D6C7F59007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FC41D6C7FE4007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecAreaCell.swift</string>
+			<key>path</key>
+			<string>FloorAndArea/LecAreaCell.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FC51D6C7FE4007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FC41D6C7FE4007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FC61D6C872E007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecAreaDetailCell.swift</string>
+			<key>path</key>
+			<string>Device/LecAreaDetailCell.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FC71D6C872E007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FC61D6C872E007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FC81D6EE2B7007D96B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA2B4FC91D6EE2D7007D96B6</string>
+				<string>BA2B4FCB1D6EE2EA007D96B6</string>
+				<string>BA2B4FD11D6F170B007D96B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Config</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FC91D6EE2D7007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecLoginViewController.swift</string>
+			<key>path</key>
+			<string>Config/LecLoginViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FCA1D6EE2D7007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FC91D6EE2D7007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FCB1D6EE2EA007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecConfigViewController.swift</string>
+			<key>path</key>
+			<string>Config/LecConfigViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FCC1D6EE2EA007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FCB1D6EE2EA007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FCF1D6EE90B007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecGlobal.swift</string>
+			<key>path</key>
+			<string>Units/LecGlobal.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FD01D6EE90B007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FCF1D6EE90B007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FD11D6F170B007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecBuildingCell.swift</string>
+			<key>path</key>
+			<string>Config/LecBuildingCell.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FD21D6F170B007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FD11D6F170B007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FD31D6F19E6007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecExtensions.swift</string>
+			<key>path</key>
+			<string>Units/LecExtensions.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FD41D6F19E6007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FD31D6F19E6007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FD51D6F482E007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecJsonParseHelper.swift</string>
+			<key>path</key>
+			<string>Units/LecJsonParseHelper.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FD61D6F482E007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FD51D6F482E007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FD81D716607007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecSceneViewController.swift</string>
+			<key>path</key>
+			<string>Device/LecSceneViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FD91D716607007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FD81D716607007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FDA1D7167CF007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecSceneCell.swift</string>
+			<key>path</key>
+			<string>Device/LecSceneCell.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FDB1D7167CF007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FDA1D7167CF007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FDC1D7167EA007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecDeviceCell.swift</string>
+			<key>path</key>
+			<string>Device/LecDeviceCell.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FDD1D7167EA007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FDC1D7167EA007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FDE1D7168FF007D96B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA2B4FB41D6C7B2F007D96B6</string>
+				<string>BA2B4FC61D6C872E007D96B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>AreaDetail</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FDF1D718798007D96B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA2B4FF61D718D19007D96B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Cam</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FF41D718D14007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecSwitchView.swift</string>
+			<key>path</key>
+			<string>Device/Cam/View/LecSwitchView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FF51D718D14007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FF41D718D14007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FF61D718D19007D96B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA2B500F1D72EAA6007D96B6</string>
+				<string>BA2B4FF71D718E38007D96B6</string>
+				<string>BA2B50031D71EF10007D96B6</string>
+				<string>BA2B4FF41D718D14007D96B6</string>
+				<string>BA2B4FF91D718F7B007D96B6</string>
+				<string>BA2B4FFB1D71926E007D96B6</string>
+				<string>BA2B50051D71F87A007D96B6</string>
+				<string>BA2B50071D72C102007D96B6</string>
+				<string>BA2B50091D72C118007D96B6</string>
+				<string>BA2B4FFD1D719293007D96B6</string>
+				<string>BA2B500B1D72D449007D96B6</string>
+				<string>BA2B500D1D72D464007D96B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>View</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FF71D718E38007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecCamView.swift</string>
+			<key>path</key>
+			<string>Device/Cam/View/LecCamView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FF81D718E38007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FF71D718E38007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FF91D718F7B007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>name</key>
+			<string>LecSwitchView.xib</string>
+			<key>path</key>
+			<string>Device/Cam/View/LecSwitchView.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FFA1D718F7B007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FF91D718F7B007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FFB1D71926E007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecDimmingView.swift</string>
+			<key>path</key>
+			<string>Device/Cam/View/LecDimmingView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FFC1D71926E007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FFB1D71926E007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B4FFD1D719293007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecCurtainView.swift</string>
+			<key>path</key>
+			<string>Device/Cam/View/LecCurtainView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B4FFE1D719293007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B4FFD1D719293007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B50031D71EF10007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecCamViewWithNib.swift</string>
+			<key>path</key>
+			<string>Device/Cam/View/LecCamViewWithNib.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B50041D71EF10007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B50031D71EF10007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B50051D71F87A007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>name</key>
+			<string>LecDimmingView.xib</string>
+			<key>path</key>
+			<string>Device/Cam/View/LecDimmingView.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B50061D71F87A007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B50051D71F87A007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B50071D72C102007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecTemperatureView.swift</string>
+			<key>path</key>
+			<string>Device/Cam/View/LecTemperatureView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B50081D72C102007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B50071D72C102007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B50091D72C118007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>name</key>
+			<string>LecTemperatureView.xib</string>
+			<key>path</key>
+			<string>Device/Cam/View/LecTemperatureView.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B500A1D72C118007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B50091D72C118007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B500B1D72D449007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecSpeedView.swift</string>
+			<key>path</key>
+			<string>Device/Cam/View/LecSpeedView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B500C1D72D449007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B500B1D72D449007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B500D1D72D464007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecModelView.swift</string>
+			<key>path</key>
+			<string>Device/Cam/View/LecModelView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B500E1D72D464007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B500D1D72D464007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA2B500F1D72EAA6007D96B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA2B50121D72EB25007D96B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>StepSlider</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B50121D72EB25007D96B6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecStepSlider.swift</string>
+			<key>path</key>
+			<string>Device/Cam/View/StepSlider/LecStepSlider.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA2B50131D72EB25007D96B6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA2B50121D72EB25007D96B6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA95F8DD1D754DC6009F6F8C</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA95F8DE1D754DE1009F6F8C</string>
+				<string>BA2B4FBC1D6C7E07007D96B6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Socket</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA95F8DE1D754DE1009F6F8C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecSocketData.swift</string>
+			<key>path</key>
+			<string>Socket/LecSocketData.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BA95F8DF1D754DE1009F6F8C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BA95F8DE1D754DE1009F6F8C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BAF596861D75AA0B00E3ACEC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LecEternal.swift</string>
+			<key>path</key>
+			<string>Units/LecEternal.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BAF596871D75AA0B00E3ACEC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BAF596861D75AA0B00E3ACEC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>CEC71C0DE0B2144F48235161</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-LeControl.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-LeControl/Pods-LeControl.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>DDA0FFB10DF8CC3904772E82</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>34DFA78CB608C3E0EF4E93B5</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>BA2B4F871D6C752B007D96B6</string>
+</dict>
+</plist>
