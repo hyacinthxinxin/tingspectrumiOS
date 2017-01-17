@@ -4843,7 +4843,7 @@
               {
               "floorID": "57e26a0fa55c7e056c14b5a8",
               "areaID": "57e26a25a55c7e056c14b5ac",
-              "imageName": "video_room",
+              "imageName": "video",
               "name": "影视厅",
               "buildingID": "57dcebf8a55c7ec9acfae704",
               "serverVersion": "Version1.0.0"
@@ -4851,7 +4851,7 @@
               {
               "floorID": "57e26a14a55c7e056c14b5a9",
               "areaID": "57e26a2da55c7e056c14b5ad",
-              "imageName": "living_room",
+              "imageName": "living",
               "name": "客厅",
               "buildingID": "57dcebf8a55c7ec9acfae704",
               "serverVersion": "Version1.0.0"
@@ -4859,7 +4859,7 @@
               {
               "floorID": "57e26a14a55c7e056c14b5a9",
               "areaID": "57e26a36a55c7e056c14b5ae",
-              "imageName": "dining_room",
+              "imageName": "dining",
               "name": "餐厅",
               "buildingID": "57dcebf8a55c7ec9acfae704",
               "serverVersion": "Version1.0.0"
@@ -4867,7 +4867,7 @@
               {
               "floorID": "57e26a18a55c7e056c14b5aa",
               "areaID": "57e26a49a55c7e056c14b5af",
-              "imageName": "main_bedroom",
+              "imageName": "main-bed",
               "name": "女主人卧室",
               "buildingID": "57dcebf8a55c7ec9acfae704",
               "serverVersion": "Version1.0.0"
@@ -4875,7 +4875,7 @@
               {
               "floorID": "57e26a18a55c7e056c14b5aa",
               "areaID": "57e26a50a55c7e056c14b5b0",
-              "imageName": "childrem_room",
+              "imageName": "children",
               "name": "儿童房",
               "buildingID": "57dcebf8a55c7ec9acfae704",
               "serverVersion": "Version1.0.0"
@@ -4883,7 +4883,7 @@
               {
               "floorID": "57e26a1ca55c7e056c14b5ab",
               "areaID": "57e26a5aa55c7e056c14b5b1",
-              "imageName": "main_bedroom",
+              "imageName": "main-bed",
               "name": "男主人卧室",
               "buildingID": "57dcebf8a55c7ec9acfae704",
               "serverVersion": "Version1.0.0"
@@ -4891,7 +4891,7 @@
               {
               "floorID": "57e26a1ca55c7e056c14b5ab",
               "areaID": "57e26a60a55c7e056c14b5b2",
-              "imageName": "study_01_room",
+              "imageName": "reading",
               "name": "书房",
               "buildingID": "57dcebf8a55c7ec9acfae704",
               "serverVersion": "Version1.0.0"
