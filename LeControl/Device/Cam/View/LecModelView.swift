@@ -37,22 +37,22 @@ class LecModelView: LecCamView {
                 let cView = UIButton()
                 //                cView.layer.borderWidth = 1
                 switch cam.iType {
-                case 50:
+                case 42:
                     cView.setImage(mode_heatingImage, for: UIControlState())
                     cView.setImage(mode_heating_selImage, for: .selected)
                     cView.setImage(mode_heating_selImage, for: [.highlighted, .selected])
                     
-                case 51:
+                case 43:
                     cView.setImage(mode_refrigerationImage, for: UIControlState())
                     cView.setImage(mode_refrigeration_selImage, for: .selected)
                     cView.setImage(mode_refrigeration_selImage, for: [.highlighted, .selected])
                     
-                case 52:
+                case 44:
                     cView.setImage(mode_ventilationImage, for: UIControlState())
                     cView.setImage(mode_ventilation_selImage, for: .selected)
                     cView.setImage(mode_ventilation_selImage, for: [.highlighted, .selected])
                     
-                case 53:
+                case 45:
                     cView.setImage(mode_desiccantImage, for: UIControlState())
                     cView.setImage(mode_desiccant_selImage, for: .selected)
                     cView.setImage(mode_desiccant_selImage, for: [.highlighted, .selected])
@@ -93,8 +93,6 @@ class LecModelView: LecCamView {
             for cam in cams {
                 if cam.statusAddress == feedbackAddress && cam.statusValue == statusValue {
                     for b in modelButtons {
-                        print(b.tag)
-                        print(cam.iType)
                         b.isSelected = b.tag == cam.iType
                     }
                     return

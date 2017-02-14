@@ -39,44 +39,45 @@ enum LecDeviceType: Int {
 }
 
 class Ting: NSObject {
+    var iId: Int = 0
+    var sId: Int = 0
     var name: String = ""
     var imageName: String = ""
 }
 
-class LecFloor: Ting {
-    var floorID: String = ""
-    var buildingID :String = ""
-}
-
 class LecBuilding: Ting {
-    var buildingID :String = ""
     var socketAddress: String = ""
     var socketPort: UInt16 = 0
+    var floors: [LecFloor]?
+}
+
+class LecFloor: Ting {
+    var areas: [LecArea]?
 }
 
 class LecArea: Ting {
-    var areaID: String = ""
-    var floorID: String = ""
+    var devices: [LecDevice]?
+    override init() {
+        super.init()
+        imageName = "other"
+    }
 }
 
 class LecDevice: Ting {
-    var deviceID: String = ""
-    var areaID: String = ""
     var iType: LecDeviceType = .scene
+    var cams: [LecCam]?
 }
 
 class LecCam: Ting {
-    var camID: String = ""
-    var deviceID: String = ""
     var iType: Int = 0
     var controlType: LecCommand = .type1bit
     var controlAddress: String = ""
     var statusAddress: String = ""
     var controlValue: Int = 0
     var statusValue: Int = 0
-    var minControlValue: Int = 0
-    var maxControlValue: Int = 0
-    var maxStatusValue: Int = 0
-    var minStatusValue: Int = 0
+    var minControlValue: Int = 18
+    var maxControlValue: Int = 29
+    var maxStatusValue: Int = 29
+    var minStatusValue: Int = 18
     var usn: Int = 0
 }

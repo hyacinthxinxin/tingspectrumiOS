@@ -77,7 +77,7 @@ class LecDeviceCell: UITableViewCell {
                     }
                 }
             case .lightDimming:
-                let lightDimming_SwitchCams =  cams.filter { $0.iType == 11 }
+                let lightDimming_SwitchCams =  cams.filter { $0.iType == 20 }
                 if !lightDimming_SwitchCams.isEmpty {
                     lightDimming_SwitchView = LecSwitchView()
                     lightDimming_SwitchTopMargin += 0.0
@@ -107,7 +107,7 @@ class LecDeviceCell: UITableViewCell {
                     }
                 }
             case .airConditioning:
-                let airConditioning_SwitchCams =  cams.filter { $0.iType == 12 }
+                let airConditioning_SwitchCams =  cams.filter { $0.iType == 40 }
                 if !airConditioning_SwitchCams.isEmpty {
                     airConditioning_SwitchView = LecSwitchView()
                     airConditioning_SwitchTopMargin += 0.0
@@ -120,7 +120,7 @@ class LecDeviceCell: UITableViewCell {
                         contentView.addSubview(cView)
                     }
                 }
-                let airConditioning_TemperatureCams = cams.filter { $0.iType == 22 }
+                let airConditioning_TemperatureCams = cams.filter { $0.iType == 41 }
                 if !airConditioning_TemperatureCams.isEmpty {
                     airConditioning_TemperatureView = LecTemperatureView()
                     airConditioning_SpeedTopMargin += LecConstants.DeviceCellHeight.AirConditioning_Temperature
@@ -130,7 +130,7 @@ class LecDeviceCell: UITableViewCell {
                         contentView.addSubview(cView)
                     }
                 }
-                let airConditioning_SpeedCams = cams.filter { (40...44).contains($0.iType) }
+                let airConditioning_SpeedCams = cams.filter { (46...49).contains($0.iType) }
                 if !airConditioning_SpeedCams.isEmpty {
                     airConditioning_SpeedView = LecSpeedView(cams: airConditioning_SpeedCams)
                     airConditioning_ModelTopMargin += LecConstants.DeviceCellHeight.AirConditioning_Speed
@@ -139,7 +139,7 @@ class LecDeviceCell: UITableViewCell {
                         contentView.addSubview(cView)
                     }
                 }
-                let airConditioning_ModelCams = cams.filter { (50...53).contains($0.iType) }
+                let airConditioning_ModelCams = cams.filter { (42...45).contains($0.iType) }
                 if !airConditioning_ModelCams.isEmpty {
                     airConditioning_ModelView = LecModelView(cams: airConditioning_ModelCams)
                     if let cView = self.airConditioning_ModelView {
@@ -147,7 +147,7 @@ class LecDeviceCell: UITableViewCell {
                     }
                 }
             case .floorHeating:
-                let floorHeating_SwitchCams =  cams.filter { $0.iType == 13 }
+                let floorHeating_SwitchCams =  cams.filter { $0.iType == 50 }
                 if !floorHeating_SwitchCams.isEmpty {
                     floorHeating_SwitchView = LecSwitchView()
                     floorHeating_SwitchTopMargin += 0.0
@@ -158,7 +158,7 @@ class LecDeviceCell: UITableViewCell {
                         contentView.addSubview(cView)
                     }
                 }
-                let floorHeating_TemperatureCams = cams.filter { $0.iType == 23 }
+                let floorHeating_TemperatureCams = cams.filter { $0.iType == 51 }
                 if !floorHeating_TemperatureCams.isEmpty {
                     floorHeating_TemperatureView = LecTemperatureView()
                     if let cView = self.floorHeating_TemperatureView {
@@ -167,7 +167,7 @@ class LecDeviceCell: UITableViewCell {
                     }
                 }
             case .freshAir:
-                let freshAir_SwitchCams =  cams.filter { $0.iType == 14 }
+                let freshAir_SwitchCams =  cams.filter { $0.iType == 60 }
                 if !freshAir_SwitchCams.isEmpty {
                     freshAir_SwitchView = LecSwitchView()
                     freshAir_SwitchTopMargin += 0.0
@@ -178,7 +178,7 @@ class LecDeviceCell: UITableViewCell {
                         contentView.addSubview(cView)
                     }
                 }
-                let freshAir_SpeedCams = cams.filter { (45...49).contains($0.iType) }
+                let freshAir_SpeedCams = cams.filter { (61...63).contains($0.iType) }
                 if !freshAir_SpeedCams.isEmpty {
                     freshAir_SpeedView = LecSpeedView(cams: freshAir_SpeedCams)
                     if let cView = self.freshAir_SpeedView {
@@ -202,7 +202,7 @@ class LecDeviceCell: UITableViewCell {
                     height += LecConstants.DeviceCellHeight.Light_Switch
                 }
             case .lightDimming:
-                let lightDimming_SwitchCams =  cams.filter { $0.iType == 11 }
+                let lightDimming_SwitchCams =  cams.filter { $0.iType == 20 }
                 if !lightDimming_SwitchCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.LightDimming_Switch
                 }
@@ -216,37 +216,37 @@ class LecDeviceCell: UITableViewCell {
                     height += LecConstants.DeviceCellHeight.Curtain_Curtain
                 }
             case .airConditioning:
-                let airConditioning_SwitchCams =  cams.filter { $0.iType == 12 }
+                let airConditioning_SwitchCams =  cams.filter { $0.iType == 40 }
                 if !airConditioning_SwitchCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.AirConditioning_Switch
                 }
-                let airConditioning_TemperatureCams = cams.filter { $0.iType == 22 }
+                let airConditioning_TemperatureCams = cams.filter { $0.iType == 41 }
                 if !airConditioning_TemperatureCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.AirConditioning_Temperature
                 }
-                let airConditioning_SpeedCams = cams.filter { (40...44).contains($0.iType) }
+                let airConditioning_SpeedCams = cams.filter { (42...45).contains($0.iType) }
                 if !airConditioning_SpeedCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.AirConditioning_Speed
                 }
-                let airConditioning_ModelCams = cams.filter { (50...53).contains($0.iType) }
+                let airConditioning_ModelCams = cams.filter { (46...49).contains($0.iType) }
                 if !airConditioning_ModelCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.AirConditioning_Model
                 }
             case .floorHeating:
-                let floorHeating_SwitchCams =  cams.filter { $0.iType == 13 }
+                let floorHeating_SwitchCams =  cams.filter { $0.iType == 50 }
                 if !floorHeating_SwitchCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.FloorHeating_Switch
                 }
-                let floorHeating_TemperatureCams = cams.filter { $0.iType == 23 }
+                let floorHeating_TemperatureCams = cams.filter { $0.iType == 51 }
                 if !floorHeating_TemperatureCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.FloorHeating_Temperature
                 }
             case .freshAir:
-                let freshAir_SwitchCams =  cams.filter { $0.iType == 14 }
+                let freshAir_SwitchCams =  cams.filter { $0.iType == 60 }
                 if !freshAir_SwitchCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.FreshAir_Switch
                 }
-                let freshAir_SpeedCams = cams.filter { (45...49).contains($0.iType) }
+                let freshAir_SpeedCams = cams.filter { (61...65).contains($0.iType) }
                 if !freshAir_SpeedCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.FreshAir_Speed
                 }

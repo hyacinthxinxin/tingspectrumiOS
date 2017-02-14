@@ -41,10 +41,10 @@ class LecTemperatureView: LecCamViewWithNib {
         didSet {
             if let cam = cams?.first {
                 switch cam.iType {
-                case 22:
+                case 41:
                     temperatureSlider.thumbTintColor = UIColor.white
                     temperatureSlider.minimumTrackTintColor = LecConstants.AppColor.CamTintColor
-                case 23:
+                case 51:
                     temperatureSlider.thumbTintColor = "#54377b".hexColor
                     temperatureSlider.minimumTrackTintColor = "#54377b".hexColor
                 default:

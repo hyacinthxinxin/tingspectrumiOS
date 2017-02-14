@@ -42,11 +42,26 @@ class LecFloorAndAreaViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
+        if let floors = LecSocketManager.sharedSocket.dataModel.building.floors {
+            return floors.count
+        }
         return 1
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let floors = LecSocketManager.sharedSocket.dataModel.building.floors, floors.count>1 {
+            return floors[section].name
+        }
+        return ""
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return LecSocketManager.sharedSocket.dataModel.areas.count
+        if let floors = LecSocketManager.sharedSocket.dataModel.building.floors {
+            if let areas = floors[section].areas {
+                return areas.count
+            }
+        }
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -64,9 +79,14 @@ class LecFloorAndAreaViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: LecConstants.ReuseIdentifier.AreaCell, for: indexPath) as? LecAreaCell {
-            let area = LecSocketManager.sharedSocket.dataModel.areas[(indexPath as NSIndexPath).row]
-            cell.area = area
-            return cell
+            if let floors = LecSocketManager.sharedSocket.dataModel.building.floors {
+                if let areas = floors[(indexPath as NSIndexPath).section].areas {
+                    let area = areas[(indexPath as NSIndexPath).row]
+                    cell.area = area
+                    cell.backgroundColor = UIColor.red
+                    return cell
+                }
+            }
         }
         assert(false, "The dequeued table view cell was of an unknown type!")
         return UITableViewCell()

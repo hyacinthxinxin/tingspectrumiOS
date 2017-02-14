@@ -41,7 +41,8 @@ enum LecDeviceGroupType {
 class LecAreaDetailViewController: UICollectionViewController {
     var area: LecArea! {
         didSet {
-            devices = LecSocketManager.sharedSocket.dataModel.devices.filter { $0.areaID == area.areaID }
+//            devices = LecSocketManager.sharedSocket.dataModel.devices.filter { $0.areaID == area.areaID }
+            devices = area.devices!
             self.configureView()
         }
     }

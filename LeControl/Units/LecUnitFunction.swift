@@ -16,4 +16,5 @@ func delay(seconds: Double, completion:@escaping ()->()) {
     DispatchQueue.main.asyncAfter(deadline: popTime) {
         completion()
     }
+    
 }

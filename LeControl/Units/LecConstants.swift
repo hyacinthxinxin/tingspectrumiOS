@@ -17,33 +17,33 @@ struct LecConstants {
     }
     
     struct LecJSONKey {
-        static let BuildingID = "buildingID"
+        static let BuildingID = "id"
         static let BuildingName = "name"
-        static let SocketAddress = "socketAddress"
-        static let SocketPort = "socketPort"
-        static let FloorID = "floorID"
+        static let SocketAddress = "socket_address"
+        static let SocketPort = "socket_port"
+        static let FloorID = "id"
         static let FloorName = "name"
-        static let FloorImageName = "imageName"
-        static let AreaID = "areaID"
+        static let FloorImageName = "image_name"
+        static let AreaID = "id"
         static let AreaName = "name"
-        static let AreaImageName = "imageName"
-        static let DeviceID = "deviceID"
-        static let DeviceType = "iType"
+        static let AreaImageName = "image_name"
+        static let DeviceID = "id"
+        static let DeviceType = "i_type"
         static let DeviceName = "name"
         static let DeviceImageName = "imageName"
-        static let CamID = "camID"
+        static let CamID = "id"
         static let CamName = "name"
-        static let CamImageName = "imageName"
-        static let CamType = "iType"
-        static let ControlType = "controlType"//这里服务器和客户端写的名字不同
-        static let ControlAddress = "controlAddress"
-        static let StatusAddress = "statusAddress"
-        static let ControlValue = "controlValue"
-        static let StatusValue = "statusValue"
-        static let MinControlValue = "minControlValue"
-        static let MaxControlValue = "maxControlValue"
-        static let MaxStatusValue = "maxStatusValue"
-        static let MinStatusValue = "minStatusValue"
+        static let CamImageName = "image_name"
+        static let CamType = "i_type"
+        static let ControlType = "control_type"
+        static let ControlAddress = "control_address"
+        static let StatusAddress = "status_address"
+        static let ControlValue = "control_value"
+        static let StatusValue = "status_value"
+        static let MinControlValue = "min_control_value"
+        static let MaxControlValue = "max_control_value"
+        static let MaxStatusValue = "max_status_value"
+        static let MinStatusValue = "min_status_value"
         static let IsVisible = "IsVisible"
         static let Usn = "usn"
         
@@ -113,14 +113,14 @@ struct LecConstants {
     }
     
     struct NetworkSubAddress {
-        static let Login: String = "ting/login"
-        static let Buildings = "ting/GetBuildingsWithUserID"
-        static let GetBuildingDetail = "ting/GetBuildingDetailWithBuildingID"
+        static let Login: String = "api/v1/login"
+        static let Buildings = "api/v1/buildings"
+        static let GetBuildingDetail = "api/v1/project"
     }
     
     struct NetworkAddress {
-        static let DevelopAddress: String = "http://localhost:9000/"
-        static let ProductAddress: String = "http://www.tingspectrum.com:9000/"
+        static let DevelopAddress: String = "http://localhost:3000/"
+        static let ProductAddress: String = "http://www.tingspectrum.com/"
     }
     
 }

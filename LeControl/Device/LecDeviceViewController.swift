@@ -10,16 +10,14 @@ import UIKit
 import PureLayout
 
 class LecDeviceViewController: UIViewController {
-
+    
     @IBOutlet weak var deviceTableView: UITableView!
     
     var devices: [LecDevice]! {
         didSet {
-            let deviceIds = devices.map { $0.deviceID }
-            cams = LecSocketManager.sharedSocket.dataModel.cams.filter{ deviceIds.contains( $0.deviceID ) }
+            //            let deviceIds = devices.map { $0.deviceID }
         }
     }
-    var cams: [LecCam]!
     
     deinit {
         print(#function)
@@ -27,11 +25,18 @@ class LecDeviceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         deviceTableView.separatorColor = LecConstants.AppColor.SeparatorColor
         deviceTableView.cellLayoutMarginsFollowReadableWidth = false
         LecSocketManager.sharedSocket.camRefreshDelegate = self
-        LecSocketManager.sharedSocket.sendStatusReadingMessageWithCams(cams.filter { $0.statusAddress != LecConstants.AddressInfo.EmptyAddress } )
+        _ = devices.map {
+            if let cams = $0.cams {
+                LecSocketManager.sharedSocket.sendStatusReadingMessageWithCams(cams.filter {
+                    $0.statusAddress != LecConstants.AddressInfo.EmptyAddress
+                })
+            }
+        }
+        
+        
     }
 }
 
@@ -47,17 +52,22 @@ extension LecDeviceViewController: UITableViewDataSource {
         return devices.count
     }
     
-    @objc(tableView:heightForRowAtIndexPath:) func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let device = devices[(indexPath as NSIndexPath).row]
-        let cams = self.cams.filter { $0.deviceID == device.deviceID }
-        return LecDeviceCell.calculatorCellHeight(device, cams: cams)
+        if let cams = device.cams {
+            print(LecDeviceCell.calculatorCellHeight(device, cams: cams))
+            return LecDeviceCell.calculatorCellHeight(device, cams: cams)
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let device = devices[(indexPath as NSIndexPath).row]
-        let cams = self.cams.filter { $0.deviceID == device.deviceID }
-        let cell = LecDeviceCell(device: device, cams: cams)
-        return cell
+        if let cams = device.cams {
+            let cell = LecDeviceCell(device: device, cams: cams)
+            return cell
+        }
+        return UITableViewCell()
     }
 }
 
@@ -76,7 +86,7 @@ extension LecDeviceViewController: UITableViewDelegate {
             cell.layoutMargins = UIEdgeInsets.zero
         }
     }
-
+    
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
     }
@@ -86,7 +96,6 @@ extension LecDeviceViewController: UITableViewDelegate {
 
 extension LecDeviceViewController: LecCamRefreshDelegate {
     func refreshCam(_ feedbackAddress: String, statusValue: Int) {
-        print("LecCamRefreshDelegate")
         for c in deviceTableView.visibleCells {
             for v in c.contentView.subviews {
                 if let cv = v as? LecCamView {

@@ -21,4 +21,5 @@ enum LecEternal {
         let defaults:UserDefaults = UserDefaults.standard
         return defaults.object(forKey: defaultName) as AnyObject!
     }
+    
 }

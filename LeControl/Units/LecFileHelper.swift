@@ -63,7 +63,6 @@ class LecFileHelper {
         self.directoryPath = NSSearchPathForDirectoriesInDomains(directory, .userDomainMask, true).first!
         self.filePath = directoryPath + self.subDirectory
         self.fullyQualifiedPath = "\(filePath)/\(self.fileName)"
-        //        print(self.fullyQualifiedPath)
         createDirectory()
     }
     
