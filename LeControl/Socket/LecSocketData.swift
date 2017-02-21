@@ -99,7 +99,6 @@ class LecSocketData {
     }
     
     static func handle(_ data: Data) {
-        print(data.getBytes())
         var needAppend = false
         var code2D = [[UInt8]]()
         var tcodes = [UInt8]()
@@ -116,12 +115,10 @@ class LecSocketData {
                 tcodes.removeAll()
             }
         }
-        print(code2D)
         for camCode in code2D {
             let feedbackAddress = LecSocketData.addrGet(camCode[LecConstants.Command.FirstAndSecondAddressIndex], t: camCode[LecConstants.Command.ThirdAddressIndex])
             let statusValue = Int(camCode[LecConstants.Command.ValueIndex])
             LecSocketManager.sharedSocket.camRefreshDelegate?.refreshCam(feedbackAddress, statusValue: statusValue)
-
 //            if let cam = LecSocketManager.sharedSocket.dataModel.getCamByStatusAddress(feedbackAddress) {
 //                if cam.iType < 40 {
 //                    cam.statusValue = statusValue

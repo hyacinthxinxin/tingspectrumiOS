@@ -19,7 +19,7 @@ class LecConfigViewController: UITableViewController {
     
     weak var delegate: LecConfigViewControllerDelegate?
 
-    var userId = ""
+    var userId = 0
     var buildings = [LecBuilding]()
     var floors = [LecFloor]()
     var areas = [LecArea]()
@@ -38,7 +38,7 @@ class LecConfigViewController: UITableViewController {
     }
     
     
-    func loadConfig(with userID: String) {
+    func loadConfig(with userID: Int) {
         let loginUrl = environment.httpAddress + LecConstants.NetworkSubAddress.Buildings
         Alamofire.request(loginUrl, method: .get, parameters: ["user_id":userID]).responseJSON(completionHandler: { [weak weakSelf = self] (response) in
             switch response.result {
@@ -76,6 +76,9 @@ class LecConfigViewController: UITableViewController {
         return buildings.count
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "我的所有项目"
+    }
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
         cell.contentView.backgroundColor = UIColor.clear

@@ -23,6 +23,7 @@ class LecDimmingView: LecCamViewWithNib {
     
     override func refreshState(_ feedbackAddress: String, statusValue: Int) {
         if let cam = self.cams?.first {
+            cam.statusValue = statusValue
             dimmingSlider.value = Float(cam.statusValue) / 225
         }
     }

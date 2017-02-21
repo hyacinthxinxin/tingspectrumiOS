@@ -84,6 +84,9 @@ class LecDataModel: NSObject {
                         if let areaName = $0[LecConstants.LecJSONKey.AreaName].string {
                             area.name = areaName
                         }
+                        if let areaImageName = $0[LecConstants.LecJSONKey.AreaImageName].string {
+                            area.imageName = areaImageName
+                        }
                         if let devicesArray = $0[LecConstants.LecJSONKey.Devices].array {
                             area.devices = devicesArray.map {
                                 let device = LecDevice()
@@ -116,7 +119,10 @@ class LecDataModel: NSObject {
                                         if let camName = $0[LecConstants.LecJSONKey.CamName].string {
                                             cam.name = camName
                                         }
-                                        
+                                        if let camImageName = $0[LecConstants.LecJSONKey.CamImageName].string {
+                                            cam.imageName = camImageName
+                                        }
+
                                         if let camType = $0[LecConstants.LecJSONKey.CamType].int {
                                             cam.iType = camType
                                         }

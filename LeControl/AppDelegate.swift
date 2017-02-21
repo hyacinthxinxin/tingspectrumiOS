@@ -71,7 +71,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         floorAndAreaViewController.areaDetailViewController = areaDetailViewController
         
         if !(window!.rootViewController!.traitCollection.horizontalSizeClass == .compact) {
-            areaDetailViewController.area = LecSocketManager.sharedSocket.dataModel.areas[0]
+            if let floors = LecSocketManager.sharedSocket.dataModel.building.floors {
+                if let areas = floors[0].areas {
+                    areaDetailViewController.area = areas[0]
+                }
+            }
 
         }
         splitViewController.delegate = self

@@ -30,7 +30,7 @@ struct LecConstants {
         static let DeviceID = "id"
         static let DeviceType = "i_type"
         static let DeviceName = "name"
-        static let DeviceImageName = "imageName"
+        static let DeviceImageName = "image_name"
         static let CamID = "id"
         static let CamName = "name"
         static let CamImageName = "image_name"
@@ -113,7 +113,7 @@ struct LecConstants {
     }
     
     struct NetworkSubAddress {
-        static let Login: String = "api/v1/login"
+        static let Login: String = "api/v1/auth/sign_in"
         static let Buildings = "api/v1/buildings"
         static let GetBuildingDetail = "api/v1/project"
     }

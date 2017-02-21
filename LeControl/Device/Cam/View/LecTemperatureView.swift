@@ -59,8 +59,8 @@ class LecTemperatureView: LecCamViewWithNib {
     
     override func refreshState(_ feedbackAddress: String, statusValue: Int) {
         if let cam = cams?.first {
+            cam.statusValue = statusValue
             temperatureSlider.value = Float(cam.statusValue)
-            //        temperatureSlider.value = Float(cam.statusValue) / Float(cam.maxStatusValue - cam.minStatusValue)
         }
     }
     

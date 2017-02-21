@@ -144,7 +144,7 @@ class LecFloorAndAreaViewController: UITableViewController {
                 
             case LecConstants.SegueIdentifier.ShowConfig:
                 let configViewController = segue.destination as! LecConfigViewController
-                let userId = sender as! String
+                let userId = sender as! Int
                 configViewController.delegate = self
                 configViewController.userId = userId
                 
@@ -157,7 +157,7 @@ class LecFloorAndAreaViewController: UITableViewController {
 
 
 extension LecFloorAndAreaViewController: LecLoginViewControllerDelegate {
-    func loginViewController(_ controller: LecLoginViewController, didLogInWithUserId userId: String) {
+    func loginViewController(_ controller: LecLoginViewController, didLogInWithUserId userId: Int) {
         dismiss(animated: true, completion: {
             self.performSegue(withIdentifier: LecConstants.SegueIdentifier.ShowConfig, sender: userId)
         })

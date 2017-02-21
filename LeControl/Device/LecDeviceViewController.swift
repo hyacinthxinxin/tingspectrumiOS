@@ -55,7 +55,6 @@ extension LecDeviceViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let device = devices[(indexPath as NSIndexPath).row]
         if let cams = device.cams {
-            print(LecDeviceCell.calculatorCellHeight(device, cams: cams))
             return LecDeviceCell.calculatorCellHeight(device, cams: cams)
         }
         return 0

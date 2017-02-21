@@ -12,7 +12,7 @@ import Alamofire
 import JDStatusBarNotification
 
 protocol LecLoginViewControllerDelegate: class {
-    func loginViewController(_ controller: LecLoginViewController, didLogInWithUserId userId: String)
+    func loginViewController(_ controller: LecLoginViewController, didLogInWithUserId userId: Int)
 }
 
 class LecLoginViewController: UIViewController {
@@ -34,15 +34,16 @@ class LecLoginViewController: UIViewController {
         if let userName = userNameTextField.text, let password = passwordTextField.text {
             let parameters = ["email": userName, "password": password]
             let loginUrl = environment.httpAddress + LecConstants.NetworkSubAddress.Login
-            Alamofire.request(loginUrl, method: .get, parameters: parameters).responseJSON(completionHandler: { [weak weakSelf = self] (response) in
+            Alamofire.request(loginUrl, method: .post, parameters: parameters).responseJSON(completionHandler: { [weak weakSelf = self] (response) in
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
-                    guard json["result"].boolValue else {
+
+                    guard (json["data"].dictionaryObject != nil) else {
                         JDStatusBarNotification.show(withStatus: "登录失败", dismissAfter: 2.0, styleName: JDStatusBarStyleError);
                         return
                     }
-                    weakSelf?.delegate?.loginViewController(self, didLogInWithUserId: json["user_id"].stringValue)
+                    weakSelf?.delegate?.loginViewController(self, didLogInWithUserId: json["data", "id"].intValue)
                 case .failure:
                     JDStatusBarNotification.show(withStatus: "登录失败", dismissAfter: 2.0, styleName: JDStatusBarStyleError);
                 }
