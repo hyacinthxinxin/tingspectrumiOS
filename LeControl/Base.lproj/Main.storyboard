@@ -109,33 +109,37 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aL-Dz-O1x">
-                                <rect key="frame" x="31" y="631" width="313" height="16"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aXA-Qv-u2V">
+                                <rect key="frame" x="16" y="599" width="343" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="IaO-SQ-pbw"/>
+                                </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="获取更多信息请访问：">
+                                    <fragment content="如果您需要创建账号、修改配置、获取更多信息请访问：">
                                         <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <font key="NSFont" size="13" name=".PingFangSC-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content="http://www.tingspectrum.com">
                                         <attributes>
-                                            <color key="NSColor" red="0.26483718144406276" green="0.30483451877238854" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="NSColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" metaFont="system"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.1529411765" green="0.1176470588" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="oGX-0w-UR2" firstAttribute="leading" secondItem="D2p-NL-nEK" secondAttribute="leadingMargin" id="11C-IV-mjH"/>
+                            <constraint firstItem="S9O-j2-H2Z" firstAttribute="top" secondItem="aXA-Qv-u2V" secondAttribute="bottom" constant="8" symbolic="YES" id="2LU-Ar-SP4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="oGX-0w-UR2" secondAttribute="trailing" id="Bfn-ct-8Kc"/>
-                            <constraint firstItem="6aL-Dz-O1x" firstAttribute="centerX" secondItem="D2p-NL-nEK" secondAttribute="centerX" id="Tpa-BR-aXx"/>
-                            <constraint firstItem="S9O-j2-H2Z" firstAttribute="top" secondItem="6aL-Dz-O1x" secondAttribute="bottom" constant="20" id="mqe-m4-2tf"/>
+                            <constraint firstItem="aXA-Qv-u2V" firstAttribute="leading" secondItem="D2p-NL-nEK" secondAttribute="leadingMargin" id="CXh-7P-ezE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aXA-Qv-u2V" secondAttribute="trailing" id="ePk-dl-7WM"/>
                             <constraint firstItem="oGX-0w-UR2" firstAttribute="top" secondItem="tHf-bc-p3E" secondAttribute="bottom" constant="44" id="q6Z-92-97N"/>
                         </constraints>
                     </view>

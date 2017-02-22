@@ -21,6 +21,8 @@ class LecLoginViewController: UIViewController {
     
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var guaidTextField: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
