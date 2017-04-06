@@ -18,7 +18,7 @@ protocol LecConfigViewControllerDelegate: class {
 class LecConfigViewController: UITableViewController {
     
     weak var delegate: LecConfigViewControllerDelegate?
-
+    
     var userId = 0
     var buildings = [LecBuilding]()
     var floors = [LecFloor]()
@@ -33,17 +33,25 @@ class LecConfigViewController: UITableViewController {
         //        if #available(iOS 9, *) {
         tableView.cellLayoutMarginsFollowReadableWidth = false
         //        }
-
+        
         loadConfig(with: userId);
     }
     
     
     func loadConfig(with userID: Int) {
-        let loginUrl = environment.httpAddress + LecConstants.NetworkSubAddress.Buildings
-        Alamofire.request(loginUrl, method: .get, parameters: ["user_id":userID]).responseJSON(completionHandler: { [weak weakSelf = self] (response) in
+        let loginUrl = environment.httpAddress + LecConstants.NetworkSubAddressV2.Buildings
+        
+        let Auth_header = ["access-token": LecCookies.sharedCookies.header.accessToken,
+                           "client": LecCookies.sharedCookies.header.client,
+//                           "expiry":LecCookies.sharedCookies.header.expiry,
+                           "tokenType":LecCookies.sharedCookies.header.tokenType,
+                           "uid": LecCookies.sharedCookies.header.uid] as [String : String]
+        
+        Alamofire.request(loginUrl, method: .get, parameters: ["user_id": userID], headers: Auth_header).responseJSON { [weak weakSelf = self] (response) in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
+                print(json)
                 if let buildingsArray = json.array {
                     weakSelf?.buildings = buildingsArray.map {
                         let building = LecBuilding()
@@ -65,7 +73,7 @@ class LecConfigViewController: UITableViewController {
                 }
             case .failure:
                 JDStatusBarNotification.show(withStatus: "登录失败", dismissAfter: 2.0, styleName: JDStatusBarStyleSuccess);
-            }})
+            }}
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -79,11 +87,12 @@ class LecConfigViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "我的所有项目"
     }
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
         cell.contentView.backgroundColor = UIColor.clear
         cell.textLabel?.textColor = UIColor.white
-
+        
         if cell.responds(to: #selector(setter: UITableViewCell.separatorInset)){
             cell.separatorInset = UIEdgeInsets.zero
         }
@@ -110,10 +119,15 @@ class LecConfigViewController: UITableViewController {
         let building = buildings[(indexPath as NSIndexPath).row]
         LecSocketManager.sharedSocket.dataModel.building = building;
         
-        let projectUrl = environment.httpAddress + LecConstants.NetworkSubAddress.GetBuildingDetail
-        let parameters = ["building_id":building.iId]
+        let projectUrl = environment.httpAddress + LecConstants.NetworkSubAddressV2.Buildings + "/\(building.iId)"
         
-        Alamofire.request(projectUrl, method: .get, parameters: parameters).responseJSON(completionHandler: { [weak weakSelf = self] (response) in
+        let Auth_header = ["access-token": LecCookies.sharedCookies.header.accessToken,
+                           "client": LecCookies.sharedCookies.header.client,
+                           //                           "expiry":LecCookies.sharedCookies.header.expiry,
+            "tokenType":LecCookies.sharedCookies.header.tokenType,
+            "uid": LecCookies.sharedCookies.header.uid] as [String : String]
+        
+        Alamofire.request(projectUrl, method: .get, headers: Auth_header).responseJSON(completionHandler: { [weak weakSelf = self] (response) in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -126,7 +140,7 @@ class LecConfigViewController: UITableViewController {
                     
                 }
             case .failure:
-                JDStatusBarNotification.show(withStatus: "登录失败", dismissAfter: 2.0, styleName: JDStatusBarStyleSuccess);
+                JDStatusBarNotification.show(withStatus: "获取项目信息失败", dismissAfter: 2.0, styleName: JDStatusBarStyleError)
             }})
     }
 }

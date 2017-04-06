@@ -130,7 +130,7 @@ class LecDeviceCell: UITableViewCell {
                         contentView.addSubview(cView)
                     }
                 }
-                let airConditioning_SpeedCams = cams.filter { (46...49).contains($0.iType) }
+                let airConditioning_SpeedCams = cams.filter { (46...49).contains($0.iType) || (72...76).contains($0.iType) }
                 if !airConditioning_SpeedCams.isEmpty {
                     airConditioning_SpeedView = LecSpeedView(cams: airConditioning_SpeedCams)
                     airConditioning_ModelTopMargin += LecConstants.DeviceCellHeight.AirConditioning_Speed
@@ -224,7 +224,7 @@ class LecDeviceCell: UITableViewCell {
                 if !airConditioning_TemperatureCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.AirConditioning_Temperature
                 }
-                let airConditioning_SpeedCams = cams.filter { (42...45).contains($0.iType) }
+                let airConditioning_SpeedCams = cams.filter { (42...45).contains($0.iType) || (72...76).contains($0.iType)}
                 if !airConditioning_SpeedCams.isEmpty {
                     height += LecConstants.DeviceCellHeight.AirConditioning_Speed
                 }

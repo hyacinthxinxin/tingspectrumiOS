@@ -72,6 +72,9 @@ class LecDataModel: NSObject {
                 if let floorName = $0[LecConstants.LecJSONKey.FloorName].string {
                     floor.name = floorName
                 }
+                if let floorPosition = $0[LecConstants.LecJSONKey.Position].int {
+                    floor.position = floorPosition
+                }
                 if let areasArray = $0[LecConstants.LecJSONKey.Areas].array {
                     floor.areas = areasArray.map {
                         let area = LecArea()
@@ -87,6 +90,9 @@ class LecDataModel: NSObject {
                         if let areaImageName = $0[LecConstants.LecJSONKey.AreaImageName].string {
                             area.imageName = areaImageName
                         }
+                        if let areaPosition = $0[LecConstants.LecJSONKey.Position].int {
+                            area.position = areaPosition
+                        }
                         if let devicesArray = $0[LecConstants.LecJSONKey.Devices].array {
                             area.devices = devicesArray.map {
                                 let device = LecDevice()
@@ -101,6 +107,9 @@ class LecDataModel: NSObject {
                                 }
                                 if let deviceImageName = $0[LecConstants.LecJSONKey.DeviceImageName].string {
                                     device.imageName = deviceImageName
+                                }
+                                if let devicePosition = $0[LecConstants.LecJSONKey.Position].int {
+                                    device.position = devicePosition
                                 }
                                 if let deviceType = $0[LecConstants.LecJSONKey.DeviceType].int {
                                     if let type = LecDeviceType(rawValue: deviceType) {
@@ -122,7 +131,9 @@ class LecDataModel: NSObject {
                                         if let camImageName = $0[LecConstants.LecJSONKey.CamImageName].string {
                                             cam.imageName = camImageName
                                         }
-
+                                        if let camPosition = $0[LecConstants.LecJSONKey.Position].int {
+                                            cam.position = camPosition
+                                        }
                                         if let camType = $0[LecConstants.LecJSONKey.CamType].int {
                                             cam.iType = camType
                                         }
@@ -171,18 +182,19 @@ class LecDataModel: NSObject {
                                          }
                                          */
                                         return cam
-                                    }
+                                        }.sorted{ $1.position > $0.position }
                                 }
                                 return device
-                            }
+                            }.sorted{ $1.position > $0.position }
                         }
                         return area
-                    }
+                    }.sorted{ $1.position > $0.position }
                 }
                 return floor
-            }
+            }.sorted{ $1.position > $0.position }
         }
     }
+    
 }
 
 

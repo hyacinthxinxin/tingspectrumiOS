@@ -34,9 +34,15 @@ class LecFloorAndAreaViewController: UITableViewController {
     weak var areaDetailViewController: LecAreaDetailViewController?
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         tableView.separatorColor = UIColor(white: 1, alpha: 0.07)
         tableView.cellLayoutMarginsFollowReadableWidth = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        title = LecSocketManager.sharedSocket.dataModel.building.name
     }
     
     // MARK: - Table view data source

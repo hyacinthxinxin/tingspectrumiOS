@@ -43,6 +43,7 @@ class Ting: NSObject {
     var sId: Int = 0
     var name: String = ""
     var imageName: String = ""
+    var position = 0
 }
 
 class LecBuilding: Ting {

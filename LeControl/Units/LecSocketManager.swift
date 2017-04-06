@@ -18,6 +18,7 @@ class LecSocketManager: NSObject {
     static let sharedSocket = LecSocketManager()
     
     var dataModel: LecDataModel!
+
     fileprivate var socket = GCDAsyncSocket()
     var socketInfo: (address: String, port: UInt16) = ("", 0)
     weak var camRefreshDelegate: LecCamRefreshDelegate?

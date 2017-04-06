@@ -17,6 +17,7 @@ struct LecConstants {
     }
     
     struct LecJSONKey {
+        static let Position = "position"
         static let BuildingID = "id"
         static let BuildingName = "name"
         static let SocketAddress = "socket_address"
@@ -116,6 +117,11 @@ struct LecConstants {
         static let Login: String = "api/v1/auth/sign_in"
         static let Buildings = "api/v1/buildings"
         static let GetBuildingDetail = "api/v1/project"
+    }
+    
+    struct NetworkSubAddressV2 {
+        static let Login: String = "api/v2/auth/sign_in"
+        static let Buildings = "api/v2/buildings"
     }
     
     struct NetworkAddress {

@@ -54,8 +54,10 @@ extension LecSceneViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if let cell = collectionView.cellForItem(at: indexPath) as? LecSceneCell {
-            if let cams = cell.cams, let cam = cams.first {
-                LecSocketManager.sharedSocket.sendMessageWithCam(cam)
+            if let cams = cell.cams {
+                _ = cams.map {
+                    LecSocketManager.sharedSocket.sendMessageWithCam($0)
+                }
             }
         }
     }
