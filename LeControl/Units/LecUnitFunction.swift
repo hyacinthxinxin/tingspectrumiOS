@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 //
 // Util delay function
 //
@@ -17,4 +18,14 @@ func delay(seconds: Double, completion:@escaping ()->()) {
         completion()
     }
     
+}
+
+//
+// 打印日志
+//
+func lec_log(_ items: Any) {
+    guard environment == .develop else {
+        return
+    }
+    print(items)
 }

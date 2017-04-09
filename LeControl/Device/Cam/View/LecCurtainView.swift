@@ -9,20 +9,11 @@
 import UIKit
 import PureLayout
 
-//private let openImage = UIImage(named: "open")?.imageWithRenderingMode(.AlwaysTemplate)
-
-
 class LecCurtainView: LecCamView {
     
     var didSetupConstraints = false
     var curtainNameLabel: UILabel?
     var curtainButtons = [UIButton]()
-    
-    let norImages = [UIImage(named: "open"),
-                     UIImage(named: "close"),
-                     UIImage(named: "up"),
-                     UIImage(named: "down"),
-                     UIImage(named: "pause")]
     
     convenience init(cams: [LecCam]) {
         self.init(frame: CGRect.zero)
@@ -39,28 +30,25 @@ class LecCurtainView: LecCamView {
             addSubview(dView)
         }
         
-        if let cams = self.cams {
-            for cam in cams {
-                let cView = UIButton(type: .custom)
-//                cView.layer.borderWidth = 1
-                cView.setButtonImage(cam.iType)
-                cView.showsTouchWhenHighlighted = true
-                cView.adjustsImageWhenHighlighted = false
-                cView.tag = cam.iType
-                cView.tintColor = LecConstants.AppColor.CamTintColor
-                cView.setTitleColor(UIColor.white, for: UIControlState())
-                cView.setTitleColor(LecConstants.AppColor.CamTintColor, for: .selected)
-                cView.setTitleColor(LecConstants.AppColor.CamTintColor, for: [.highlighted, .selected])
-                cView.setTitle(cam.name, for: UIControlState())
-                cView.addTarget(self, action: #selector(camButtonTapped), for: .touchUpInside)
-                cView.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-                cView.setButtonSpacing(14)
-                curtainButtons += [cView]
-                addSubview(cView)
-            }
+        for cam in cams {
+            let curtainButton = UIButton(type: .custom)
+            curtainButton.setImage(UIImage(named: cam.getCamImageName(by: cam.iType, isSelected: false)), for: .normal)
+            curtainButton.setImage(UIImage(named: cam.getCamImageName(by: cam.iType, isSelected: true)), for: .highlighted)
+            curtainButton.setImage(UIImage(named: cam.getCamImageName(by: cam.iType, isSelected: true)), for: [.highlighted, .selected])
+            curtainButton.showsTouchWhenHighlighted = true
+            curtainButton.adjustsImageWhenHighlighted = false
+            curtainButton.tag = cam.iType
+            curtainButton.tintColor = LecConstants.AppColor.CamTintColor
+            curtainButton.setTitleColor(UIColor.white, for: .normal)
+            curtainButton.setTitleColor(LecConstants.AppColor.CamTintColor, for: .selected)
+            curtainButton.setTitleColor(LecConstants.AppColor.CamTintColor, for: [.highlighted, .selected])
+            curtainButton.setTitle(cam.name, for: .normal)
+            curtainButton.addTarget(self, action: #selector(camButtonTapped), for: .touchUpInside)
+            curtainButton.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+            curtainButton.setButtonSpacing(14)
+            curtainButtons += [curtainButton]
+            addSubview(curtainButton)
         }
-        
-        
     }
     
     override func layoutSubviews() {
@@ -78,63 +66,15 @@ class LecCurtainView: LecCamView {
         curtainButtons.first!.autoSetDimension(.height, toSize: LecConstants.DeviceCellHeight.Curtain_Curtain - 40)
     }
     
-//    var isHighLighted:Bool = false
-
     func camButtonTapped(_ sender: UIButton) {
-        for b in curtainButtons {
-            b.isSelected = sender === b
+        sender.isSelected = true
+        if let index = curtainButtons.index(of: sender) {
+            let cam = cams[index]
+            LecSocketManager.sharedSocket.sendMessageWithCam(cam)
         }
-        if let cams = self.cams {
-            let cs = cams.filter { $0.iType == sender.tag }
-            if let cam = cs.first {
-                LecSocketManager.sharedSocket.sendMessageWithCam(cam)
-            }
-        }
-        
         delay(seconds: 0.2) {
             sender.isSelected = false
         }
     }
 }
 
-private let openImage = UIImage(named: "open")
-private let openClickImage = UIImage(named: "open_click")
-private let closeImage = UIImage(named: "close")
-private let closeClickImage = UIImage(named: "close_click")
-private let upImage = UIImage(named: "up")
-private let upClickImage = UIImage(named: "up_click")
-private let downImage = UIImage(named: "down")
-private let downClickImage = UIImage(named: "down_click")
-private let pasueImage = UIImage(named: "pause")
-private let pasueClickImage = UIImage(named: "pause_click")
-
-extension UIButton {
-    
-    fileprivate func setButtonImage(_ type: Int) {
-        guard (30...34).contains(type) else { return }
-        switch type {
-        case 30:
-            setImage(openImage, for: UIControlState())
-            setImage(openClickImage, for: .highlighted)
-            setImage(openClickImage, for: .selected)
-        case 31:
-            setImage(closeImage, for: UIControlState())
-            setImage(closeClickImage, for: .highlighted)
-            setImage(closeClickImage, for: .selected)
-        case 32:
-            setImage(upImage, for: UIControlState())
-            setImage(upClickImage, for: .highlighted)
-            setImage(upClickImage, for: .selected)
-        case 33:
-            setImage(downImage, for: UIControlState())
-            setImage(downClickImage, for: .highlighted)
-            setImage(downClickImage, for: .selected)
-        case 34:
-            setImage(pasueImage, for: UIControlState())
-            setImage(pasueClickImage, for: .highlighted)
-            setImage(pasueClickImage, for: .selected)
-        default:
-            break
-        }
-    }
-}

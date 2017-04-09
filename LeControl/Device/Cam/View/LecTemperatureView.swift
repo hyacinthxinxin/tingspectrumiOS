@@ -44,29 +44,23 @@ class LecTemperatureView: LecCamViewWithNib {
                 case 41:
                     temperatureSlider.thumbTintColor = UIColor.white
                     temperatureSlider.minimumTrackTintColor = LecConstants.AppColor.CamTintColor
+                    temperatureSlider.minimumValue = 19
+                    temperatureSlider.maximumValue = 32
                 case 51:
                     temperatureSlider.thumbTintColor = "#54377b".hexColor
                     temperatureSlider.minimumTrackTintColor = "#54377b".hexColor
+                    temperatureSlider.minimumValue = 15
+                    temperatureSlider.maximumValue = 33
                 default:
                     break
                 }
-                temperatureSlider.minimumValue = Float(cam.minControlValue)
-                temperatureSlider.maximumValue = Float(cam.maxControlValue)
-                refreshState(cam.statusAddress, statusValue: cam.statusValue)
+                temperatureSlider.value = Float(cam.controlValue)
             }
-        }
-    }
-    
-    override func refreshState(_ feedbackAddress: String, statusValue: Int) {
-        if let cam = cams?.first {
-            cam.statusValue = statusValue
-            temperatureSlider.value = Float(cam.statusValue)
         }
     }
     
     @IBAction func sliderTemperature(_ sender: UISlider) {
         if let cam = cams?.first {
-//            cam.controlValue = cam.minControlValue + Int(sender.value * Float(cam.maxControlValue - cam.minControlValue))
             cam.controlValue = Int(sender.value)
             LecSocketManager.sharedSocket.sendMessageWithCam(cam)
         }

@@ -14,10 +14,11 @@ class LecSwitchView: LecCamViewWithNib {
     @IBOutlet weak var camNameLabel: UILabel!
     @IBOutlet weak var camSwitch: UISwitch!
 
-    override var cams: [LecCam]? {
+    override var cams: [LecCam]! {
         didSet {
-            if let cam = cams?.first {
-                refreshState(cam.statusAddress, statusValue: cam.statusValue)
+            if let cam = cams.first {
+                camNameLabel.textColor = cam.controlValue == 1 ? UIColor.white: UIColor(white: 1.0, alpha: 0.5)
+                camSwitch.isOn = cam.controlValue == 1
             }
         }
     }
@@ -25,15 +26,9 @@ class LecSwitchView: LecCamViewWithNib {
     @IBAction func switchCam(_ sender: UISwitch) {
         if let cam = cams?.first {
             cam.controlValue = sender.isOn ? 1: 0
+            camNameLabel.textColor = cam.controlValue == 1 ? UIColor.white: UIColor(white: 1.0, alpha: 0.5)
             LecSocketManager.sharedSocket.sendMessageWithCam(cam)
         }
     }
     
-    override func refreshState(_ feedbackAddress: String, statusValue: Int) {
-        if let cam = cams?.first {
-            cam.statusValue = statusValue
-            camNameLabel.textColor = cam.statusValue == 1 ? UIColor.white: UIColor(white: 1.0, alpha: 0.5)
-            camSwitch.isOn = cam.statusValue == 1
-        }
-    }
 }

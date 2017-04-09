@@ -18,3 +18,18 @@ let lineColor = "#1EFFFFFF".hexColor
 let sceneViewHeight = screenRect.size.height * 184 / 667
 let sceneDividerWithDevices: CGFloat = 12.0
 
+enum LecEnvironment {
+    case develop
+    case product
+    var httpAddress: String {
+        switch self {
+        case .develop:
+            return LecConstants.NetworkAddress.DevelopAddress
+        case .product:
+            return LecConstants.NetworkAddress.ProductAddress
+        }
+    }
+}
+
+let environment: LecEnvironment = LecEnvironment.develop
+

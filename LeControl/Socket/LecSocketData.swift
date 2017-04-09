@@ -118,7 +118,7 @@ class LecSocketData {
         for camCode in code2D {
             let feedbackAddress = LecSocketData.addrGet(camCode[LecConstants.Command.FirstAndSecondAddressIndex], t: camCode[LecConstants.Command.ThirdAddressIndex])
             let statusValue = Int(camCode[LecConstants.Command.ValueIndex])
-            LecSocketManager.sharedSocket.camRefreshDelegate?.refreshCam(feedbackAddress, statusValue: statusValue)
+            LecSocketManager.sharedSocket.camRefreshDelegate?.refreshCam(feedbackAddress, feedbackValue: statusValue)
 //            if let cam = LecSocketManager.sharedSocket.dataModel.getCamByStatusAddress(feedbackAddress) {
 //                if cam.iType < 40 {
 //                    cam.statusValue = statusValue

@@ -9,16 +9,10 @@
 import UIKit
 
 class LecSceneViewController: UIViewController {
-    var devices: [LecDevice]! {
-        didSet {
-//            let deviceIds = devices.map { $0.deviceID }
-//            cams = LecSocketManager.sharedSocket.dataModel.cams.filter{ deviceIds.contains( $0.deviceID ) }
-        }
-    }
-    var cams: [LecCam]!
+    var devices: [LecDevice]!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    deinit {
+        lec_log(#function)
     }
 }
 
@@ -38,12 +32,8 @@ extension LecSceneViewController: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LecConstants.ReuseIdentifier.SceneCell, for: indexPath) as? LecSceneCell {
             let scene = devices[(indexPath as NSIndexPath).row]
             cell.scene = scene
-            if let cams = scene.cams {
-                cell.cams = cams
-            }
             return cell
         }
-        assert(false, "The dequeued collection view cell was of an unknown type!")
         return UICollectionViewCell()
     }
 }
@@ -52,9 +42,8 @@ extension LecSceneViewController: UICollectionViewDataSource {
 
 extension LecSceneViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if let cell = collectionView.cellForItem(at: indexPath) as? LecSceneCell {
-            if let cams = cell.cams, let cam = cams.first {
+        if let cell = collectionView.cellForItem(at: indexPath) as? LecSceneCell, let cams = cell.scene.cams {
+            for cam in cams {
                 LecSocketManager.sharedSocket.sendMessageWithCam(cam)
             }
         }

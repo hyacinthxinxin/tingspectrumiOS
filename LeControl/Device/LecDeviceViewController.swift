@@ -13,14 +13,10 @@ class LecDeviceViewController: UIViewController {
     
     @IBOutlet weak var deviceTableView: UITableView!
     
-    var devices: [LecDevice]! {
-        didSet {
-            //            let deviceIds = devices.map { $0.deviceID }
-        }
-    }
+    var devices: [LecDevice]!
     
     deinit {
-        print(#function)
+        lec_log(#function)
     }
     
     override func viewDidLoad() {
@@ -35,8 +31,6 @@ class LecDeviceViewController: UIViewController {
                 })
             }
         }
-        
-        
     }
 }
 
@@ -54,20 +48,63 @@ extension LecDeviceViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let device = devices[(indexPath as NSIndexPath).row]
-        if let cams = device.cams {
-            return LecDeviceCell.calculatorCellHeight(device, cams: cams)
-        }
-        return 0
+        return LecDeviceCell.calculatorCellHeight(by: device)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let device = devices[(indexPath as NSIndexPath).row]
-        if let cams = device.cams {
-            let cell = LecDeviceCell(device: device, cams: cams)
-            return cell
-        }
-        return UITableViewCell()
+        return getDeviceCell(by: devices[(indexPath as NSIndexPath).row])
     }
+    
+    fileprivate func getDeviceCell(by device:LecDevice) -> LecDeviceCell {
+        switch device.iType {
+        case .light:
+            let cell = LecLightCell(device: device)
+            return cell
+        case .curtain:
+            let cell = LecCurtainCell(device: device)
+            return cell
+        case .airConditioning:
+            let cell = LecAirConditioningCell(device: device)
+            return cell
+        case .floorHeating:
+            let cell = LecFloorHeatingCell(device: device)
+            return cell
+        case .freshAir:
+            let cell = LecFreshAirCell(device: device)
+            return cell
+        default:
+            return LecDeviceCell()
+        }
+    }
+    
+    func getDevice(with camAddress: String) -> LecDevice {
+        for device in devices {
+            if let cams = device.cams {
+                if cams.contains(where: { $0.statusAddress == camAddress }) {
+                    return device
+                }
+            }
+        }
+        return LecDevice()
+    }
+    
+    func getCam(with camAddress: String) -> LecCam {
+        for device in devices {
+            if let cams = device.cams {
+                for cam in cams {
+                    if cam.statusAddress == camAddress  {
+                        return cam
+                    }
+                }
+            }
+        }
+        return LecCam()
+    }
+    
+    func getCamParentDevice(by deviceId: Int) -> LecDevice? {
+        return devices.filter({ $0.iId == deviceId }).first
+    }
+    
 }
 
 // MARK: - Table view delegate
@@ -94,18 +131,50 @@ extension LecDeviceViewController: UITableViewDelegate {
 // MARK: - Cam refresh delegate
 
 extension LecDeviceViewController: LecCamRefreshDelegate {
-    func refreshCam(_ feedbackAddress: String, statusValue: Int) {
-        for c in deviceTableView.visibleCells {
-            for v in c.contentView.subviews {
-                if let cv = v as? LecCamView {
-                    if let cams = cv.cams {
-                        let addrs = cams.map { $0.statusAddress }
-                        if addrs.contains(feedbackAddress) {
-                            cv.refreshState(feedbackAddress, statusValue: statusValue)
+    func refreshCam(_ feedbackAddress: String, feedbackValue: Int) {
+        let cam = getCam(with: feedbackAddress)
+        if let device = getCamParentDevice(by: cam.sId) {
+            lec_log(cam.iType)
+            if cam.isSingleControl {
+                cam.controlValue = feedbackValue
+            } else if LecConstants.DeviceCamTypes.AirConditioningSpeed.contains(cam.iType) {
+                if let cams = device.cams?.filter({ LecConstants.DeviceCamTypes.AirConditioningSpeed.contains($0.iType) }) {
+                    for c in cams {
+                        if c.controlValue == feedbackValue {
+                            c.isChecked = true
+                        } else {
+                            c.isChecked = false
+                        }
+                    }
+                }
+            } else if LecConstants.DeviceCamTypes.AirConditioningModel.contains(cam.iType) {
+                if let cams = device.cams?.filter({ LecConstants.DeviceCamTypes.AirConditioningModel.contains($0.iType) }) {
+                    for c in cams {
+                        if c.controlValue == feedbackValue {
+                            c.isChecked = true
+                        } else {
+                            c.isChecked = false
+                        }
+                    }
+                }
+            } else if LecConstants.DeviceCamTypes.FreshAirSpeed.contains(cam.iType) {
+                if let cams = device.cams?.filter({ LecConstants.DeviceCamTypes.FreshAirSpeed.contains($0.iType) }) {
+                    for c in cams {
+                        if c.controlValue == feedbackValue {
+                            c.isChecked = true
+                        } else {
+                            c.isChecked = false
                         }
                     }
                 }
             }
+            lec_log(cam.isChecked)
+            if let row = devices.index(of: device) {
+                let indexPath = IndexPath(row: row, section: 0)
+                deviceTableView.reloadRows(at: [indexPath], with: .none)
+            }
         }
+        
     }
+    
 }

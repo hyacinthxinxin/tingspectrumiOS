@@ -9,21 +9,6 @@
 import UIKit
 import CoreData
 
-enum LecEnvironment {
-    case develop
-    case product
-    var httpAddress: String {
-        switch self {
-        case .develop:
-            return LecConstants.NetworkAddress.DevelopAddress
-        case .product:
-            return LecConstants.NetworkAddress.ProductAddress
-        }
-    }
-}
-
-let environment: LecEnvironment = LecEnvironment.product
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

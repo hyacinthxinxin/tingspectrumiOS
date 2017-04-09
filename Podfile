@@ -1,6 +1,5 @@
 # Uncomment this line to define a global platform for your project
 source 'https://github.com/CocoaPods/Specs.git'
-#source 'https://github.com/hyacinthxinxin/TingSpectrumPodSpecs.git'
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|
@@ -15,18 +14,11 @@ platform :ios, '9.0'
 target 'LeControl' do
   use_frameworks!
 
-pod 'Alamofire',
-:git => 'https://github.com/Alamofire/Alamofire.git',
-:branch => 'master'
-
-pod 'SwiftyJSON',
-:git => 'https://github.com/BaiduHiDeviOS/SwiftyJSON.git',
-:branch => 'swift3'
-
+pod 'Alamofire', '~> 4.4'
+pod 'SwiftyJSON'
 pod 'CocoaAsyncSocket'
 pod 'PureLayout'
 pod 'ASValueTrackingSlider'
 pod 'JDStatusBarNotification'
-
 
 end

@@ -17,21 +17,22 @@ struct LecConstants {
     }
     
     struct LecJSONKey {
-        static let BuildingID = "id"
+        static let ID = "id"
+        static let BuildingID = "building_id"
         static let BuildingName = "name"
         static let SocketAddress = "socket_address"
         static let SocketPort = "socket_port"
-        static let FloorID = "id"
+        static let FloorID = "floor_id"
         static let FloorName = "name"
         static let FloorImageName = "image_name"
-        static let AreaID = "id"
+        static let AreaID = "area_id"
         static let AreaName = "name"
         static let AreaImageName = "image_name"
-        static let DeviceID = "id"
+        static let DeviceID = "device_id"
         static let DeviceType = "i_type"
         static let DeviceName = "name"
         static let DeviceImageName = "image_name"
-        static let CamID = "id"
+        static let CamID = "cam_id"
         static let CamName = "name"
         static let CamImageName = "image_name"
         static let CamType = "i_type"
@@ -68,17 +69,32 @@ struct LecConstants {
     
     struct DeviceCellHeight {
         static let Light_Switch: CGFloat = 55
-        static let LightDimming_Switch: CGFloat = 55
-        static let AirConditioning_Switch: CGFloat = 55
-        static let FloorHeating_Switch: CGFloat = 55
-        static let FreshAir_Switch: CGFloat = 55
-        static let LightDimming_Dimming: CGFloat = 94
+        static let Light_Dimming: CGFloat = 94
         static let Curtain_Curtain: CGFloat = 184
+        static let AirConditioning_Switch: CGFloat = 55
         static let AirConditioning_Temperature: CGFloat = 89
-        static let FloorHeating_Temperature: CGFloat = 89
         static let AirConditioning_Speed: CGFloat = 130
         static let AirConditioning_Model: CGFloat = 152
+        static let FloorHeating_Switch: CGFloat = 55
+        static let FloorHeating_Temperature: CGFloat = 89
+        static let FreshAir_Switch: CGFloat = 55
         static let FreshAir_Speed: CGFloat = 130
+    }
+    
+    struct DeviceCamTypes {
+        static let LightSwitch = [20]
+        static let LightDimming = [21]
+        static let Curtain = [30, 31, 32, 33, 34]
+        static let AirConditioningSwitch = [40]
+        static let AirConditioningTemperature = [41]
+        static let AirConditioningSpeed = [72, 73, 74, 75, 76]
+        static let AirConditioningModel = [42, 43 ,44 ,45]
+        static let FloorHeatingSwitch = [50]
+        static let FloorHeatingTemperature = [51]
+        static let FreshAirSwitch = [60]
+        static let FreshAirSpeed = [61, 62, 63]
+        
+        static let SingleControlCams = LightSwitch + LightDimming + AirConditioningSwitch + AirConditioningTemperature + FloorHeatingSwitch + FloorHeatingTemperature + FreshAirSwitch
     }
     
     struct NotificationKey {

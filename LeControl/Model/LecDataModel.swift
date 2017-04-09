@@ -12,32 +12,20 @@ import JDStatusBarNotification
 
 class LecDataModel: NSObject {
     var building = LecBuilding()
-    var floors = [LecFloor]()
-    var areas = [LecArea]()
-    var devices = [LecDevice]()
-    var cams = [LecCam]()
     
     override init() {
         super.init()
         loadData()
     }
     
-    func resetData() {
-        floors.removeAll()
-        areas.removeAll()
-        devices.removeAll()
-        cams.removeAll()
-    }
-    
     func loadData() {
-        resetData()
         do {
             if let data: Data = try LecFileHelper(fileName: "CurrentProject", fileExtension: .JSON, subDirectory: "UserProject").getContentsOfFile() {
                 let json = JSON(data: data)
                 parseProject(json)
             }
         } catch {
-            if let filePath = Bundle.main.path(forResource: "DefaultProjectV1", ofType: ".json"), let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)) {
+            if let filePath = Bundle.main.path(forResource: "DefaultProject", ofType: ".json"), let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)) {
                 let json = JSON(data: data)
                 parseProject(json)
             }
@@ -46,7 +34,7 @@ class LecDataModel: NSObject {
     }
     
     fileprivate func parseProject(_ json: JSON) {
-        if let buildingID =  json[LecConstants.LecJSONKey.BuildingID].int{
+        if let buildingID =  json[LecConstants.LecJSONKey.ID].int{
             building.iId = buildingID
         }
         if let buildingName = json[LecConstants.LecJSONKey.BuildingName].string {
@@ -66,7 +54,7 @@ class LecDataModel: NSObject {
                 if let buildingID = $0[LecConstants.LecJSONKey.BuildingID].int {
                     floor.sId = buildingID
                 }
-                if let floorID = $0[LecConstants.LecJSONKey.FloorID].int {
+                if let floorID = $0[LecConstants.LecJSONKey.ID].int {
                     floor.iId = floorID
                 }
                 if let floorName = $0[LecConstants.LecJSONKey.FloorName].string {
@@ -78,7 +66,7 @@ class LecDataModel: NSObject {
                         if let floorID = $0[LecConstants.LecJSONKey.FloorID].int {
                             area.sId = floorID
                         }
-                        if let areaID = $0[LecConstants.LecJSONKey.AreaID].int {
+                        if let areaID = $0[LecConstants.LecJSONKey.ID].int {
                             area.iId = areaID
                         }
                         if let areaName = $0[LecConstants.LecJSONKey.AreaName].string {
@@ -93,7 +81,7 @@ class LecDataModel: NSObject {
                                 if let areaID = $0[LecConstants.LecJSONKey.AreaID].int {
                                     device.sId = areaID
                                 }
-                                if let deviceID = $0[LecConstants.LecJSONKey.DeviceID].int {
+                                if let deviceID = $0[LecConstants.LecJSONKey.ID].int {
                                     device.iId = deviceID
                                 }
                                 if let deviceName = $0[LecConstants.LecJSONKey.DeviceName].string {
@@ -113,7 +101,7 @@ class LecDataModel: NSObject {
                                         if let deviceID = $0[LecConstants.LecJSONKey.DeviceID].int {
                                             cam.sId = deviceID
                                         }
-                                        if let camID = $0[LecConstants.LecJSONKey.CamID].int {
+                                        if let camID = $0[LecConstants.LecJSONKey.ID].int {
                                             cam.iId = camID
                                         }
                                         if let camName = $0[LecConstants.LecJSONKey.CamName].string {
@@ -141,7 +129,7 @@ class LecDataModel: NSObject {
                                         
                                         if let controlValue = $0[LecConstants.LecJSONKey.ControlValue].int {
                                             cam.controlValue = controlValue
-                                            cam.statusValue = controlValue
+//                                            cam.statusValue = controlValue
                                         }
                                         
                                         /*

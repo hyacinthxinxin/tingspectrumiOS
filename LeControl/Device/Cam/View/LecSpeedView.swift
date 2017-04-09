@@ -9,17 +9,6 @@
 import UIKit
 import PureLayout
 
-private let openImage = UIImage(named: "open")
-private let openClickImage = UIImage(named: "open_click")
-private let closeImage = UIImage(named: "close")
-private let closeClickImage = UIImage(named: "close_click")
-private let upImage = UIImage(named: "up")
-private let upClickImage = UIImage(named: "up_click")
-private let downImage = UIImage(named: "down")
-private let downClickImage = UIImage(named: "down_click")
-private let pasueImage = UIImage(named: "pause")
-private let pasueClickImage = UIImage(named: "pause_click")
-
 class LecSpeedView: LecCamView {
     
     var didSetupConstraints = false
@@ -27,7 +16,7 @@ class LecSpeedView: LecCamView {
     var speedSlider: LecStepSlider?
     var speedNameLabel: UILabel?
     var separatorView: UIView?
-
+    
     convenience init(cams: [LecCam]) {
         self.init(frame: CGRect.zero)
         backgroundColor = LecConstants.AppColor.ThemeBGColor
@@ -36,24 +25,21 @@ class LecSpeedView: LecCamView {
     }
     
     fileprivate func setupSubviews() {
-
-        if let cams = self.cams {
-            let titles = cams.map { $0.name }
-            speedSlider = LecStepSlider(titles: titles)
-            if let speedSlider = self.speedSlider {
-                speedSlider.backgroundColor = LecConstants.AppColor.ThemeBGColor
-                speedSlider.selectedIndex = 0
-                speedSlider.addTarget(self, action: #selector(LecSpeedView.speedChange(_:)), for: .valueChanged)
-                addSubview(speedSlider)
-            }
+        let titles = cams.map { $0.name }
+        speedSlider = LecStepSlider(titles: titles)
+        if let speedSlider = self.speedSlider {
+            speedSlider.backgroundColor = LecConstants.AppColor.ThemeBGColor
+            speedSlider.selectedIndex = 0
+            speedSlider.addTarget(self, action: #selector(LecSpeedView.speedChange(_:)), for: .valueChanged)
+            addSubview(speedSlider)
         }
         
         speedNameLabel = UILabel()
-        if let dView = self.speedNameLabel {
-            dView.font = UIFont.systemFont(ofSize: 15)
-            dView.textColor = UIColor.white
-            dView.text = "风速控制"
-            addSubview(dView)
+        if let speedNameLabel = self.speedNameLabel {
+            speedNameLabel.font = UIFont.systemFont(ofSize: 15)
+            speedNameLabel.textColor = UIColor.white
+            speedNameLabel.text = "风速控制"
+            addSubview(speedNameLabel)
         }
         
         separatorView = UIView()
@@ -61,45 +47,40 @@ class LecSpeedView: LecCamView {
             sView.backgroundColor = LecConstants.AppColor.SeparatorColor
             addSubview(sView)
         }
+        
+        for cam in cams {
+            if cam.isChecked {
+                if let index = cams.index(of: cam) {
+                    speedSlider?.selectedIndex = index
+                }
+                return
+            }
+        }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        if let dView = self.speedNameLabel {
-            dView.autoPinEdge(toSuperviewEdge: .left, withInset: 14)
-            dView.autoPinEdge(toSuperviewEdge: .top, withInset: 5)
+        if let speedNameLabel = self.speedNameLabel {
+            speedNameLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 14)
+            speedNameLabel.autoPinEdge(toSuperviewEdge: .top, withInset: 5)
         }
-
+        
         if let speedSlider = self.speedSlider {
             speedSlider.autoPinEdge(toSuperviewEdge: .left, withInset: 0)
             speedSlider.autoPinEdge(toSuperviewEdge: .right, withInset: 0)
             speedSlider.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
-            speedSlider.autoPinEdge(toSuperviewEdge: .top, withInset: 0)
+            speedSlider.autoPinEdge(toSuperviewEdge: .top, withInset: 15)
         }
         
-        if let sView = self.separatorView {
-            sView.autoPinEdge(toSuperviewEdge: .left, withInset: 0)
-            sView.autoPinEdge(toSuperviewEdge: .right, withInset: 0)
-            sView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
-            sView.autoSetDimension(.height, toSize: 0.5)
-        }
-
-    }
-
-    override func refreshState(_ feedbackAddress: String, statusValue: Int) {
-        if let cams = self.cams {
-            for cam in cams {
-                if cam.statusAddress == feedbackAddress && cam.statusValue == statusValue {
-                    if let index = cams.index(of: cam) {
-                        speedSlider?.selectedIndex = index
-                    }
-                    return
-                }
-            }
+        if let separatorView = self.separatorView {
+            separatorView.autoPinEdge(toSuperviewEdge: .left, withInset: 0)
+            separatorView.autoPinEdge(toSuperviewEdge: .right, withInset: 0)
+            separatorView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
+            separatorView.autoSetDimension(.height, toSize: 0.5)
         }
     }
-
+    
     func speedChange(_ sender: LecStepSlider) {
         if let cams = self.cams {
             let cam  = cams[sender.selectedIndex]

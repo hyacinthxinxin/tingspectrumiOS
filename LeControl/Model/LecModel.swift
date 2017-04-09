@@ -16,7 +16,6 @@ enum LecCommand: Int {
 
 private let deviceTypeDescriptionDictionary = [LecDeviceType.scene: "场景",
                                                LecDeviceType.light: "灯光开关",
-                                               LecDeviceType.lightDimming: "灯光调光",
                                                LecDeviceType.curtain: "窗帘",
                                                LecDeviceType.airConditioning: "空调",
                                                LecDeviceType.floorHeating: "地热",
@@ -25,13 +24,12 @@ private let deviceTypeDescriptionDictionary = [LecDeviceType.scene: "场景",
 
 enum LecDeviceType: Int {
     case scene = 0
-    case light
-    case lightDimming
-    case curtain
-    case airConditioning
-    case floorHeating
-    case freshAir
-    case custom
+    case light = 2
+    case curtain = 3
+    case airConditioning = 4
+    case floorHeating = 5
+    case freshAir = 6
+    case custom = 7
     
     var description: String{
         return deviceTypeDescriptionDictionary[self] ?? "未知的"
@@ -74,10 +72,45 @@ class LecCam: Ting {
     var controlAddress: String = ""
     var statusAddress: String = ""
     var controlValue: Int = 0
-    var statusValue: Int = 0
-    var minControlValue: Int = 18
-    var maxControlValue: Int = 29
-    var maxStatusValue: Int = 29
-    var minStatusValue: Int = 18
-    var usn: Int = 0
+    var isChecked = false
+    
+    var isSingleControl: Bool {
+        get {
+            return LecConstants.DeviceCamTypes.SingleControlCams.contains(iType)
+        }
+    }
+    
+    
+    
+    func getCamImageName(by camType: Int, isSelected: Bool) -> String {
+        switch camType {
+        case 30:
+            return isSelected ? "open_click": "open"
+        case 31:
+            return isSelected ? "close_click": "close"
+        case 32:
+            return isSelected ? "up_click": "up"
+        case 33:
+            return isSelected ? "down_click": "down"
+        case 34:
+            return isSelected ? "pause_click": "pause"
+        case 42:
+            return isSelected ? "mode_heating_sel": "mode_heating"
+        case 43:
+            return isSelected ? "mode_refrigeration_sel": "mode_refrigeration"
+        case 44:
+            return isSelected ? "mode_ventilation_sel": "mode_ventilation"
+        case 45:
+            return isSelected ? "mode_desiccant_sel": "mode_desiccant"
+        default:
+            return isSelected ? "other_sel": "other"
+        }
+    }
+    
+//    var statusValue: Int = 0
+//    var minControlValue: Int = 18
+//    var maxControlValue: Int = 29
+//    var maxStatusValue: Int = 29
+//    var minStatusValue: Int = 18
+//    var usn: Int = 0
 }

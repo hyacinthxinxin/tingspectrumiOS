@@ -11,7 +11,7 @@ import CocoaAsyncSocket
 import JDStatusBarNotification
 
 protocol LecCamRefreshDelegate: class {
-    func refreshCam(_ feedbackAddress: String, statusValue: Int)
+    func refreshCam(_ feedbackAddress: String, feedbackValue: Int)
 }
 
 class LecSocketManager: NSObject {
@@ -48,7 +48,7 @@ class LecSocketManager: NSObject {
         do {
             try socket.connect(toHost: socketInfo.address, onPort: socketInfo.port)
         } catch let error {
-            print("error in connecting" + String(describing: error))
+            lec_log("error in connecting" + String(describing: error))
         }
     }
     
@@ -70,21 +70,21 @@ class LecSocketManager: NSObject {
 
 extension LecSocketManager: GCDAsyncSocketDelegate {
     func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
-//        print(#function)
+        lec_log(#function)
         let msg = "已连接上服务端，（地址: " + host + "）"
-//        print(msg)
+        lec_log(msg)
         isErrorNotificationShowed = false
         JDStatusBarNotification.show(withStatus: msg, dismissAfter: 2.0, styleName: JDStatusBarStyleSuccess);
         sock.readData(withTimeout: -1, tag: 0)
     }
     
     func socket(_ sock: GCDAsyncSocket, didWriteDataWithTag tag: Int) {
-//        print(#function)
+        lec_log(#function)
         sock.readData(withTimeout: -1, tag: 0)
     }
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-//        print(#function)
+        lec_log(#function)
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         LecSocketData.handle(data)
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
@@ -92,9 +92,9 @@ extension LecSocketManager: GCDAsyncSocketDelegate {
     }
     
     func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-//        print(#function)
+        lec_log(#function)
         let msg = "连接服务端（地址: " + socketInfo.address + "）失败，请检查设置"
-//        print(msg)
+        lec_log(msg)
         if !isErrorNotificationShowed {
             JDStatusBarNotification.show(withStatus: msg, dismissAfter: 3.0, styleName: JDStatusBarStyleError);
             isErrorNotificationShowed = true

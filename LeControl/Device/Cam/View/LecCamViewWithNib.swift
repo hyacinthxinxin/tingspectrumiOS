@@ -37,19 +37,19 @@ class LecCamViewWithNib: LecCamView {
     func commonInit() {
         containerView = loadViewFfromNib()
         containerView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        if let cView = containerView {
-            addSubview(cView)
+        if let containerView = self.containerView {
+            addSubview(containerView)
         }
         setNeedsUpdateConstraints() // bootstrap Auto Layout
     }
     
     override func updateConstraints() {
         if (!didSetupConstraints) {
-            if let cview = containerView {
-                cview.autoPinEdge(toSuperviewEdge: .bottom)
-                cview.autoPinEdge(toSuperviewEdge: .right)
-                cview.autoPinEdge(toSuperviewEdge: .left)
-                cview.autoPinEdge(toSuperviewEdge: .top)
+            if let containerView = self.containerView {
+                containerView.autoPinEdge(toSuperviewEdge: .bottom)
+                containerView.autoPinEdge(toSuperviewEdge: .right)
+                containerView.autoPinEdge(toSuperviewEdge: .left)
+                containerView.autoPinEdge(toSuperviewEdge: .top)
             }
             didSetupConstraints = true
         }

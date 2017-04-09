@@ -1,45 +1,27 @@
 PODS:
-  - Alamofire (4.0.0)
-  - ASValueTrackingSlider (0.11.2)
-  - CocoaAsyncSocket (7.5.0):
-    - CocoaAsyncSocket/GCD (= 7.5.0)
-  - CocoaAsyncSocket/GCD (7.5.0)
-  - JDStatusBarNotification (1.5.4)
+  - Alamofire (4.4.0)
+  - ASValueTrackingSlider (0.12.1)
+  - CocoaAsyncSocket (7.6.0)
+  - JDStatusBarNotification (1.5.5)
   - PureLayout (3.0.2)
-  - SwiftyJSON (2.3.2)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `master`)
+  - Alamofire (~> 4.4)
   - ASValueTrackingSlider
   - CocoaAsyncSocket
   - JDStatusBarNotification
   - PureLayout
-  - SwiftyJSON (from `https://github.com/BaiduHiDeviOS/SwiftyJSON.git`, branch `swift3`)
-
-EXTERNAL SOURCES:
-  Alamofire:
-    :branch: master
-    :git: https://github.com/Alamofire/Alamofire.git
-  SwiftyJSON:
-    :branch: swift3
-    :git: https://github.com/BaiduHiDeviOS/SwiftyJSON.git
-
-CHECKOUT OPTIONS:
-  Alamofire:
-    :commit: 8ac0e19fe0d4debcfb6f394c012db99caaf741c9
-    :git: https://github.com/Alamofire/Alamofire.git
-  SwiftyJSON:
-    :commit: de5dc3b1b421805769590d331178551bbb0e5733
-    :git: https://github.com/BaiduHiDeviOS/SwiftyJSON.git
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
-  ASValueTrackingSlider: 45c9f78252da60de01d8f2afe869aaf90dd978d9
-  CocoaAsyncSocket: 3baeb1ddd969f81cf9fca81053ae49ef2d1cbbfa
-  JDStatusBarNotification: d47dded0594a50a39c84a2cc5aa356fcf6750d0e
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  ASValueTrackingSlider: 5261de3fcf00adb339efc93885e8f0bc99e703cd
+  CocoaAsyncSocket: b9d5589f07baf9de8f34cc25abd4fcba28f13805
+  JDStatusBarNotification: 2b4f29bd68a60d7aa2f190b5265f1ce59c18aaf8
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
-  SwiftyJSON: 6118fb49d7519c4d31a0c1f3d5af936e9047b556
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: a19447ac17845650050885d407b8ed98c9c286fb
+PODFILE CHECKSUM: 4f3dcea51e8571ea5ad9452e96c37d206356749c
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1.rc.1

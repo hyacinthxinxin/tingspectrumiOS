@@ -13,18 +13,11 @@ class LecDimmingView: LecCamViewWithNib {
     
     @IBOutlet weak var dimmingSlider: UISlider!
     
-    override var cams: [LecCam]? {
+    override var cams: [LecCam]! {
         didSet {
-            if let cam = self.cams?.first {
-                refreshState(cam.statusAddress, statusValue: cam.statusValue)
+            if let cam = cams.first {
+                dimmingSlider.value = Float(cam.controlValue) / 225
             }
-        }
-    }
-    
-    override func refreshState(_ feedbackAddress: String, statusValue: Int) {
-        if let cam = self.cams?.first {
-            cam.statusValue = statusValue
-            dimmingSlider.value = Float(cam.statusValue) / 225
         }
     }
 

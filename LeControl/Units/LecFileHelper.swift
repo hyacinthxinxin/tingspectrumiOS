@@ -80,7 +80,7 @@ class LecFileHelper {
                 try fileManager.createDirectory(atPath: filePath, withIntermediateDirectories: false, attributes: nil)
             }
             catch {
-                print("An Error was generated creating directory")
+                lec_log("An Error was generated creating directory")
             }
         }
     }
@@ -119,7 +119,7 @@ class LecFileHelper {
             return newData
         }
         catch {
-            print("Error writing data: \(error)")
+            lec_log("Error writing data: \(error)")
         }
         throw FileErrors.jsonNotSerialized
     }

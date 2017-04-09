@@ -55,7 +55,7 @@ class LecAreaDetailViewController: UICollectionViewController {
             if (devices.contains{ $0.iType == .scene }) {
                 g.append(.groupScene)
             }
-            if (devices.contains{ $0.iType == .light || $0.iType == .lightDimming}) {
+            if (devices.contains{ $0.iType == .light}) {
                 g.append(.groupLight)
             }
             if (devices.contains{ $0.iType == .curtain }) {
@@ -97,9 +97,7 @@ class LecAreaDetailViewController: UICollectionViewController {
                     case .groupScene:
                         deviceViewController.devices = devices.filter { $0.iType == .scene }
                     case .groupLight:
-                        var ds = devices.filter { $0.iType == .light }
-                        ds += devices.filter { $0.iType == .lightDimming }
-                        deviceViewController.devices = ds
+                        deviceViewController.devices = devices.filter { $0.iType == .light }
                     case .groupCurtain:
                         deviceViewController.devices = devices.filter { $0.iType == .curtain}
                     case .groupTemperature:
