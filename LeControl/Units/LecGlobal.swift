@@ -31,5 +31,5 @@ enum LecEnvironment {
     }
 }
 
-let environment: LecEnvironment = LecEnvironment.develop
+let environment: LecEnvironment = LecEnvironment.product
 
