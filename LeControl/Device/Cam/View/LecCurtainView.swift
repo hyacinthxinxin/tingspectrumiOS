@@ -33,7 +33,7 @@ class LecCurtainView: LecCamView {
         for cam in cams {
             let curtainButton = UIButton(type: .custom)
             curtainButton.setImage(UIImage(named: cam.getCamImageName(by: cam.iType, isSelected: false)), for: .normal)
-            curtainButton.setImage(UIImage(named: cam.getCamImageName(by: cam.iType, isSelected: true)), for: .highlighted)
+            curtainButton.setImage(UIImage(named: cam.getCamImageName(by: cam.iType, isSelected: true)), for: .selected)
             curtainButton.setImage(UIImage(named: cam.getCamImageName(by: cam.iType, isSelected: true)), for: [.highlighted, .selected])
             curtainButton.showsTouchWhenHighlighted = true
             curtainButton.adjustsImageWhenHighlighted = false

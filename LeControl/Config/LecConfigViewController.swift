@@ -41,6 +41,7 @@ class LecConfigViewController: UITableViewController {
     func loadConfig(with userID: Int) {
         let loginUrl = environment.httpAddress + LecConstants.NetworkSubAddress.Buildings
         Alamofire.request(loginUrl, method: .get, parameters: ["user_id":userID]).responseJSON(completionHandler: { [weak weakSelf = self] (response) in
+            print(response.result)
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -64,7 +65,7 @@ class LecConfigViewController: UITableViewController {
                     weakSelf?.tableView.reloadData()
                 }
             case .failure:
-                JDStatusBarNotification.show(withStatus: "登录失败", dismissAfter: 2.0, styleName: JDStatusBarStyleSuccess);
+                JDStatusBarNotification.show(withStatus: "登录失败", dismissAfter: 2.0, styleName: JDStatusBarStyleError);
             }})
     }
     
@@ -126,7 +127,7 @@ class LecConfigViewController: UITableViewController {
                     
                 }
             case .failure:
-                JDStatusBarNotification.show(withStatus: "登录失败", dismissAfter: 2.0, styleName: JDStatusBarStyleSuccess);
+                JDStatusBarNotification.show(withStatus: "登录失败", dismissAfter: 2.0, styleName: JDStatusBarStyleError);
             }})
     }
 }

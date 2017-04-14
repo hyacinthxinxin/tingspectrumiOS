@@ -2,7 +2,7 @@
     "id": 1,
     "name": "乐控",
     "image_name": null,
-    "socket_address": "172.70.1.112",
+    "socket_address": "192.168.1.101",
     "socket_port": 4196,
     "created_at": "2017-02-09T13:48:34.392Z",
     "updated_at": "2017-04-09T04:58:16.143Z",

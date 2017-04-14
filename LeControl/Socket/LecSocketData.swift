@@ -40,16 +40,17 @@ struct ControlMessage: Hashable {
 class LecSocketData {
     static func generatorStatusReadingByte(_ msg: StatusMessage) -> [UInt8] {
         let address = msg.address.components(separatedBy: "/")
-        let type = msg.type
+        let type = UInt8(msg.type)
         
         if let firstAddress = UInt8(address[0]), let secondAddress = UInt8(address[1]), let thirdAddress = UInt8(address[2]) {
             let firstAndSecondAddress = firstAddress &* 0x10 &+ secondAddress
+            let lrc: UInt8 = ~(LecConstants.Command.StartCode &+  LecConstants.Command.StatusCode &+ firstAndSecondAddress &+ thirdAddress &+ type)  &+ 1
             return [LecConstants.Command.StartCode,
                     LecConstants.Command.StatusCode,
                     firstAndSecondAddress,
                     thirdAddress,
-                    UInt8(type),
-                    LecConstants.Command.EmptyValue,
+                    type,
+                    lrc,
                     LecConstants.Command.EndCode
             ]
         }
@@ -72,7 +73,7 @@ class LecSocketData {
         
         if let firstAddress = UInt8(address[0]), let secondAddress = UInt8(address[1]), let thirdAddress = UInt8(address[2]) {
             let firstAndSecondAddress = firstAddress &* 0x10 &+ secondAddress
-            let lrc: UInt8 = ~(LecConstants.Command.StartCode &+  LecConstants.Command.ControlCode &+ firstAndSecondAddress &+ thirdAddress &+ UInt8(value)) &+ UInt8(type)  &+ 1
+            let lrc: UInt8 = ~(LecConstants.Command.StartCode &+  LecConstants.Command.ControlCode &+ firstAndSecondAddress &+ thirdAddress &+ UInt8(value) &+ UInt8(type))  &+ 1
             return [LecConstants.Command.StartCode,
                     LecConstants.Command.ControlCode,
                     firstAndSecondAddress,
@@ -119,11 +120,6 @@ class LecSocketData {
             let feedbackAddress = LecSocketData.addrGet(camCode[LecConstants.Command.FirstAndSecondAddressIndex], t: camCode[LecConstants.Command.ThirdAddressIndex])
             let statusValue = Int(camCode[LecConstants.Command.ValueIndex])
             LecSocketManager.sharedSocket.camRefreshDelegate?.refreshCam(feedbackAddress, feedbackValue: statusValue)
-//            if let cam = LecSocketManager.sharedSocket.dataModel.getCamByStatusAddress(feedbackAddress) {
-//                if cam.iType < 40 {
-//                    cam.statusValue = statusValue
-//                }
-//            }
         }
         
     }

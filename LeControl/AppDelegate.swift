@@ -41,6 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func applicationWillResignActive(_ application: UIApplication) {
+        LecSocketManager.sharedSocket.isErrorNotificationShowed = false
+    }
     // MARK: - Custom Appearance
     
     func customizeAppearance() {

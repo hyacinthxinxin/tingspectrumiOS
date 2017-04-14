@@ -84,6 +84,10 @@ class LecSpeedView: LecCamView {
     func speedChange(_ sender: LecStepSlider) {
         if let cams = self.cams {
             let cam  = cams[sender.selectedIndex]
+            cam.isChecked = true
+            for c in cams.filter({$0.iId != cam.iId}) {
+                c.isChecked = false
+            }
             LecSocketManager.sharedSocket.sendMessageWithCam(cam)
         }
     }

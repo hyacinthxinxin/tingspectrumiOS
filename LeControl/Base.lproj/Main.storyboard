@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -56,7 +56,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="oGX-0w-UR2">
-                                <rect key="frame" x="16" y="108" width="343" height="206.5"/>
+                                <rect key="frame" x="16" y="72" width="343" height="235.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ℹ️登录您的乐控账号，获取项目配置信息" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLn-rn-6WH">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="14.5"/>
@@ -75,8 +75,13 @@
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zJf-hs-on3">
                                                 <rect key="frame" x="0.0" y="28.5" width="343" height="30"/>
+                                                <color key="tintColor" red="0.13763001561164856" green="0.10769853740930557" blue="0.19051623344421387" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="mBA-CU-yGb" id="PHV-RP-qWH"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -91,8 +96,12 @@
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zxc-x9-aXC">
                                                 <rect key="frame" x="0.0" y="28.5" width="343" height="30"/>
+                                                <color key="tintColor" red="0.13763001559999999" green="0.1076985374" blue="0.19051623340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="go" secureTextEntry="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="mBA-CU-yGb" id="qwv-1Q-k7L"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -107,6 +116,12 @@
                                             <action selector="login:" destination="mBA-CU-yGb" eventType="touchUpInside" id="Djf-7o-K9s"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="版本号" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="La6-56-EM0">
+                                        <rect key="frame" x="0.0" y="219.5" width="343" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aXA-Qv-u2V">
@@ -118,12 +133,14 @@
                                 <attributedString key="attributedText">
                                     <fragment content="如果您需要创建账号、修改配置、获取更多信息请访问：">
                                         <attributes>
+                                            <color key="NSBackgroundColor" red="0.15337949991226196" green="0.11922919005155563" blue="0.21033176779747009" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <font key="NSFont" size="13" name=".PingFangSC-Regular"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content="http://www.tingspectrum.com">
                                         <attributes>
+                                            <color key="NSBackgroundColor" red="0.15337949991226196" green="0.11922919005155563" blue="0.21033176779747009" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="NSColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" metaFont="system"/>
                                         </attributes>
@@ -140,7 +157,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="oGX-0w-UR2" secondAttribute="trailing" id="Bfn-ct-8Kc"/>
                             <constraint firstItem="aXA-Qv-u2V" firstAttribute="leading" secondItem="D2p-NL-nEK" secondAttribute="leadingMargin" id="CXh-7P-ezE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aXA-Qv-u2V" secondAttribute="trailing" id="ePk-dl-7WM"/>
-                            <constraint firstItem="oGX-0w-UR2" firstAttribute="top" secondItem="tHf-bc-p3E" secondAttribute="bottom" constant="44" id="q6Z-92-97N"/>
+                            <constraint firstItem="oGX-0w-UR2" firstAttribute="top" secondItem="tHf-bc-p3E" secondAttribute="bottom" constant="8" symbolic="YES" id="q6Z-92-97N"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="请登录" id="0z5-s8-7Ca">
@@ -151,6 +168,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="infoLabel" destination="La6-56-EM0" id="30e-Ey-8gd"/>
                         <outlet property="passwordTextField" destination="zxc-x9-aXC" id="azu-cP-aNc"/>
                         <outlet property="userNameTextField" destination="zJf-hs-on3" id="HeV-o7-6y1"/>
                     </connections>
