@@ -156,12 +156,13 @@ let hSpacing: CGFloat = 76.0
 
 extension LecAreaDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: 80, height: 196)
+        let size = CGSize(width: screenWidth/3, height: cellHeight)
         return size
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact ? UIEdgeInsets(top:148 - 64, left:(screenWidth - 2 * cellWidth) / 3 - 2, bottom:0, right:(screenWidth - 2 * cellWidth) / 3 - 2) : UIEdgeInsets(top:148 - 64, left:hMargin, bottom: 0, right:hMargin)
+//        return view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact ? UIEdgeInsets(top:148 - 64, left:(screenWidth - 2 * cellWidth) / 3 - 2, bottom:0, right:(screenWidth - 2 * cellWidth) / 3 - 2) : UIEdgeInsets(top:148 - 64, left:hMargin, bottom: 0, right:hMargin)
+        return UIEdgeInsets(top:64, left:screenWidth / 9, bottom: 0, right:screenWidth / 9)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -169,6 +170,7 @@ extension LecAreaDetailViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return  view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact ? (screenWidth - 2 * cellWidth) / 3 : hSpacing
+//        return  view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact ? (screenWidth - 2 * cellWidth) / 3 : hSpacing
+        return screenWidth / 9
     }
 }

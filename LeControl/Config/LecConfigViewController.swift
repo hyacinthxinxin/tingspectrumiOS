@@ -41,7 +41,6 @@ class LecConfigViewController: UITableViewController {
     func loadConfig(with userID: Int) {
         let loginUrl = environment.httpAddress + LecConstants.NetworkSubAddress.Buildings
         Alamofire.request(loginUrl, method: .get, parameters: ["user_id":userID]).responseJSON(completionHandler: { [weak weakSelf = self] (response) in
-            print(response.result)
             switch response.result {
             case .success(let value):
                 let json = JSON(value)

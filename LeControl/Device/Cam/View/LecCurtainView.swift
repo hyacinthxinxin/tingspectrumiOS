@@ -25,7 +25,7 @@ class LecCurtainView: LecCamView {
     fileprivate func setupSubviews() {
         curtainNameLabel = UILabel()
         if let dView = self.curtainNameLabel {
-            dView.font = UIFont.systemFont(ofSize: 13)
+            dView.font = UIFont.preferredFont(forTextStyle: .body)
             dView.textColor = UIColor.white
             addSubview(dView)
         }

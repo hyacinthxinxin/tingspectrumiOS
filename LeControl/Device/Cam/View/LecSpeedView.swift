@@ -36,7 +36,7 @@ class LecSpeedView: LecCamView {
         
         speedNameLabel = UILabel()
         if let speedNameLabel = self.speedNameLabel {
-            speedNameLabel.font = UIFont.systemFont(ofSize: 15)
+            speedNameLabel.font = UIFont.systemFont(ofSize: 13)
             speedNameLabel.textColor = UIColor.white
             speedNameLabel.text = "风速控制"
             addSubview(speedNameLabel)

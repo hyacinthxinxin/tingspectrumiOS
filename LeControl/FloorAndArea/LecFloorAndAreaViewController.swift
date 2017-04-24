@@ -39,6 +39,13 @@ class LecFloorAndAreaViewController: UITableViewController {
         tableView.cellLayoutMarginsFollowReadableWidth = false
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil, queue: OperationQueue.main) { [weak weakSelf = self] noti in
+            lec_log(noti.userInfo?["UIContentSizeCategoryNewValueKey"] ?? "no change")
+            weakSelf?.tableView.reloadData()
+        }
+    }
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {

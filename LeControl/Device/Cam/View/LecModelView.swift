@@ -35,7 +35,7 @@ class LecModelView: LecCamView {
             modelButton.setTitleColor(LecConstants.AppColor.CamTintColor, for: [.highlighted, .selected])
             modelButton.setTitle(cam.name, for: .normal)
             modelButton.addTarget(self, action: #selector(camButtonTapped), for: .touchUpInside)
-            modelButton.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+            modelButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
             modelButton.setButtonSpacing(14)
             modelButton.isSelected = cam.isChecked
             modelButtons += [modelButton]

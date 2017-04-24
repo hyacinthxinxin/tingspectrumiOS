@@ -88,7 +88,7 @@ class LecStepSlider: UIControl {
             label.text = title
             label.textColor = UIColor.white
             label.textAlignment = .center
-            label.font = UIFont.systemFont(ofSize: 13)
+            label.font = UIFont.preferredFont(forTextStyle: .body)
             labels += [label]
             addSubview(label)
         }
