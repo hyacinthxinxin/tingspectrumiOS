@@ -72,6 +72,16 @@ class LecDeviceCell: UITableViewCell {
                 if !filterCams(cams, camTypes: LecConstants.DeviceCamTypes.FreshAirSpeed).isEmpty {
                     height += LecConstants.DeviceCellHeight.FreshAir_Speed
                 }
+            case .environment:
+                if !filterCams(cams, camTypes: LecConstants.DeviceCamTypes.EnvironmentTemperatrue).isEmpty {
+                    height += LecConstants.DeviceCellHeight.Environment_Temperature
+                }
+                if !filterCams(cams, camTypes: LecConstants.DeviceCamTypes.EnvironmentHumidity).isEmpty {
+                    height += LecConstants.DeviceCellHeight.Environment_Humidity
+                }
+                if !filterCams(cams, camTypes: LecConstants.DeviceCamTypes.EnvironmentPM).isEmpty {
+                    height += LecConstants.DeviceCellHeight.Environment_PM
+                }
             default: break
             }
         }

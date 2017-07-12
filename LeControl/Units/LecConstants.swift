@@ -79,6 +79,9 @@ struct LecConstants {
         static let FloorHeating_Temperature: CGFloat = 89
         static let FreshAir_Switch: CGFloat = 55
         static let FreshAir_Speed: CGFloat = 130
+        static let Environment_Temperature: CGFloat = 55
+        static let Environment_Humidity: CGFloat = 55
+        static let Environment_PM: CGFloat = 55
     }
     
     struct DeviceCamTypes {
@@ -93,8 +96,12 @@ struct LecConstants {
         static let FloorHeatingTemperature = [51]
         static let FreshAirSwitch = [60]
         static let FreshAirSpeed = [61, 62, 63]
-        
-        static let SingleControlCams = LightSwitch + LightDimming + AirConditioningSwitch + AirConditioningTemperature + FloorHeatingSwitch + FloorHeatingTemperature + FreshAirSwitch
+        static let EnvironmentTemperatrue = [90]
+        static let EnvironmentHumidity = [91]
+        static let EnvironmentPM = [92]
+        //表示只通过数值反馈
+        static let SingleControlCams = [20, 21, 40, 41, 50, 51, 60, 90, 91, 92]
+//            LightSwitch + LightDimming + AirConditioningSwitch + AirConditioningTemperature + FloorHeatingSwitch + FloorHeatingTemperature + FreshAirSwitch + EnvironmentTemperatrue + EnvironmentHumidity + EnvironmentPM
     }
     
     struct NotificationKey {

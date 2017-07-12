@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20966F8B1F15DA79001D01BF /* LecEnvironmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20966F8A1F15DA79001D01BF /* LecEnvironmentCell.swift */; };
+		20966F8D1F15DC84001D01BF /* LecDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20966F8C1F15DC84001D01BF /* LecDisplayView.swift */; };
+		20966F8F1F15DC9B001D01BF /* LecDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20966F8E1F15DC9B001D01BF /* LecDisplayView.xib */; };
 		20EEDA8E1E5197A700B28E52 /* DefaultProject.json in Resources */ = {isa = PBXBuildFile; fileRef = 20EEDA8D1E5197A700B28E52 /* DefaultProject.json */; };
 		20EEE7351E98FBE9004672C1 /* LecLightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EEE7341E98FBE9004672C1 /* LecLightCell.swift */; };
 		20EEE7381E98FD0E004672C1 /* LecAirConditioningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EEE7371E98FD0E004672C1 /* LecAirConditioningCell.swift */; };
@@ -54,6 +57,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20966F8A1F15DA79001D01BF /* LecEnvironmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecEnvironmentCell.swift; path = Device/DeviceCell/LecEnvironmentCell.swift; sourceTree = "<group>"; };
+		20966F8C1F15DC84001D01BF /* LecDisplayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecDisplayView.swift; path = Device/Cam/View/LecDisplayView.swift; sourceTree = "<group>"; };
+		20966F8E1F15DC9B001D01BF /* LecDisplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LecDisplayView.xib; path = Device/Cam/View/LecDisplayView.xib; sourceTree = "<group>"; };
 		20EEDA8D1E5197A700B28E52 /* DefaultProject.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DefaultProject.json; sourceTree = "<group>"; };
 		20EEE7341E98FBE9004672C1 /* LecLightCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecLightCell.swift; path = Device/DeviceCell/LecLightCell.swift; sourceTree = "<group>"; };
 		20EEE7371E98FD0E004672C1 /* LecAirConditioningCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LecAirConditioningCell.swift; path = Device/DeviceCell/LecAirConditioningCell.swift; sourceTree = "<group>"; };
@@ -125,6 +131,7 @@
 				20EEE7371E98FD0E004672C1 /* LecAirConditioningCell.swift */,
 				20EEE73B1E98FD3A004672C1 /* LecFloorHeatingCell.swift */,
 				20EEE73D1E98FD54004672C1 /* LecFreshAirCell.swift */,
+				20966F8A1F15DA79001D01BF /* LecEnvironmentCell.swift */,
 			);
 			name = DeviceCell;
 			sourceTree = "<group>";
@@ -253,6 +260,8 @@
 				BA2B4FFD1D719293007D96B6 /* LecCurtainView.swift */,
 				BA2B500B1D72D449007D96B6 /* LecSpeedView.swift */,
 				BA2B500D1D72D464007D96B6 /* LecModelView.swift */,
+				20966F8C1F15DC84001D01BF /* LecDisplayView.swift */,
+				20966F8E1F15DC9B001D01BF /* LecDisplayView.xib */,
 			);
 			name = Cam;
 			sourceTree = "<group>";
@@ -347,6 +356,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20966F8F1F15DC9B001D01BF /* LecDisplayView.xib in Resources */,
 				20EEDA8E1E5197A700B28E52 /* DefaultProject.json in Resources */,
 				BA2B500A1D72C118007D96B6 /* LecTemperatureView.xib in Resources */,
 				BA2B4FA21D6C752C007D96B6 /* LaunchScreen.storyboard in Resources */,
@@ -431,6 +441,7 @@
 				BA2B4FFC1D71926E007D96B6 /* LecDimmingView.swift in Sources */,
 				BA2B4FC71D6C872E007D96B6 /* LecAreaDetailCell.swift in Sources */,
 				BA2B4FDD1D7167EA007D96B6 /* LecDeviceCell.swift in Sources */,
+				20966F8B1F15DA79001D01BF /* LecEnvironmentCell.swift in Sources */,
 				BA2B4FB11D6C78C2007D96B6 /* LecModel.swift in Sources */,
 				BA2B4FB71D6C7B50007D96B6 /* LecDeviceViewController.swift in Sources */,
 				BA2B4FCA1D6EE2D7007D96B6 /* LecLoginViewController.swift in Sources */,
@@ -457,6 +468,7 @@
 				20EEE7381E98FD0E004672C1 /* LecAirConditioningCell.swift in Sources */,
 				20EEE73A1E98FD28004672C1 /* LecCurtainCell.swift in Sources */,
 				BA2B500E1D72D464007D96B6 /* LecModelView.swift in Sources */,
+				20966F8D1F15DC84001D01BF /* LecDisplayView.swift in Sources */,
 				BA2B4FD41D6F19E6007D96B6 /* LecExtensions.swift in Sources */,
 				BA2B4F931D6C752B007D96B6 /* AppDelegate.swift in Sources */,
 				BA2B50131D72EB25007D96B6 /* LecStepSlider.swift in Sources */,

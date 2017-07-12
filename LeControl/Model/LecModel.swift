@@ -29,7 +29,8 @@ enum LecDeviceType: Int {
     case airConditioning = 4
     case floorHeating = 5
     case freshAir = 6
-    case custom = 7
+    case environment = 7
+    case custom = 8
     
     var description: String{
         return deviceTypeDescriptionDictionary[self] ?? "未知的"

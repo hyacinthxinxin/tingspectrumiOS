@@ -44,7 +44,7 @@ class LecCurtainView: LecCamView {
             curtainButton.setTitleColor(LecConstants.AppColor.CamTintColor, for: [.highlighted, .selected])
             curtainButton.setTitle(cam.name, for: .normal)
             curtainButton.addTarget(self, action: #selector(camButtonTapped), for: .touchUpInside)
-            curtainButton.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+            curtainButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
             curtainButton.setButtonSpacing(14)
             curtainButtons += [curtainButton]
             addSubview(curtainButton)

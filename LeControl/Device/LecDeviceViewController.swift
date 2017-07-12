@@ -72,6 +72,9 @@ extension LecDeviceViewController: UITableViewDataSource {
         case .freshAir:
             let cell = LecFreshAirCell(device: device)
             return cell
+        case .environment:
+            let cell = LecEnvironmentCell(device: device)
+            return cell
         default:
             return LecDeviceCell()
         }

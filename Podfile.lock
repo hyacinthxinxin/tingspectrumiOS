@@ -1,7 +1,7 @@
 PODS:
-  - Alamofire (4.4.0)
+  - Alamofire (4.5.0)
   - ASValueTrackingSlider (0.12.1)
-  - CocoaAsyncSocket (7.6.0)
+  - CocoaAsyncSocket (7.6.1)
   - JDStatusBarNotification (1.5.5)
   - PureLayout (3.0.2)
   - SwiftyJSON (3.1.4)
@@ -15,13 +15,13 @@ DEPENDENCIES:
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   ASValueTrackingSlider: 5261de3fcf00adb339efc93885e8f0bc99e703cd
-  CocoaAsyncSocket: b9d5589f07baf9de8f34cc25abd4fcba28f13805
+  CocoaAsyncSocket: 7eadd3f59e1a6c84e2aefc93e9ff7b55156fe174
   JDStatusBarNotification: 2b4f29bd68a60d7aa2f190b5265f1ce59c18aaf8
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 4f3dcea51e8571ea5ad9452e96c37d206356749c
+PODFILE CHECKSUM: 1ac6fd0a176c76abeb55e966b6008fe69962144c
 
 COCOAPODS: 1.2.1.rc.1

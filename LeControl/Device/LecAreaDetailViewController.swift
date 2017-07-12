@@ -61,7 +61,7 @@ class LecAreaDetailViewController: UICollectionViewController {
             if (devices.contains{ $0.iType == .curtain }) {
                 g.append(.groupCurtain)
             }
-            if (devices.contains{ $0.iType == .airConditioning } || devices.contains{ $0.iType == .floorHeating } || devices.contains{ $0.iType == .freshAir }) {
+            if (devices.contains{ $0.iType == .airConditioning } || devices.contains{ $0.iType == .floorHeating } || devices.contains{ $0.iType == .freshAir } || devices.contains{ $0.iType == .environment }) {
                 g.append(.groupTemperature)
             }
             return g
@@ -104,6 +104,7 @@ class LecAreaDetailViewController: UICollectionViewController {
                         var ds = devices.filter { $0.iType == .airConditioning }
                         ds += devices.filter { $0.iType == .floorHeating }
                         ds += devices.filter { $0.iType == .freshAir }
+                        ds += devices.filter { $0.iType == .environment }
                         deviceViewController.devices = ds
                     }
                 }
