@@ -109,27 +109,27 @@ class LecStepSlider: UIControl {
     
     // MARK - Actions
     
-    func itemSelected(_ tap: UITapGestureRecognizer) {
+    @objc func itemSelected(_ tap: UITapGestureRecognizer) {
         selectedIndex = getSelectedIndexInPoint(tap.location(in: self))
         sendActions(for: .touchUpInside)
         sendActions(for: .valueChanged)
     }
     
-    func touchDown(_ sender: UIButton, withEvent event: UIEvent) {
+    @objc func touchDown(_ sender: UIButton, withEvent event: UIEvent) {
         if let currentPoint = event.allTouches?.first?.location(in: self) {
             diffPoint = CGPoint(x: currentPoint.x - sender.frame.origin.x, y: currentPoint.y - sender.frame.origin.y)
         }
         sendActions(for: .touchDown)
     }
     
-    func touchUp(_ sender: UIButton) {
+    @objc func touchUp(_ sender: UIButton) {
         selectedIndex = getSelectedIndexInPoint(sender.center)
         animateKnobToIndex(selectedIndex)
         sendActions(for: .touchUpInside)
         sendActions(for: .valueChanged)
     }
     
-    func touchMove(_ sender: UIButton, withEvent event: UIEvent) {
+    @objc func touchMove(_ sender: UIButton, withEvent event: UIEvent) {
         if let currentPoint = event.allTouches?.first?.location(in: self) {
             var toPoint = CGPoint(x: currentPoint.x - diffPoint.x, y: knob.frame.origin.y)
             toPoint = fixFinalPoint(toPoint)

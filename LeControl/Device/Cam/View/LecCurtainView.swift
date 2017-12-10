@@ -66,7 +66,7 @@ class LecCurtainView: LecCamView {
         curtainButtons.first!.autoSetDimension(.height, toSize: LecConstants.DeviceCellHeight.Curtain_Curtain - 40)
     }
     
-    func camButtonTapped(_ sender: UIButton) {
+    @objc func camButtonTapped(_ sender: UIButton) {
         sender.isSelected = true
         if let index = curtainButtons.index(of: sender) {
             let cam = cams[index]

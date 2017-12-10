@@ -81,7 +81,7 @@ class LecSpeedView: LecCamView {
         }
     }
     
-    func speedChange(_ sender: LecStepSlider) {
+    @objc func speedChange(_ sender: LecStepSlider) {
         if let cams = self.cams {
             let cam  = cams[sender.selectedIndex]
             cam.isChecked = true

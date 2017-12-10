@@ -49,7 +49,7 @@ extension UIButton {
     func setButtonSpacing(_ spacing: CGFloat) {
         if let imageSize = self.imageView?.image?.size, let label = self.titleLabel, let text = label.text  {
             self.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing), 0.0)
-            let titleSize = text.size(attributes: [NSFontAttributeName: label.font])
+            let titleSize = text.size(withAttributes: [NSAttributedStringKey.font: label.font])
             self.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width)
         }
     }

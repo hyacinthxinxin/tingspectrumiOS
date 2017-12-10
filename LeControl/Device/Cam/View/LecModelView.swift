@@ -54,7 +54,7 @@ class LecModelView: LecCamView {
         modelButtons.first!.autoSetDimension(.height, toSize: LecConstants.DeviceCellHeight.AirConditioning_Model)
     }
     
-    func camButtonTapped(_ sender: UIButton) {
+    @objc func camButtonTapped(_ sender: UIButton) {
         if let index = modelButtons.index(of: sender) {
             let cam = cams[index]
             cam.isChecked = true
