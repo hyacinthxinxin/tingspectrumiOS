@@ -630,9 +630,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fanxin.lecontrol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1b5cde15-fca2-454d-82fd-5a159130eb7d";
+				PROVISIONING_PROFILE = "6bcabbac-a0d2-4730-805d-fb8001246b33";
 				PROVISIONING_PROFILE_SPECIFIER = "lecontrol-dev";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -652,9 +652,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fanxin.lecontrol;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f852a1c5-f977-4594-92c5-9bc28c612681";
+				PROVISIONING_PROFILE = "65b52ead-ce27-4f7d-bdd3-2adaded516f5";
 				PROVISIONING_PROFILE_SPECIFIER = "lecontrol-dis";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -19,17 +19,27 @@ class LecDataModel: NSObject {
     }
     
     func loadData() {
-        do {
-            if let data: Data = try LecFileHelper(fileName: "CurrentProject", fileExtension: .JSON, subDirectory: "UserProject").getContentsOfFile() {
-                let json = JSON(data: data)
-                parseProject(json)
+        // 文件夹是否存在
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/\(LecConstants.Path.SubDirectoryName)/CurrentProject.json"
+        if FileManager.default.fileExists(atPath: path) {
+            do {
+                if let data: Data = try LecFileHelper(fileName: "CurrentProject", fileExtension: .JSON, subDirectory: "UserProject").getContentsOfFile() {
+                    let json = try JSON(data: data)
+                    parseProject(json)
+                }
+            } catch {
+
             }
-        } catch {
-            if let filePath = Bundle.main.path(forResource: "DefaultProject", ofType: ".json"), let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)) {
-                let json = JSON(data: data)
-                parseProject(json)
+        } else {
+            JDStatusBarNotification.show(withStatus: "没有找到配置项目，将在演示程序下运行", dismissAfter: 2.0, styleName: JDStatusBarStyleWarning)
+            do {
+                if let filePath = Bundle.main.path(forResource: "DefaultProject", ofType: ".json"), let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)) {
+                    let json = try JSON(data: data)
+                    parseProject(json)
+                }
+            } catch {
+
             }
-            JDStatusBarNotification.show(withStatus: "没有找到配置项目，将在演示程序下运行", dismissAfter: 2.0, styleName: JDStatusBarStyleSuccess);
         }
     }
     
